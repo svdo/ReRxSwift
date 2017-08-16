@@ -3,5 +3,11 @@
 
 *[RxSwift][1] bindings for [ReSwift][2]*
 
+## Notes
+
+1. This is work in progress. Don't use it yet, but stay tuned.
+2. If you're feeling adventurous, disregard the first note and please use this by all means! Report issues, submit pull request, etc; you know the drill.
+3. This project depends on Swift 4! I am currently using Xcode 9.0 beta 5 and the Swift compiler that comes with it. Earlier Xcode 9.0 betas fail at compiling this project!
+
 [1]: https://github.com/ReactiveX/RxSwift
 [2]: https://github.com/ReSwift/ReSwift

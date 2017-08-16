@@ -2,11 +2,15 @@
 
 import ReSwift
 
-struct TestState: StateType {}
-struct TestProps {}
-struct TestActions {}
-let mapStateToProps = { (_: StateType) in return TestProps() }
-let mapDispatchToActions = { (_: DispatchFunction) in return TestActions() }
+struct TestState: StateType {
+    let someString: String
+}
+struct TestProps {
+    let foo: String
+}
+struct TestActions {
+    let bar: (String) -> Void
+}
 
 class FakeStore<S: StateType>: Store<S> {
     var subscribers = [AnyStoreSubscriber]()

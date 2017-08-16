@@ -10,7 +10,7 @@ target 'ReRxSwift' do
   target 'ReRxSwiftTests' do
     inherit! :search_paths
     pod 'Quick', '~> 1.1'
-    pod 'Nimble', '~> 7.0'
+    pod 'Nimble', '~> 7.0', :inhibit_warnings => true
   end
 
 end

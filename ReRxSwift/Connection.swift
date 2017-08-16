@@ -16,5 +16,9 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
         store.subscribe(self)
     }
 
+    public func disconnect() {
+        store.unsubscribe(self)
+    }
+
     public func newState(state: State) {}
 }

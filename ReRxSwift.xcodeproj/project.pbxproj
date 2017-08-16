@@ -12,6 +12,9 @@
 		F8081AB71F44940B00855A4F /* ReRxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8081AAD1F44940B00855A4F /* ReRxSwift.framework */; };
 		F8081ABC1F44940B00855A4F /* ReRxSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8081ABB1F44940B00855A4F /* ReRxSwiftTests.swift */; };
 		F8081ABE1F44940B00855A4F /* ReRxSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = F8081AB01F44940B00855A4F /* ReRxSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8081ACB1F44DBE400855A4F /* ConnectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8081ACA1F44DBE400855A4F /* ConnectionSpec.swift */; };
+		F8081ACD1F44DDEA00855A4F /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8081ACC1F44DDEA00855A4F /* Connection.swift */; };
+		F8081ACF1F44E31100855A4F /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8081ACE1F44E31100855A4F /* TestUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,9 @@
 		F8081AB61F44940B00855A4F /* ReRxSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReRxSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8081ABB1F44940B00855A4F /* ReRxSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReRxSwiftTests.swift; sourceTree = "<group>"; };
 		F8081ABD1F44940B00855A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8081ACA1F44DBE400855A4F /* ConnectionSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionSpec.swift; sourceTree = "<group>"; };
+		F8081ACC1F44DDEA00855A4F /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		F8081ACE1F44E31100855A4F /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,7 @@
 			children = (
 				F8081AB01F44940B00855A4F /* ReRxSwift.h */,
 				F8081AB11F44940B00855A4F /* Info.plist */,
+				F8081ACC1F44DDEA00855A4F /* Connection.swift */,
 			);
 			path = ReRxSwift;
 			sourceTree = "<group>";
@@ -103,6 +110,8 @@
 			children = (
 				F8081ABB1F44940B00855A4F /* ReRxSwiftTests.swift */,
 				F8081ABD1F44940B00855A4F /* Info.plist */,
+				F8081ACA1F44DBE400855A4F /* ConnectionSpec.swift */,
+				F8081ACE1F44E31100855A4F /* TestUtils.swift */,
 			);
 			path = ReRxSwiftTests;
 			sourceTree = "<group>";
@@ -185,6 +194,7 @@
 				TargetAttributes = {
 					F8081AAC1F44940B00855A4F = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 					};
 					F8081AB51F44940B00855A4F = {
 						CreatedOnToolsVersion = 9.0;
@@ -326,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8081ACD1F44DDEA00855A4F /* Connection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +344,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8081ACB1F44DBE400855A4F /* ConnectionSpec.swift in Sources */,
+				F8081ACF1F44E31100855A4F /* TestUtils.swift in Sources */,
 				F8081ABC1F44940B00855A4F /* ReRxSwiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,6 +478,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 036D2EF5908433E9A6418646 /* Pods-ReRxSwift.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7EQ9KX3BR9;
@@ -477,6 +491,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rerxswift.ReRxSwift;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -486,6 +501,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1027112CB32B8C41BC236E16 /* Pods-ReRxSwift.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7EQ9KX3BR9;
@@ -507,6 +523,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B9BE343BE04F9A441164DE1 /* Pods-ReRxSwiftTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 7EQ9KX3BR9;
 				INFOPLIST_FILE = ReRxSwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -521,6 +538,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 930FDC3B30EAC1580C5615BF /* Pods-ReRxSwiftTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 7EQ9KX3BR9;
 				INFOPLIST_FILE = ReRxSwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

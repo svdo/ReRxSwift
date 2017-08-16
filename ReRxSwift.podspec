@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/svdo/ReRxSwift"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = { "Stefan van den Oord" => "soord@mac.com" }
-  s.platform     = :ios
+  s.platform     = :ios, '9.0'
   s.source       = { :git => "https://github.com/svdo/ReRxSwift.git", :tag => "#{s.version}" }
   s.source_files  = "ReRxSwift/*.swift"
   s.requires_arc = true

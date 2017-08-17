@@ -4,6 +4,7 @@ import ReSwift
 
 struct TestState: StateType {
     let someString: String
+    let someFloat: Float
 }
 
 struct TestAction: Action {

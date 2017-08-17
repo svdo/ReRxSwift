@@ -39,10 +39,29 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
                                       to observer: O)
         where O: ObserverType, O.E == T?
     {
-        self.props
+        self.bind(keyPath, to: observer, mapping: nil)
+    }
+
+    public func bind<T: Equatable, O, M>(_ keyPath: KeyPath<Props, T>,
+                                         to observer: O,
+                                         mapping: ((T)->M)? = nil)
+        where O: ObserverType, O.E == M?
+    {
+        let distinctAtKeyPath = self.props
             .asObservable()
             .distinctUntilChanged { $0[keyPath: keyPath] == $1[keyPath: keyPath] }
             .map { $0[keyPath: keyPath] }
+
+        let afterMapping: Observable<M>
+        if (T.self == M.self) {
+            afterMapping = distinctAtKeyPath as! Observable<M>
+        } else {
+            afterMapping = distinctAtKeyPath.map(mapping!)
+        }
+
+        afterMapping
             .bind(to: observer)
-            .addDisposableTo(disposeBag)
-    }}
+            .disposed(by: disposeBag)
+    }
+}
+

@@ -7,10 +7,11 @@ import ReRxSwift
 import UIKit
 import RxCocoa
 
-let initialState = TestState(someString: "initial string")
+let initialState = TestState(someString: "initial string", someFloat: 0.42)
 
 struct ViewControllerProps {
-    let foo: String
+    let str: String
+    let flt: Float
 }
 struct ViewControllerActions {
     let setNewString: (String) -> Void
@@ -20,7 +21,10 @@ class ConnectionSpec: QuickSpec {
     override func spec() {
         var testStore : FakeStore<TestState>! = nil
         let mapStateToProps = { (state: TestState) in
-            return ViewControllerProps(foo: state.someString)
+            return ViewControllerProps(
+                str: state.someString,
+                flt: state.someFloat
+            )
         }
         let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in
             return ViewControllerActions(
@@ -64,18 +68,18 @@ class ConnectionSpec: QuickSpec {
         }
 
         it("uses store's initial state for initial props value") {
-            expect(connection.props.value.foo) == initialState.someString
+            expect(connection.props.value.str) == initialState.someString
         }
         
         it("can set and get props") {
-            connection.props.value = ViewControllerProps(foo: "some props")
-            expect(connection.props.value.foo) == "some props"
+            connection.props.value = ViewControllerProps(str: "some props", flt: 0)
+            expect(connection.props.value.str) == "some props"
         }
 
         it("sets new props when receiving new state from ReSwift") {
-            let newState = TestState(someString: "new string")
+            let newState = TestState(someString: "new string", someFloat: 0)
             connection.newState(state: newState)
-            expect(connection.props.value.foo) == newState.someString
+            expect(connection.props.value.str) == newState.someString
         }
 
         it("maps actions using the store's dispatch function") {
@@ -86,12 +90,20 @@ class ConnectionSpec: QuickSpec {
             expect(dispatchedAction as? TestAction) == TestAction(newString: "new string")
         }
 
-        // binding
-        it("can bind a text field's text") {
-            let textField = UITextField()
-            connection.bind(\ViewControllerProps.foo, to: textField.rx.text)
-            connection.newState(state: TestState(someString: "textField.text"))
-            expect(textField.text) == "textField.text"
+        describe("binding") {
+            it("can bind an optional observer") {
+                let textField = UITextField()
+                connection.bind(\ViewControllerProps.str, to: textField.rx.text)
+                connection.newState(state: TestState(someString: "textField.text", someFloat: 0.0))
+                expect(textField.text) == "textField.text"
+            }
+
+            it("can bind an optional observer using additional mapping") {
+                let textField = UITextField()
+                connection.bind(\ViewControllerProps.flt, to: textField.rx.text, mapping: { String($0) })
+                connection.newState(state: TestState(someString: "", someFloat: 42.42))
+                expect(textField.text) == "42.42"
+            }
         }
     }
 }

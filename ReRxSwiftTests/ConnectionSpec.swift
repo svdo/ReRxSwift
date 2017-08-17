@@ -104,6 +104,20 @@ class ConnectionSpec: QuickSpec {
                 connection.newState(state: TestState(someString: "", someFloat: 42.42))
                 expect(textField.text) == "42.42"
             }
-        }
+
+            it("can bind a non-optional observer") {
+                let progressView = UIProgressView()
+                connection.bind(\ViewControllerProps.flt, to: progressView.rx.progress)
+                connection.newState(state: TestState(someString: "", someFloat: 0.42))
+                expect(progressView.progress) ≈ 0.42
+            }
+
+            it("can bind a non-optional observer using additional mapping") {
+                let progressView = UIProgressView()
+                connection.bind(\ViewControllerProps.str, to: progressView.rx.progress, mapping: { Float($0) ?? 0 })
+                connection.newState(state: TestState(someString: "0.42", someFloat: 0))
+                expect(progressView.progress) ≈ 0.42
+            }
+}
     }
 }

@@ -4,6 +4,8 @@ import Quick
 import Nimble
 import ReSwift
 import ReRxSwift
+import UIKit
+import RxCocoa
 
 let initialState = TestState(someString: "initial string")
 
@@ -85,5 +87,11 @@ class ConnectionSpec: QuickSpec {
         }
 
         // binding
+        it("can bind a text field's text") {
+            let textField = UITextField()
+            connection.bind(\ViewControllerProps.foo, to: textField.rx.text)
+            connection.newState(state: TestState(someString: "textField.text"))
+            expect(textField.text) == "textField.text"
+        }
     }
 }

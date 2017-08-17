@@ -7,18 +7,25 @@ import ReRxSwift
 
 let initialState = TestState(someString: "initial string")
 
+struct ViewControllerProps {
+    let foo: String
+}
+struct ViewControllerActions {
+    let setNewString: (String) -> Void
+}
+
 class ConnectionSpec: QuickSpec {
     override func spec() {
         var testStore : FakeStore<TestState>! = nil
         let mapStateToProps = { (state: TestState) in
-            return TestProps(foo: state.someString)
+            return ViewControllerProps(foo: state.someString)
         }
-        let mapDispatchToActions = { (_: DispatchFunction) in
-            return TestActions(
-                bar: { _ in }
+        let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in
+            return ViewControllerActions(
+                setNewString: { str in dispatch(TestAction(newString: str)) }
             )
         }
-        var connection: Connection<TestState, TestProps, TestActions>!
+        var connection: Connection<TestState, ViewControllerProps, ViewControllerActions>!
 
         beforeEach {
             testStore = FakeStore<TestState>(
@@ -59,7 +66,7 @@ class ConnectionSpec: QuickSpec {
         }
         
         it("can set and get props") {
-            connection.props.value = TestProps(foo: "some props")
+            connection.props.value = ViewControllerProps(foo: "some props")
             expect(connection.props.value.foo) == "some props"
         }
 
@@ -68,5 +75,15 @@ class ConnectionSpec: QuickSpec {
             connection.newState(state: newState)
             expect(connection.props.value.foo) == newState.someString
         }
+
+        it("maps actions using the store's dispatch function") {
+            var dispatchedAction: Action? = nil
+            testStore.dispatchFunction = { (action:Action) in dispatchedAction = action }
+
+            connection.actions.setNewString("new string")
+            expect(dispatchedAction as? TestAction) == TestAction(newString: "new string")
+        }
+
+        // binding
     }
 }

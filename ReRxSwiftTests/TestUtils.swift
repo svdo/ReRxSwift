@@ -5,11 +5,14 @@ import ReSwift
 struct TestState: StateType {
     let someString: String
 }
-struct TestProps {
-    let foo: String
+
+struct TestAction: Action {
+    let newString: String
 }
-struct TestActions {
-    let bar: (String) -> Void
+extension TestAction: Equatable {
+    static func ==(lhs: TestAction, rhs: TestAction) -> Bool {
+        return lhs.newString == rhs.newString
+    }
 }
 
 class FakeStore<S: StateType>: Store<S> {

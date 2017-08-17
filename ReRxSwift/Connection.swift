@@ -7,6 +7,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
     let store: Store<State>
     let mapStateToProps: (State) -> (Props)
     public let props: Variable<Props>
+    public let actions: Actions!
 
     public init(store: Store<State>,
                 mapStateToProps: @escaping (State) -> (Props),
@@ -17,6 +18,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
         let initialState = store.state!
         let props = mapStateToProps(initialState)
         self.props = Variable(props)
+        self.actions = mapDispatchToActions(store.dispatch)
     }
 
     public func connect() {

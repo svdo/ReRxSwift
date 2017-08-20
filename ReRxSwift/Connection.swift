@@ -8,7 +8,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
     let store: Store<State>
     let mapStateToProps: (State) -> (Props)
     public let props: Variable<Props>
-    public let actions: Actions!
+    public var actions: Actions!
     let disposeBag = DisposeBag()
 
     public init(store: Store<State>,

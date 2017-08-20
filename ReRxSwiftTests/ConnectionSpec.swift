@@ -6,12 +6,35 @@ import ReSwift
 import ReRxSwift
 import UIKit
 import RxCocoa
+import RxDataSources
 
-let initialState = TestState(someString: "initial string", someFloat: 0.42)
+let initialState = TestState(someString: "initial string", someFloat: 0.42, numbers: [])
+
+struct TestSection {
+    var header: String
+    var items: [Int]
+}
+
+extension TestSection: Equatable {
+    static func ==(lhs: TestSection, rhs: TestSection) -> Bool {
+        return lhs.header == rhs.header && lhs.items == rhs.items
+    }
+}
+
+extension TestSection: AnimatableSectionModelType {
+    var identity: String {
+        return header
+    }
+    init(original: TestSection, items: [Int]) {
+        self = original
+        self.items = items
+    }
+}
 
 struct ViewControllerProps {
     let str: String
     let flt: Float
+    let sections: [TestSection]
 }
 struct ViewControllerActions {
     let setNewString: (String) -> Void
@@ -23,7 +46,8 @@ class ConnectionSpec: QuickSpec {
         let mapStateToProps = { (state: TestState) in
             return ViewControllerProps(
                 str: state.someString,
-                flt: state.someFloat
+                flt: state.someFloat,
+                sections: [TestSection(header: "section", items: state.numbers)]
             )
         }
         let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in
@@ -72,12 +96,12 @@ class ConnectionSpec: QuickSpec {
         }
         
         it("can set and get props") {
-            connection.props.value = ViewControllerProps(str: "some props", flt: 0)
+            connection.props.value = ViewControllerProps(str: "some props", flt: 0, sections: [])
             expect(connection.props.value.str) == "some props"
         }
 
         it("sets new props when receiving new state from ReSwift") {
-            let newState = TestState(someString: "new string", someFloat: 0)
+            let newState = TestState(someString: "new string", someFloat: 0, numbers: [])
             connection.newState(state: newState)
             expect(connection.props.value.str) == newState.someString
         }
@@ -94,30 +118,43 @@ class ConnectionSpec: QuickSpec {
             it("can bind an optional observer") {
                 let textField = UITextField()
                 connection.bind(\ViewControllerProps.str, to: textField.rx.text)
-                connection.newState(state: TestState(someString: "textField.text", someFloat: 0.0))
+                connection.newState(state: TestState(someString: "textField.text", someFloat: 0.0, numbers: []))
                 expect(textField.text) == "textField.text"
             }
 
             it("can bind an optional observer using additional mapping") {
                 let textField = UITextField()
                 connection.bind(\ViewControllerProps.flt, to: textField.rx.text, mapping: { String($0) })
-                connection.newState(state: TestState(someString: "", someFloat: 42.42))
+                connection.newState(state: TestState(someString: "", someFloat: 42.42, numbers: []))
                 expect(textField.text) == "42.42"
             }
 
             it("can bind a non-optional observer") {
                 let progressView = UIProgressView()
                 connection.bind(\ViewControllerProps.flt, to: progressView.rx.progress)
-                connection.newState(state: TestState(someString: "", someFloat: 0.42))
+                connection.newState(state: TestState(someString: "", someFloat: 0.42, numbers: []))
                 expect(progressView.progress) ≈ 0.42
             }
 
             it("can bind a non-optional observer using additional mapping") {
                 let progressView = UIProgressView()
                 connection.bind(\ViewControllerProps.str, to: progressView.rx.progress, mapping: { Float($0) ?? 0 })
-                connection.newState(state: TestState(someString: "0.42", someFloat: 0))
+                connection.newState(state: TestState(someString: "0.42", someFloat: 0, numbers: []))
                 expect(progressView.progress) ≈ 0.42
             }
-}
+
+            it("can bind colletion view items") {
+                let collectionView = UICollectionView(
+                    frame: CGRect(),
+                    collectionViewLayout: UICollectionViewFlowLayout())
+                let dataSource = RxCollectionViewSectionedReloadDataSource<TestSection>()
+                connection.bind(\ViewControllerProps.sections, to: collectionView.rx.items(dataSource: dataSource))
+                expect(collectionView.dataSource).toNot(beNil())
+                connection.newState(state: TestState(someString: "", someFloat: 0,
+                                                     numbers: [12, 34]))
+                expect(dataSource.numberOfSections(in: collectionView)) == 1
+                expect(dataSource.collectionView(collectionView, numberOfItemsInSection: 0)) == 2
+            }
+        }
     }
 }

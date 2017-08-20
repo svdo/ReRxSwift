@@ -35,6 +35,8 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
         props.value = mapStateToProps(state)
     }
 
+    // MARK: - Binding optional observers
+
     public func bind<T: Equatable, O>(_ keyPath: KeyPath<Props, T>,
                                       to observer: O)
         where O: ObserverType, O.E == T?
@@ -64,6 +66,8 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
             .disposed(by: disposeBag)
     }
 
+    // MARK: - Binding non-optional observers
+
     public func bind<T: Equatable, O>(_ keyPath: KeyPath<Props, T>,
                                       to observer: O)
         where O: ObserverType, O.E == T
@@ -91,6 +95,21 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
         afterMapping
             .bind(to: observer)
             .disposed(by: disposeBag)
+    }
+
+    // MARK: - Binding sequences using binder function
+    //         (e.g. collectionView.rx.items)
+    
+    public func bind<S: Sequence>(_ keyPath: KeyPath<Props, S>,
+                                  to binder: (Observable<S>) -> Disposable)
+        where S.Element: Equatable
+    {
+        self.props
+            .asObservable()
+            .distinctUntilChanged { $0[keyPath: keyPath].elementsEqual($1[keyPath: keyPath]) }
+            .map { $0[keyPath: keyPath] }
+            .bind(to: binder)
+            .addDisposableTo(disposeBag)
     }
 }
 

@@ -5,6 +5,7 @@ import ReSwift
 struct TestState: StateType {
     let someString: String
     let someFloat: Float
+    let numbers: [Int]
 }
 
 struct TestAction: Action {

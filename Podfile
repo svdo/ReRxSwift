@@ -11,6 +11,7 @@ target 'ReRxSwift' do
     inherit! :search_paths
     pod 'Quick', '~> 1.1'
     pod 'Nimble', '~> 7.0', :inhibit_warnings => true
+    pod 'RxDataSources', :git => 'https://github.com/svdo/RxDataSources', :branch => 'swift4.0'
   end
 
 end

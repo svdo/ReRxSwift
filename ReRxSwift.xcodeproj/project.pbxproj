@@ -14,7 +14,10 @@
 		F8081ABE1F44940B00855A4F /* ReRxSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = F8081AB01F44940B00855A4F /* ReRxSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8081ACB1F44DBE400855A4F /* ConnectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8081ACA1F44DBE400855A4F /* ConnectionSpec.swift */; };
 		F8081ACD1F44DDEA00855A4F /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8081ACC1F44DDEA00855A4F /* Connection.swift */; };
-		F8081ACF1F44E31100855A4F /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8081ACE1F44E31100855A4F /* TestUtils.swift */; };
+		F8081ACF1F44E31100855A4F /* FakeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8081ACE1F44E31100855A4F /* FakeStore.swift */; };
+		F80823541F4A1C1900CCADC1 /* TestState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80823531F4A1C1900CCADC1 /* TestState.swift */; };
+		F80823561F4A1C3300CCADC1 /* TestActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80823551F4A1C3300CCADC1 /* TestActions.swift */; };
+		F80823581F4A1C7D00CCADC1 /* TestSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80823571F4A1C7D00CCADC1 /* TestSectionModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +45,10 @@
 		F8081ABD1F44940B00855A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8081ACA1F44DBE400855A4F /* ConnectionSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionSpec.swift; sourceTree = "<group>"; };
 		F8081ACC1F44DDEA00855A4F /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
-		F8081ACE1F44E31100855A4F /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
+		F8081ACE1F44E31100855A4F /* FakeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeStore.swift; sourceTree = "<group>"; };
+		F80823531F4A1C1900CCADC1 /* TestState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestState.swift; sourceTree = "<group>"; };
+		F80823551F4A1C3300CCADC1 /* TestActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestActions.swift; sourceTree = "<group>"; };
+		F80823571F4A1C7D00CCADC1 /* TestSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSectionModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +117,10 @@
 				F8081ABB1F44940B00855A4F /* ReRxSwiftTests.swift */,
 				F8081ABD1F44940B00855A4F /* Info.plist */,
 				F8081ACA1F44DBE400855A4F /* ConnectionSpec.swift */,
-				F8081ACE1F44E31100855A4F /* TestUtils.swift */,
+				F8081ACE1F44E31100855A4F /* FakeStore.swift */,
+				F80823531F4A1C1900CCADC1 /* TestState.swift */,
+				F80823551F4A1C3300CCADC1 /* TestActions.swift */,
+				F80823571F4A1C7D00CCADC1 /* TestSectionModel.swift */,
 			);
 			path = ReRxSwiftTests;
 			sourceTree = "<group>";
@@ -347,8 +356,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8081ACB1F44DBE400855A4F /* ConnectionSpec.swift in Sources */,
-				F8081ACF1F44E31100855A4F /* TestUtils.swift in Sources */,
+				F8081ACF1F44E31100855A4F /* FakeStore.swift in Sources */,
 				F8081ABC1F44940B00855A4F /* ReRxSwiftTests.swift in Sources */,
+				F80823561F4A1C3300CCADC1 /* TestActions.swift in Sources */,
+				F80823541F4A1C1900CCADC1 /* TestState.swift in Sources */,
+				F80823581F4A1C7D00CCADC1 /* TestSectionModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

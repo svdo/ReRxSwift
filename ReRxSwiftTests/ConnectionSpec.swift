@@ -10,31 +10,10 @@ import RxDataSources
 
 let initialState = TestState(someString: "initial string", someFloat: 0.42, numbers: [])
 
-struct TestSection {
-    var header: String
-    var items: [Int]
-}
-
-extension TestSection: Equatable {
-    static func ==(lhs: TestSection, rhs: TestSection) -> Bool {
-        return lhs.header == rhs.header && lhs.items == rhs.items
-    }
-}
-
-extension TestSection: AnimatableSectionModelType {
-    var identity: String {
-        return header
-    }
-    init(original: TestSection, items: [Int]) {
-        self = original
-        self.items = items
-    }
-}
-
 struct ViewControllerProps {
     let str: String
     let flt: Float
-    let sections: [TestSection]
+    let sections: [TestSectionModel]
 }
 struct ViewControllerActions {
     let setNewString: (String) -> Void
@@ -47,7 +26,7 @@ class ConnectionSpec: QuickSpec {
             return ViewControllerProps(
                 str: state.someString,
                 flt: state.someFloat,
-                sections: [TestSection(header: "section", items: state.numbers)]
+                sections: [TestSectionModel(header: "section", items: state.numbers)]
             )
         }
         let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in
@@ -147,7 +126,7 @@ class ConnectionSpec: QuickSpec {
                 let collectionView = UICollectionView(
                     frame: CGRect(),
                     collectionViewLayout: UICollectionViewFlowLayout())
-                let dataSource = RxCollectionViewSectionedReloadDataSource<TestSection>()
+                let dataSource = RxCollectionViewSectionedReloadDataSource<TestSectionModel>()
                 connection.bind(\ViewControllerProps.sections, to: collectionView.rx.items(dataSource: dataSource))
                 expect(collectionView.dataSource).toNot(beNil())
                 connection.newState(state: TestState(someString: "", someFloat: 0,
@@ -158,7 +137,7 @@ class ConnectionSpec: QuickSpec {
 
             it("can bind table view items") {
                 let tableView = UITableView(frame: CGRect(), style: .plain)
-                let dataSource = RxTableViewSectionedReloadDataSource<TestSection>()
+                let dataSource = RxTableViewSectionedReloadDataSource<TestSectionModel>()
                 connection.bind(\ViewControllerProps.sections, to: tableView.rx.items(dataSource: dataSource))
                 expect(tableView.dataSource).toNot(beNil())
                 connection.newState(state: TestState(someString: "", someFloat: 0,

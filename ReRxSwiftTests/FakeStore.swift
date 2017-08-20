@@ -2,21 +2,6 @@
 
 import ReSwift
 
-struct TestState: StateType {
-    let someString: String
-    let someFloat: Float
-    let numbers: [Int]
-}
-
-struct TestAction: Action {
-    let newString: String
-}
-extension TestAction: Equatable {
-    static func ==(lhs: TestAction, rhs: TestAction) -> Bool {
-        return lhs.newString == rhs.newString
-    }
-}
-
 class FakeStore<S: StateType>: Store<S> {
     var subscribers = [AnyStoreSubscriber]()
     

@@ -155,6 +155,17 @@ class ConnectionSpec: QuickSpec {
                 expect(dataSource.numberOfSections(in: collectionView)) == 1
                 expect(dataSource.collectionView(collectionView, numberOfItemsInSection: 0)) == 2
             }
+
+            it("can bind table view items") {
+                let tableView = UITableView(frame: CGRect(), style: .plain)
+                let dataSource = RxTableViewSectionedReloadDataSource<TestSection>()
+                connection.bind(\ViewControllerProps.sections, to: tableView.rx.items(dataSource: dataSource))
+                expect(tableView.dataSource).toNot(beNil())
+                connection.newState(state: TestState(someString: "", someFloat: 0,
+                                                     numbers: [12, 34]))
+                expect(dataSource.numberOfSections(in: tableView)) == 1
+                expect(dataSource.tableView(tableView, numberOfRowsInSection: 0)) == 2
+            }
         }
     }
 }

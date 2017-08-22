@@ -45,7 +45,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Simple Text field" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jdF-Lv-xMC">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Simple text field" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jdF-Lv-xMC">
                                                     <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -65,7 +65,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Sliders, Steppers, Progress, ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eGC-Bk-rqy">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Sliders, steppers, progress, ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eGC-Bk-rqy">
                                                     <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -123,20 +123,51 @@
             </objects>
             <point key="canvasLocation" x="414" y="102"/>
         </scene>
-        <!--View Controller-->
+        <!--Simple Text Field-->
         <scene sceneID="8Rv-lf-OcF">
             <objects>
                 <viewController id="3st-NF-Pw8" customClass="ViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="998-IQ-QAR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starting simple, this example binds the text field's value and it's didChange event." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEk-8G-Qd4">
+                                <rect key="frame" x="16" y="84" width="343" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter some text:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KrH-3l-GpF">
+                                <rect key="frame" x="16" y="155" width="125" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jOD-Jf-0Wm">
+                                <rect key="frame" x="16" y="184" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KrH-3l-GpF" firstAttribute="leading" secondItem="ZEI-KE-WXO" secondAttribute="leading" constant="16" id="ERa-Nz-Yic"/>
+                            <constraint firstItem="ZEI-KE-WXO" firstAttribute="trailing" secondItem="AEk-8G-Qd4" secondAttribute="trailing" constant="16" id="Inz-sl-oyZ"/>
+                            <constraint firstItem="AEk-8G-Qd4" firstAttribute="leading" secondItem="ZEI-KE-WXO" secondAttribute="leading" constant="16" id="N6s-iy-iLQ"/>
+                            <constraint firstItem="jOD-Jf-0Wm" firstAttribute="top" secondItem="KrH-3l-GpF" secondAttribute="bottom" constant="8" id="fpi-ki-FXX"/>
+                            <constraint firstItem="jOD-Jf-0Wm" firstAttribute="leading" secondItem="ZEI-KE-WXO" secondAttribute="leading" constant="16" id="oOM-iv-cXA"/>
+                            <constraint firstItem="ZEI-KE-WXO" firstAttribute="trailing" secondItem="jOD-Jf-0Wm" secondAttribute="trailing" constant="16" id="sHl-HO-sTc"/>
+                            <constraint firstItem="KrH-3l-GpF" firstAttribute="top" secondItem="AEk-8G-Qd4" secondAttribute="bottom" constant="30" id="v1m-4U-rR8"/>
+                            <constraint firstItem="AEk-8G-Qd4" firstAttribute="top" secondItem="ZEI-KE-WXO" secondAttribute="top" constant="20" id="yNM-1A-JRw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZEI-KE-WXO"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Simple Text Field" id="5LO-ST-ivc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CN5-Wf-DLn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1138" y="102"/>
+            <point key="canvasLocation" x="1221.5999999999999" y="100.29985007496252"/>
         </scene>
     </scenes>
 </document>

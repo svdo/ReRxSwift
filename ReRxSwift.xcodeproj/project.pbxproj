@@ -27,7 +27,7 @@
 		F80823831F4A250C00CCADC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F80823821F4A250C00CCADC1 /* Assets.xcassets */; };
 		F80823861F4A250C00CCADC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80823841F4A250C00CCADC1 /* LaunchScreen.storyboard */; };
 		F89680C31F4CB4FF002C2452 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89680C21F4CB4FF002C2452 /* Store.swift */; };
-		F89680C51F4CB50A002C2452 /* MainReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89680C41F4CB50A002C2452 /* MainReducer.swift */; };
+		F89680C51F4CB50A002C2452 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89680C41F4CB50A002C2452 /* Reducer.swift */; };
 		F89680C71F4CB689002C2452 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89680C61F4CB689002C2452 /* AppState.swift */; };
 		F89680C91F4CB8C5002C2452 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89680C81F4CB8C5002C2452 /* State.swift */; };
 		F89680CA1F4CBF45002C2452 /* ReRxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8081AAD1F44940B00855A4F /* ReRxSwift.framework */; };
@@ -99,7 +99,7 @@
 		F80823851F4A250C00CCADC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F80823871F4A250C00CCADC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F89680C21F4CB4FF002C2452 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		F89680C41F4CB50A002C2452 /* MainReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReducer.swift; sourceTree = "<group>"; };
+		F89680C41F4CB50A002C2452 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		F89680C61F4CB689002C2452 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		F89680C81F4CB8C5002C2452 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		F8BD52A21F4CADDC00B7E471 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
@@ -197,9 +197,9 @@
 		F808237A1F4A250B00CCADC1 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				F89680C41F4CB50A002C2452 /* MainReducer.swift */,
-				F89680C61F4CB689002C2452 /* AppState.swift */,
 				F89680C21F4CB4FF002C2452 /* Store.swift */,
+				F89680C61F4CB689002C2452 /* AppState.swift */,
+				F89680C41F4CB50A002C2452 /* Reducer.swift */,
 				F8BD52A11F4CAD6900B7E471 /* SimpleTextField */,
 				F808237B1F4A250B00CCADC1 /* AppDelegate.swift */,
 				F808237F1F4A250B00CCADC1 /* Main.storyboard */,
@@ -561,7 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F89680C31F4CB4FF002C2452 /* Store.swift in Sources */,
-				F89680C51F4CB50A002C2452 /* MainReducer.swift in Sources */,
+				F89680C51F4CB50A002C2452 /* Reducer.swift in Sources */,
 				F89680C71F4CB689002C2452 /* AppState.swift in Sources */,
 				F808237E1F4A250B00CCADC1 /* SimpleTextFieldViewController.swift in Sources */,
 				F8BD52A51F4CADF800B7E471 /* Actions.swift in Sources */,

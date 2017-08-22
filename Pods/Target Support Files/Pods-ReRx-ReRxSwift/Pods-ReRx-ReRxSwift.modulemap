@@ -1,0 +1,6 @@
+framework module Pods_ReRx_ReRxSwift {
+  umbrella header "Pods-ReRx-ReRxSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_ReRxSwiftVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_ReRxSwiftVersionString[];
+FOUNDATION_EXPORT double Pods_ReRx_ExampleVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_ReRx_ExampleVersionString[];
 

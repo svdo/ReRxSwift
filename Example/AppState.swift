@@ -2,7 +2,7 @@
 
 import ReSwift
 
-struct AppState: StateType {
+struct AppState: StateType, Encodable {
     let simpleTextField: SimpleTextFieldState
 }
 

@@ -14,4 +14,7 @@ target 'ReRxSwift' do
     pod 'RxDataSources', :git => 'https://github.com/svdo/RxDataSources', :branch => 'swift4.0'
   end
 
+  target 'Example' do
+  end
+
 end

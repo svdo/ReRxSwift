@@ -2,5 +2,5 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SimpleTextFieldViewController: UIViewController {
 }

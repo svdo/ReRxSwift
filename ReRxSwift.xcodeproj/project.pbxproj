@@ -28,6 +28,7 @@
 		F80823831F4A250C00CCADC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F80823821F4A250C00CCADC1 /* Assets.xcassets */; };
 		F80823861F4A250C00CCADC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80823841F4A250C00CCADC1 /* LaunchScreen.storyboard */; };
 		F88D86C01F4CC9A6006F6038 /* ReducerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D86BF1F4CC9A6006F6038 /* ReducerSpec.swift */; };
+		F88D86C21F4CCDD4006F6038 /* SimpleTextFieldViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D86C11F4CCDD4006F6038 /* SimpleTextFieldViewControllerSpec.swift */; };
 		F89680C31F4CB4FF002C2452 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89680C21F4CB4FF002C2452 /* Store.swift */; };
 		F89680C51F4CB50A002C2452 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89680C41F4CB50A002C2452 /* Reducer.swift */; };
 		F89680C71F4CB689002C2452 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89680C61F4CB689002C2452 /* AppState.swift */; };
@@ -112,6 +113,7 @@
 		F88D86B41F4CC934006F6038 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F88D86B81F4CC934006F6038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F88D86BF1F4CC9A6006F6038 /* ReducerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerSpec.swift; sourceTree = "<group>"; };
+		F88D86C11F4CCDD4006F6038 /* SimpleTextFieldViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldViewControllerSpec.swift; sourceTree = "<group>"; };
 		F89680C21F4CB4FF002C2452 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F89680C41F4CB50A002C2452 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		F89680C61F4CB689002C2452 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				F88D86BF1F4CC9A6006F6038 /* ReducerSpec.swift */,
+				F88D86C11F4CCDD4006F6038 /* SimpleTextFieldViewControllerSpec.swift */,
 			);
 			path = SimpleTextField;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F88D86C01F4CC9A6006F6038 /* ReducerSpec.swift in Sources */,
+				F88D86C21F4CCDD4006F6038 /* SimpleTextFieldViewControllerSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

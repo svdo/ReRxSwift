@@ -28,6 +28,9 @@
 		F80823831F4A250C00CCADC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F80823821F4A250C00CCADC1 /* Assets.xcassets */; };
 		F80823861F4A250C00CCADC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80823841F4A250C00CCADC1 /* LaunchScreen.storyboard */; };
 		F83957371F4EBE8E00D33189 /* SteppingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83957361F4EBE8E00D33189 /* SteppingUpViewController.swift */; };
+		F83957391F4EC5D500D33189 /* SteppingUpState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83957381F4EC5D500D33189 /* SteppingUpState.swift */; };
+		F839573B1F4EC74B00D33189 /* SteppingUpReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F839573A1F4EC74B00D33189 /* SteppingUpReducer.swift */; };
+		F839573D1F4EC7DF00D33189 /* SteppingUpActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F839573C1F4EC7DF00D33189 /* SteppingUpActions.swift */; };
 		F88D86C01F4CC9A6006F6038 /* ReducerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D86BF1F4CC9A6006F6038 /* ReducerSpec.swift */; };
 		F88D86C21F4CCDD4006F6038 /* SimpleTextFieldViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D86C11F4CCDD4006F6038 /* SimpleTextFieldViewControllerSpec.swift */; };
 		F89680C31F4CB4FF002C2452 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89680C21F4CB4FF002C2452 /* Store.swift */; };
@@ -114,6 +117,9 @@
 		F80823851F4A250C00CCADC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F80823871F4A250C00CCADC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F83957361F4EBE8E00D33189 /* SteppingUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppingUpViewController.swift; sourceTree = "<group>"; };
+		F83957381F4EC5D500D33189 /* SteppingUpState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppingUpState.swift; sourceTree = "<group>"; };
+		F839573A1F4EC74B00D33189 /* SteppingUpReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppingUpReducer.swift; sourceTree = "<group>"; };
+		F839573C1F4EC7DF00D33189 /* SteppingUpActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppingUpActions.swift; sourceTree = "<group>"; };
 		F88D86B41F4CC934006F6038 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F88D86B81F4CC934006F6038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F88D86BF1F4CC9A6006F6038 /* ReducerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerSpec.swift; sourceTree = "<group>"; };
@@ -287,6 +293,9 @@
 			isa = PBXGroup;
 			children = (
 				F83957361F4EBE8E00D33189 /* SteppingUpViewController.swift */,
+				F83957381F4EC5D500D33189 /* SteppingUpState.swift */,
+				F839573A1F4EC74B00D33189 /* SteppingUpReducer.swift */,
+				F839573C1F4EC7DF00D33189 /* SteppingUpActions.swift */,
 			);
 			path = SteppingUp;
 			sourceTree = "<group>";
@@ -302,9 +311,9 @@
 			isa = PBXGroup;
 			children = (
 				F808237D1F4A250B00CCADC1 /* SimpleTextFieldViewController.swift */,
+				F89680C81F4CB8C5002C2452 /* SimpleTextFieldState.swift */,
 				F8BD52A21F4CADDC00B7E471 /* SimpleTextFieldReducer.swift */,
 				F8BD52A41F4CADF800B7E471 /* SimpleTextFieldActions.swift */,
-				F89680C81F4CB8C5002C2452 /* SimpleTextFieldState.swift */,
 			);
 			path = SimpleTextField;
 			sourceTree = "<group>";
@@ -730,6 +739,9 @@
 				F89782131F4EB72000D82ABF /* StoreLogger.swift in Sources */,
 				F8BD52A51F4CADF800B7E471 /* SimpleTextFieldActions.swift in Sources */,
 				F808237C1F4A250B00CCADC1 /* AppDelegate.swift in Sources */,
+				F839573D1F4EC7DF00D33189 /* SteppingUpActions.swift in Sources */,
+				F839573B1F4EC74B00D33189 /* SteppingUpReducer.swift in Sources */,
+				F83957391F4EC5D500D33189 /* SteppingUpState.swift in Sources */,
 				F8BD52A31F4CADDC00B7E471 /* SimpleTextFieldReducer.swift in Sources */,
 				F89680C91F4CB8C5002C2452 /* SimpleTextFieldState.swift in Sources */,
 				F89782151F4EB76000D82ABF /* ActionLogger.swift in Sources */,

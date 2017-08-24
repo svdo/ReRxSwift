@@ -4,9 +4,10 @@ import ReSwift
 
 struct AppState: StateType, Encodable {
     let simpleTextField: SimpleTextFieldState
+    let steppingUp: SteppingUpState
 }
 
 let initialAppState = AppState(
-    simpleTextField: initialSimpleTextFieldState
+    simpleTextField: initialSimpleTextFieldState,
+    steppingUp: initialSteppingUpState
 )
-

@@ -22,6 +22,7 @@ abstract_target 'ReRx' do
     inherit! :search_paths
     pod 'Quick', '~> 1.1'
     pod 'Nimble', '~> 7.0', :inhibit_warnings => true
+    pod 'ReSwift', :git => 'https://github.com/ReSwift/ReSwift', :branch => 'mjarvis/swift-4'
   end
 end
 

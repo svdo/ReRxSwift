@@ -124,6 +124,7 @@
 		F89680C81F4CB8C5002C2452 /* SimpleTextFieldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldState.swift; sourceTree = "<group>"; };
 		F89782121F4EB72000D82ABF /* StoreLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLogger.swift; sourceTree = "<group>"; };
 		F89782141F4EB76000D82ABF /* ActionLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionLogger.swift; sourceTree = "<group>"; };
+		F89782161F4EB83300D82ABF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F8BD52A21F4CADDC00B7E471 /* SimpleTextFieldReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldReducer.swift; sourceTree = "<group>"; };
 		F8BD52A41F4CADF800B7E471 /* SimpleTextFieldActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldActions.swift; sourceTree = "<group>"; };
 		FB5D77EFDA73A669303C7920 /* Pods_ReRx_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReRx_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +197,7 @@
 		F8081AA31F44940B00855A4F = {
 			isa = PBXGroup;
 			children = (
+				F89782161F4EB83300D82ABF /* README.md */,
 				F8081AAF1F44940B00855A4F /* ReRxSwift */,
 				F8081ABA1F44940B00855A4F /* ReRxSwiftTests */,
 				F808237A1F4A250B00CCADC1 /* Example */,

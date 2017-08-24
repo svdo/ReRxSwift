@@ -8,7 +8,7 @@ func steppingUpReducer(action: Action, state: SteppingUpState?) -> SteppingUpSta
     case let setValueAction as SteppingUpSetValue:
         state.value = setValueAction.newValue
     case let setStepSizeAction as SteppingUpSetStepSize:
-        if (setStepSizeAction.newStepSize > 0) {
+        if (setStepSizeAction.newStepSize > 0 && setStepSizeAction.newStepSize < 1) {
             state.stepSize = setStepSizeAction.newStepSize
         }
     case _ as SteppingUpIncrement:

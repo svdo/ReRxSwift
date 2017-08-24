@@ -18,6 +18,14 @@ class SteppingUpReducerSpec: QuickSpec {
             expect(nextState.stepSize) ≈ 0.42
         }
 
+        it("requires step size greater than zero") {
+            let oldStepSize = Float(0.1)
+            let state = SteppingUpState(value: 0.5, stepSize: oldStepSize)
+            let action = SteppingUpSetStepSize(newStepSize: -0.1)
+            let nextState = steppingUpReducer(action: action, state: state)
+            expect(nextState.stepSize) == oldStepSize
+        }
+
         it("hanldes increment") {
             let state = SteppingUpState(value: 0.5, stepSize: 0.1)
             let action = SteppingUpIncrement()

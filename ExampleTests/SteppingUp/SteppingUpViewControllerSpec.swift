@@ -97,5 +97,22 @@ class SteppingUpViewControllerSpec: QuickSpec {
                 expect(value) ≈ 0.7
             }
         }
+
+        describe("text field") {
+            it("uses the props value as text") {
+                steppingUpViewController.props = SteppingUpViewController.Props(value: 0.4)
+                expect(steppingUpViewController.textField.text) == "0.4"
+            }
+
+            it("calls the right action when editing ends") {
+                var value: Float?
+                steppingUpViewController.actions = SteppingUpViewController.Actions(
+                    setValue: { newValue in value = newValue }
+                )
+                steppingUpViewController.textField.text = "0.6"
+                steppingUpViewController.textChanged()
+                expect(value) ≈ 0.6
+            }
+        }
     }
 }

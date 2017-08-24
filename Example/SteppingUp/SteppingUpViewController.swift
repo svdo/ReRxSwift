@@ -18,6 +18,7 @@ class SteppingUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         connection.bind(\Props.value, to: slider.rx.value)
+        connection.bind(\Props.value, to: textField.rx.text, mapping: { String($0) })
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -32,6 +33,13 @@ class SteppingUpViewController: UIViewController {
     
     @IBAction func sliderChanged() {
         actions.setValue(slider.value)
+    }
+
+    @IBAction func textChanged() {
+        guard let text = textField.text, let newValue = Float(text) else {
+            return
+        }
+        actions.setValue(newValue)
     }
 }
 

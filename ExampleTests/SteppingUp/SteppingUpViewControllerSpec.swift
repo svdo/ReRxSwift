@@ -3,16 +3,15 @@
 import Quick
 import Nimble
 import ReSwift
+import ReRxSwift
 @testable import Example
 
 class SteppingUpViewControllerSpec: QuickSpec {
     override func spec() {
         var steppingUpViewController: SteppingUpViewController!
+        var testStore: Store<AppState>!
 
         beforeEach {
-            store.state = initialAppState
-            // TODO: create a way to inject the store, because also subscriptions should be reset
-
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "SteppingUp")
             guard let steppingUp = viewController as? SteppingUpViewController else {
@@ -20,6 +19,10 @@ class SteppingUpViewControllerSpec: QuickSpec {
                 return
             }
             steppingUpViewController = steppingUp
+
+            testStore = Store<AppState>(reducer: mainReducer, state: nil)
+            steppingUpViewController.connection.store = testStore
+
             expect(steppingUpViewController.view).toNot(beNil())
         }
 
@@ -54,7 +57,7 @@ class SteppingUpViewControllerSpec: QuickSpec {
                 let state = AppState(
                     simpleTextField: initialSimpleTextFieldState,
                     steppingUp: SteppingUpState(value: 0.3, stepSize: 0.1))
-                store.state = state
+                testStore.state = state
                 expect(steppingUpViewController.slider.value) ≈ 0.3
             }
 
@@ -67,7 +70,7 @@ class SteppingUpViewControllerSpec: QuickSpec {
                     let state = AppState(
                         simpleTextField: initialSimpleTextFieldState,
                         steppingUp: SteppingUpState(value: 0.3, stepSize: 0.1))
-                    store.state = state
+                    testStore.state = state
                     expect(steppingUpViewController.slider.value) ≈ initialSteppingUpState.value
                 }
             }
@@ -81,6 +84,13 @@ class SteppingUpViewControllerSpec: QuickSpec {
             steppingUpViewController.slider.value = 0.7
             steppingUpViewController.sliderChanged()
             expect(value) ≈ 0.7
+        }
+
+        it("maps dispatch to actions") {
+            var dispatchedAction: Action? = nil
+            testStore.dispatchFunction = { action in dispatchedAction = action }
+            steppingUpViewController.actions.setValue(0.42)
+            expect((dispatchedAction as? SteppingUpSetValue)?.newValue) ≈ 0.42
         }
     }
 }

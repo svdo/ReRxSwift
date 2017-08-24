@@ -50,6 +50,6 @@ private let mapStateToProps = { (appState: AppState) in
 
 private let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in
     return SteppingUpViewController.Actions(
-        setValue: { _ in }
+        setValue: { newValue in dispatch(SteppingUpSetValue(newValue: newValue)) }
     )
 }

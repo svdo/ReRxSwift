@@ -121,5 +121,22 @@ class SteppingUpViewControllerSpec: QuickSpec {
                 expect(steppingUpViewController.progressView.progress) ≈ 0.4
             }
         }
+
+        describe("stepper") {
+            it("uses the props value as value") {
+                steppingUpViewController.props = SteppingUpViewController.Props(value: 0.4)
+                expect(steppingUpViewController.stepper.value) ≈ 0.4
+            }
+
+            it("calls the right action when value changes") {
+                var value: Float?
+                steppingUpViewController.actions = SteppingUpViewController.Actions(
+                    setValue: { newValue in value = newValue }
+                )
+                steppingUpViewController.stepper.value = 0.9
+                steppingUpViewController.stepperChanged()
+                expect(value) ≈ 0.9
+            }
+        }
     }
 }

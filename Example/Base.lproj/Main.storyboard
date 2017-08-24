@@ -232,8 +232,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="08K-xh-jAq">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="1" stepValue="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="08K-xh-jAq">
                                 <rect key="frame" x="140" y="443" width="94" height="29"/>
+                                <connections>
+                                    <action selector="stepperChanged" destination="53U-k3-cUf" eventType="valueChanged" id="cQx-Yu-ECR"/>
+                                </connections>
                             </stepper>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -267,6 +270,7 @@
                         <outlet property="progressView" destination="3ec-0O-7Sv" id="0TI-Ig-zOA"/>
                         <outlet property="segmentedControl" destination="dzf-J1-gfD" id="1zP-5v-lG3"/>
                         <outlet property="slider" destination="3LT-ck-3C8" id="MeW-d8-A7P"/>
+                        <outlet property="stepper" destination="08K-xh-jAq" id="bV1-XE-uni"/>
                         <outlet property="textField" destination="aKW-xf-EH5" id="bGk-d2-XbS"/>
                     </connections>
                 </viewController>

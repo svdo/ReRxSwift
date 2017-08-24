@@ -14,12 +14,14 @@ class SteppingUpViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var stepper: UIStepper!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         connection.bind(\Props.value, to: slider.rx.value)
         connection.bind(\Props.value, to: textField.rx.text, mapping: { String($0) })
         connection.bind(\Props.value, to: progressView.rx.progress)
+        connection.bind(\Props.value, to: stepper.rx.value, mapping: { Double($0) })
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +43,10 @@ class SteppingUpViewController: UIViewController {
             return
         }
         actions.setValue(newValue)
+    }
+
+    @IBAction func stepperChanged() {
+        actions.setValue(Float(stepper.value))
     }
 }
 

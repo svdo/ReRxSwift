@@ -257,6 +257,12 @@
                         <viewLayoutGuide key="safeArea" id="6cx-oW-Plp"/>
                     </view>
                     <navigationItem key="navigationItem" title="Stepping it up" id="MlD-pv-c9b"/>
+                    <connections>
+                        <outlet property="progressView" destination="3ec-0O-7Sv" id="0TI-Ig-zOA"/>
+                        <outlet property="segmentedControl" destination="dzf-J1-gfD" id="1zP-5v-lG3"/>
+                        <outlet property="slider" destination="3LT-ck-3C8" id="MeW-d8-A7P"/>
+                        <outlet property="textField" destination="aKW-xf-EH5" id="bGk-d2-XbS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pj6-b6-gLD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

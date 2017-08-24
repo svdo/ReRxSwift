@@ -27,5 +27,10 @@ class SteppingUpViewControllerSpec: QuickSpec {
             expect(steppingUpViewController.props).toNot(beNil())
             expect(steppingUpViewController.actions).toNot(beNil())
         }
+
+        it("uses the props value as slider value") {
+            steppingUpViewController.props = SteppingUpViewController.Props(value: 0.4)
+            expect(steppingUpViewController.slider.value) ≈ 0.4
+        }
     }
 }

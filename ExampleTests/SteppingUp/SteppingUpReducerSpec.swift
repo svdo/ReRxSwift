@@ -17,5 +17,33 @@ class SteppingUpReducerSpec: QuickSpec {
             let nextState = steppingUpReducer(action: action, state: nil)
             expect(nextState.stepSize) ≈ 0.42
         }
+
+        it("hanldes increment") {
+            let state = SteppingUpState(value: 0.5, stepSize: 0.1)
+            let action = SteppingUpIncrement()
+            let nextState = steppingUpReducer(action: action, state: state)
+            expect(nextState.value) ≈ 0.6
+        }
+
+        it("prevents value from being more than 1") {
+            let state = SteppingUpState(value: 0.9, stepSize: 0.2)
+            let action = SteppingUpIncrement()
+            let nextState = steppingUpReducer(action: action, state: state)
+            expect(nextState.value) ≈ 1
+        }
+
+        it("hanldes decrement") {
+            let state = SteppingUpState(value: 0.5, stepSize: 0.1)
+            let action = SteppingUpDecrement()
+            let nextState = steppingUpReducer(action: action, state: state)
+            expect(nextState.value) ≈ 0.4
+        }
+
+        it("prevents value from being less than 0") {
+            let state = SteppingUpState(value: 0.1, stepSize: 0.2)
+            let action = SteppingUpDecrement()
+            let nextState = steppingUpReducer(action: action, state: state)
+            expect(nextState.value) ≈ 0
+        }
     }
 }

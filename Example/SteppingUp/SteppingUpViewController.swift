@@ -11,7 +11,7 @@ class SteppingUpViewController: UIViewController {
                                 mapDispatchToActions: mapDispatchToActions)
 }
 
-extension SteppingUpViewController {
+extension SteppingUpViewController: Connectable {
     struct Props {}
     struct Actions {}
 }

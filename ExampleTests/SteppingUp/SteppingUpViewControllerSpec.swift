@@ -35,19 +35,6 @@ class SteppingUpViewControllerSpec: QuickSpec {
             expect(steppingUpViewController.actions).toNot(beNil())
         }
 
-        it("uses the props value as slider value") {
-            steppingUpViewController.props = SteppingUpViewController.Props(value: 0.4)
-            expect(steppingUpViewController.slider.value) ≈ 0.4
-        }
-
-        it("maps value from state to props") {
-            let state = AppState(
-                simpleTextField: initialSimpleTextFieldState,
-                steppingUp: SteppingUpState(value: 0.3, stepSize: 0.1))
-            steppingUpViewController.connection.newState(state: state)
-            expect(steppingUpViewController.slider.value) ≈ 0.3
-        }
-
         context("when viewWillAppear has been called") {
             beforeEach {
                 steppingUpViewController.viewWillAppear(false)
@@ -76,21 +63,40 @@ class SteppingUpViewControllerSpec: QuickSpec {
             }
         }
 
-        it("changes the value of the state when the slider changes") {
-            var value: Float?
-            steppingUpViewController.actions = SteppingUpViewController.Actions(
-                setValue: { newValue in value = newValue }
-            )
-            steppingUpViewController.slider.value = 0.7
-            steppingUpViewController.sliderChanged()
-            expect(value) ≈ 0.7
+        describe("map state to props") {
+            it("value prop") {
+                let state = AppState(
+                    simpleTextField: initialSimpleTextFieldState,
+                    steppingUp: SteppingUpState(value: 0.3, stepSize: 0.1))
+                steppingUpViewController.connection.newState(state: state)
+                expect(steppingUpViewController.props.value) ≈ 0.3
+            }
         }
 
-        it("maps dispatch to actions") {
-            var dispatchedAction: Action? = nil
-            testStore.dispatchFunction = { action in dispatchedAction = action }
-            steppingUpViewController.actions.setValue(0.42)
-            expect((dispatchedAction as? SteppingUpSetValue)?.newValue) ≈ 0.42
+        describe("map dispatch to actions") {
+            it("setValue action") {
+                var dispatchedAction: Action? = nil
+                testStore.dispatchFunction = { action in dispatchedAction = action }
+                steppingUpViewController.actions.setValue(0.42)
+                expect((dispatchedAction as? SteppingUpSetValue)?.newValue) ≈ 0.42
+            }
+        }
+
+        describe("slider") {
+            it("uses the props value as slider value") {
+                steppingUpViewController.props = SteppingUpViewController.Props(value: 0.4)
+                expect(steppingUpViewController.slider.value) ≈ 0.4
+            }
+
+            it("changes the value of the state when the slider changes") {
+                var value: Float?
+                steppingUpViewController.actions = SteppingUpViewController.Actions(
+                    setValue: { newValue in value = newValue }
+                )
+                steppingUpViewController.slider.value = 0.7
+                steppingUpViewController.sliderChanged()
+                expect(value) ≈ 0.7
+            }
         }
     }
 }

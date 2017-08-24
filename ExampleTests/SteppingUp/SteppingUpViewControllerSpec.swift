@@ -9,6 +9,8 @@ class SteppingUpViewControllerSpec: QuickSpec {
         var steppingUpViewController: SteppingUpViewController!
 
         beforeEach {
+            store.state = initialAppState
+
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "SteppingUp")
             guard let steppingUp = viewController as? SteppingUpViewController else {
@@ -52,6 +54,20 @@ class SteppingUpViewControllerSpec: QuickSpec {
                     steppingUp: SteppingUpState(value: 0.3, stepSize: 0.1))
                 store.state = state
                 expect(steppingUpViewController.slider.value) ≈ 0.3
+            }
+
+            context("when viewDidDisappear has been called") {
+                beforeEach {
+                    steppingUpViewController.viewDidDisappear(false)
+                }
+
+                it("is no longer connected") {
+                    let state = AppState(
+                        simpleTextField: initialSimpleTextFieldState,
+                        steppingUp: SteppingUpState(value: 0.3, stepSize: 0.1))
+                    store.state = state
+                    expect(steppingUpViewController.slider.value) ≈ initialSteppingUpState.value
+                }
             }
         }
     }

@@ -24,6 +24,11 @@ class SteppingUpViewController: UIViewController {
         super.viewWillAppear(animated)
         connection.connect()
     }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        connection.disconnect()
+    }
 }
 
 extension SteppingUpViewController: Connectable {

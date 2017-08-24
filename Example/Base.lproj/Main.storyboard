@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OTO-A3-IZH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OTO-A3-IZH">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -74,6 +75,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="53U-k3-cUf" kind="show" id="Kqf-yG-YnZ"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="28T-XM-bi1" style="IBUITableViewCellStyleDefault" id="vGU-Vx-6Kp">
                                         <rect key="frame" x="0.0" y="88" width="375" height="44"/>
@@ -123,7 +127,7 @@
             </objects>
             <point key="canvasLocation" x="414" y="102"/>
         </scene>
-        <!--Simple Text Field-->
+        <!--Simple text field-->
         <scene sceneID="8Rv-lf-OcF">
             <objects>
                 <viewController storyboardIdentifier="SimpleTextField" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3st-NF-Pw8" customClass="SimpleTextFieldViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -160,13 +164,14 @@
                             <constraint firstItem="AEk-8G-Qd4" firstAttribute="leading" secondItem="ZEI-KE-WXO" secondAttribute="leading" constant="16" id="N6s-iy-iLQ"/>
                             <constraint firstItem="jOD-Jf-0Wm" firstAttribute="top" secondItem="KrH-3l-GpF" secondAttribute="bottom" constant="8" id="fpi-ki-FXX"/>
                             <constraint firstItem="jOD-Jf-0Wm" firstAttribute="leading" secondItem="ZEI-KE-WXO" secondAttribute="leading" constant="16" id="oOM-iv-cXA"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KrH-3l-GpF" secondAttribute="trailing" constant="20" symbolic="YES" id="qqQ-8Q-Xux"/>
                             <constraint firstItem="ZEI-KE-WXO" firstAttribute="trailing" secondItem="jOD-Jf-0Wm" secondAttribute="trailing" constant="16" id="sHl-HO-sTc"/>
                             <constraint firstItem="KrH-3l-GpF" firstAttribute="top" secondItem="AEk-8G-Qd4" secondAttribute="bottom" constant="30" id="v1m-4U-rR8"/>
                             <constraint firstItem="AEk-8G-Qd4" firstAttribute="top" secondItem="ZEI-KE-WXO" secondAttribute="top" constant="20" id="yNM-1A-JRw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZEI-KE-WXO"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Simple Text Field" id="5LO-ST-ivc"/>
+                    <navigationItem key="navigationItem" title="Simple text field" id="5LO-ST-ivc"/>
                     <connections>
                         <outlet property="textField" destination="jOD-Jf-0Wm" id="gsf-3h-vQa"/>
                     </connections>
@@ -174,6 +179,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CN5-Wf-DLn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1221.5999999999999" y="100.29985007496252"/>
+        </scene>
+        <!--Stepping it up-->
+        <scene sceneID="Geb-cP-kSL">
+            <objects>
+                <viewController id="53U-k3-cUf" customClass="SteppingUpViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gf3-rd-T0G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="3LT-ck-3C8">
+                                <rect key="frame" x="14" y="194" width="347" height="31"/>
+                            </slider>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dzf-J1-gfD">
+                                <rect key="frame" x="202" y="385" width="157" height="29"/>
+                                <segments>
+                                    <segment title="0.01"/>
+                                    <segment title="0.1"/>
+                                </segments>
+                            </segmentedControl>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3ec-0O-7Sv">
+                                <rect key="frame" x="16" y="333" width="343" height="2"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeS-b1-ExU">
+                                <rect key="frame" x="16" y="84" width="343" height="101.5"/>
+                                <string key="text">This example shows a few controls that are bound to the same property. Sometimes the property is used as a String, sometimes as a Float, so the binding is done with a mapping transformation when needed.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current value:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VxX-Wx-A9p">
+                                <rect key="frame" x="133" y="244" width="108" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aKW-xf-EH5">
+                                <rect key="frame" x="133" y="273" width="108" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stepper increments by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTf-kG-yxI">
+                                <rect key="frame" x="16" y="387.5" width="178" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="08K-xh-jAq">
+                                <rect key="frame" x="140" y="443" width="94" height="29"/>
+                            </stepper>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oeS-b1-ExU" firstAttribute="top" secondItem="6cx-oW-Plp" secondAttribute="top" constant="20" id="4hn-Bs-dSP"/>
+                            <constraint firstItem="6cx-oW-Plp" firstAttribute="trailing" secondItem="oeS-b1-ExU" secondAttribute="trailing" constant="16" id="B8s-J4-RTA"/>
+                            <constraint firstItem="3LT-ck-3C8" firstAttribute="top" secondItem="oeS-b1-ExU" secondAttribute="bottom" constant="8.5" id="CeK-xp-ms0"/>
+                            <constraint firstItem="VxX-Wx-A9p" firstAttribute="top" secondItem="3LT-ck-3C8" secondAttribute="bottom" constant="20" id="DiL-cr-F3l"/>
+                            <constraint firstItem="aKW-xf-EH5" firstAttribute="width" secondItem="VxX-Wx-A9p" secondAttribute="width" id="GKR-F4-0c9"/>
+                            <constraint firstItem="aKW-xf-EH5" firstAttribute="centerX" secondItem="gf3-rd-T0G" secondAttribute="centerX" id="IVW-of-vMr"/>
+                            <constraint firstItem="3ec-0O-7Sv" firstAttribute="trailing" secondItem="6cx-oW-Plp" secondAttribute="trailing" constant="-16" id="J66-qD-kd7"/>
+                            <constraint firstItem="dzf-J1-gfD" firstAttribute="leading" secondItem="WTf-kG-yxI" secondAttribute="trailing" constant="8" id="K2h-aP-BfR"/>
+                            <constraint firstItem="aKW-xf-EH5" firstAttribute="top" secondItem="VxX-Wx-A9p" secondAttribute="bottom" constant="8" id="Mk1-im-8Zi"/>
+                            <constraint firstItem="VxX-Wx-A9p" firstAttribute="centerX" secondItem="gf3-rd-T0G" secondAttribute="centerX" id="P0p-xi-tyc"/>
+                            <constraint firstItem="dzf-J1-gfD" firstAttribute="baseline" secondItem="WTf-kG-yxI" secondAttribute="baseline" id="SAx-h5-1CB"/>
+                            <constraint firstItem="oeS-b1-ExU" firstAttribute="leading" secondItem="6cx-oW-Plp" secondAttribute="leading" constant="16" id="Sfb-Vb-Fg4"/>
+                            <constraint firstItem="6cx-oW-Plp" firstAttribute="trailing" secondItem="3LT-ck-3C8" secondAttribute="trailing" constant="16" id="WUM-J0-3Xy"/>
+                            <constraint firstItem="08K-xh-jAq" firstAttribute="top" secondItem="dzf-J1-gfD" secondAttribute="bottom" constant="30" id="cEx-ZT-OkX"/>
+                            <constraint firstItem="6cx-oW-Plp" firstAttribute="trailing" secondItem="dzf-J1-gfD" secondAttribute="trailing" constant="16" id="cek-Jm-Ur9"/>
+                            <constraint firstItem="3ec-0O-7Sv" firstAttribute="leading" secondItem="gf3-rd-T0G" secondAttribute="leadingMargin" id="gdV-4x-WBd"/>
+                            <constraint firstItem="3LT-ck-3C8" firstAttribute="leading" secondItem="6cx-oW-Plp" secondAttribute="leading" constant="16" id="hFZ-4f-Cl5"/>
+                            <constraint firstItem="WTf-kG-yxI" firstAttribute="leading" secondItem="6cx-oW-Plp" secondAttribute="leading" constant="16" id="ocD-Qv-l8M"/>
+                            <constraint firstItem="08K-xh-jAq" firstAttribute="centerX" secondItem="gf3-rd-T0G" secondAttribute="centerX" id="sUa-dA-5cT"/>
+                            <constraint firstItem="3ec-0O-7Sv" firstAttribute="top" secondItem="aKW-xf-EH5" secondAttribute="bottom" constant="30" id="sjk-sO-leQ"/>
+                            <constraint firstItem="dzf-J1-gfD" firstAttribute="top" secondItem="3ec-0O-7Sv" secondAttribute="bottom" constant="50" id="ycU-5V-ANj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6cx-oW-Plp"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Stepping it up" id="MlD-pv-c9b"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pj6-b6-gLD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1221.5999999999999" y="819.94002998500753"/>
         </scene>
     </scenes>
 </document>

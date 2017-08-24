@@ -4,5 +4,6 @@ import ReSwift
 
 let store = Store<AppState>(
     reducer: mainReducer,
-    state: nil
+    state: nil,
+    middleware: [ActionLogger()]
 )

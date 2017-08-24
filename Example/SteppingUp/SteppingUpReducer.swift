@@ -3,5 +3,12 @@
 import ReSwift
 
 func steppingUpReducer(action: Action, state: SteppingUpState?) -> SteppingUpState {
-    return state ?? initialSteppingUpState
+    var state = state ?? initialSteppingUpState
+    switch action {
+    case let setValueAction as SteppingUpSetValue:
+        state.value = setValueAction.newValue
+    default:
+        break
+    }
+    return state
 }

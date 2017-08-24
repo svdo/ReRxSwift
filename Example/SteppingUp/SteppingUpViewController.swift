@@ -17,7 +17,6 @@ class SteppingUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         connection.bind(\Props.value, to: slider.rx.value)
     }
 }
@@ -30,7 +29,7 @@ extension SteppingUpViewController: Connectable {
 }
 
 private let mapStateToProps = { (appState: AppState) in
-    return SteppingUpViewController.Props(value: 0)
+    return SteppingUpViewController.Props(value: appState.steppingUp.value)
 }
 
 private let mapDispatchToActions = { (dispatch: DispatchFunction) in

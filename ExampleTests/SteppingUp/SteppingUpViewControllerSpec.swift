@@ -32,5 +32,13 @@ class SteppingUpViewControllerSpec: QuickSpec {
             steppingUpViewController.props = SteppingUpViewController.Props(value: 0.4)
             expect(steppingUpViewController.slider.value) ≈ 0.4
         }
+
+        it("maps value from state to props") {
+            let state = AppState(
+                simpleTextField: initialSimpleTextFieldState,
+                steppingUp: SteppingUpState(value: 0.3, stepSize: 0.1))
+            steppingUpViewController.connection.newState(state: state)
+            expect(steppingUpViewController.slider.value) ≈ 0.3
+        }
     }
 }

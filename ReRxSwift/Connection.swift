@@ -5,18 +5,24 @@ import RxSwift
 import RxCocoa
 
 public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
-    let store: Store<State>
+    public var store: Store<State> {
+        didSet {
+            self.actions = self.mapDispatchToActions(store.dispatch)
+        }
+    }
     let mapStateToProps: (State) -> (Props)
+    let mapDispatchToActions: (@escaping DispatchFunction) -> (Actions)
     public let props: Variable<Props>
     public var actions: Actions!
     let disposeBag = DisposeBag()
 
     public init(store: Store<State>,
                 mapStateToProps: @escaping (State) -> (Props),
-                mapDispatchToActions: (@escaping DispatchFunction) -> (Actions)
+                mapDispatchToActions: @escaping (@escaping DispatchFunction) -> (Actions)
         ) {
         self.store = store
         self.mapStateToProps = mapStateToProps
+        self.mapDispatchToActions = mapDispatchToActions
         let initialState = store.state!
         let props = mapStateToProps(initialState)
         self.props = Variable(props)

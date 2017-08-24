@@ -19,11 +19,10 @@ class SteppingUpViewControllerSpec: QuickSpec {
                 return
             }
             steppingUpViewController = steppingUp
+            expect(steppingUpViewController.view).toNot(beNil())
 
             testStore = Store<AppState>(reducer: mainReducer, state: nil)
             steppingUpViewController.connection.store = testStore
-
-            expect(steppingUpViewController.view).toNot(beNil())
         }
 
         it("has a connection") {

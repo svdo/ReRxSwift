@@ -19,6 +19,7 @@ class SteppingUpViewController: UIViewController {
         super.viewDidLoad()
         connection.bind(\Props.value, to: slider.rx.value)
         connection.bind(\Props.value, to: textField.rx.text, mapping: { String($0) })
+        connection.bind(\Props.value, to: progressView.rx.progress)
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -114,5 +114,12 @@ class SteppingUpViewControllerSpec: QuickSpec {
                 expect(value) ≈ 0.6
             }
         }
+
+        describe("progress view") {
+            it("uses the props value as progress") {
+                steppingUpViewController.props = SteppingUpViewController.Props(value: 0.4)
+                expect(steppingUpViewController.progressView.progress) ≈ 0.4
+            }
+        }
     }
 }

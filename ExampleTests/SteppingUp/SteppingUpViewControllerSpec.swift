@@ -2,6 +2,7 @@
 
 import Quick
 import Nimble
+import ReSwift
 @testable import Example
 
 class SteppingUpViewControllerSpec: QuickSpec {
@@ -70,6 +71,16 @@ class SteppingUpViewControllerSpec: QuickSpec {
                     expect(steppingUpViewController.slider.value) ≈ initialSteppingUpState.value
                 }
             }
+        }
+
+        it("changes the value of the state when the slider changes") {
+            var value: Float?
+            steppingUpViewController.actions = SteppingUpViewController.Actions(
+                setValue: { newValue in value = newValue }
+            )
+            steppingUpViewController.slider.value = 0.7
+            steppingUpViewController.sliderChanged()
+            expect(value) ≈ 0.7
         }
     }
 }

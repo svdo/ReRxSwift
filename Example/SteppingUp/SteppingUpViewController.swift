@@ -29,19 +29,27 @@ class SteppingUpViewController: UIViewController {
         super.viewDidDisappear(animated)
         connection.disconnect()
     }
+    
+    @IBAction func sliderChanged() {
+        actions.setValue(slider.value)
+    }
 }
 
 extension SteppingUpViewController: Connectable {
     struct Props {
         let value: Float
     }
-    struct Actions {}
+    struct Actions {
+        let setValue: (Float) -> ()
+    }
 }
 
 private let mapStateToProps = { (appState: AppState) in
     return SteppingUpViewController.Props(value: appState.steppingUp.value)
 }
 
-private let mapDispatchToActions = { (dispatch: DispatchFunction) in
-    return SteppingUpViewController.Actions()
+private let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in
+    return SteppingUpViewController.Actions(
+        setValue: { _ in }
+    )
 }

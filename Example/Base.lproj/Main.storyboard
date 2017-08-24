@@ -190,6 +190,9 @@
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="3LT-ck-3C8">
                                 <rect key="frame" x="14" y="194" width="347" height="31"/>
+                                <connections>
+                                    <action selector="sliderChanged" destination="53U-k3-cUf" eventType="valueChanged" id="aBu-hN-H9h"/>
+                                </connections>
                             </slider>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dzf-J1-gfD">
                                 <rect key="frame" x="202" y="385" width="157" height="29"/>

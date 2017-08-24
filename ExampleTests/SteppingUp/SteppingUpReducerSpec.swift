@@ -11,5 +11,11 @@ class SteppingUpReducerSpec: QuickSpec {
             let nextState = steppingUpReducer(action: action, state: nil)
             expect(nextState.value) ≈ 0.42
         }
+
+        it("handles setStepSize") {
+            let action = SteppingUpSetStepSize(newStepSize: 0.42)
+            let nextState = steppingUpReducer(action: action, state: nil)
+            expect(nextState.stepSize) ≈ 0.42
+        }
     }
 }

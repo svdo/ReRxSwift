@@ -40,5 +40,19 @@ class SteppingUpViewControllerSpec: QuickSpec {
             steppingUpViewController.connection.newState(state: state)
             expect(steppingUpViewController.slider.value) ≈ 0.3
         }
+
+        context("when viewWillAppear has been called") {
+            beforeEach {
+                steppingUpViewController.viewWillAppear(false)
+            }
+
+            it("is connected") {
+                let state = AppState(
+                    simpleTextField: initialSimpleTextFieldState,
+                    steppingUp: SteppingUpState(value: 0.3, stepSize: 0.1))
+                store.state = state
+                expect(steppingUpViewController.slider.value) ≈ 0.3
+            }
+        }
     }
 }

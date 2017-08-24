@@ -19,6 +19,11 @@ class SteppingUpViewController: UIViewController {
         super.viewDidLoad()
         connection.bind(\Props.value, to: slider.rx.value)
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        connection.connect()
+    }
 }
 
 extension SteppingUpViewController: Connectable {

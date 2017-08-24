@@ -10,6 +10,7 @@ class SteppingUpViewControllerSpec: QuickSpec {
 
         beforeEach {
             store.state = initialAppState
+            // TODO: create a way to inject the store, because also subscriptions should be reset
 
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "SteppingUp")

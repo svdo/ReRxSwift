@@ -13,22 +13,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
-
-class StoreLogger: StoreSubscriber {
-    let encoder: JSONEncoder
-
-    init() {
-        encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-    }
-
-    func newState(state: AppState) {
-        do {
-            let description = try encoder.encode(state)
-            print("------- new state: ")
-            print(String(data: description, encoding: .utf8)!)
-        } catch let e {
-            print(e)
-        }
-    }
-}

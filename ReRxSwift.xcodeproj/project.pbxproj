@@ -35,6 +35,7 @@
 		F89680C91F4CB8C5002C2452 /* SimpleTextFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89680C81F4CB8C5002C2452 /* SimpleTextFieldState.swift */; };
 		F89680CA1F4CBF45002C2452 /* ReRxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8081AAD1F44940B00855A4F /* ReRxSwift.framework */; };
 		F89680CB1F4CBF45002C2452 /* ReRxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F8081AAD1F44940B00855A4F /* ReRxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F89782131F4EB72000D82ABF /* StoreLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89782121F4EB72000D82ABF /* StoreLogger.swift */; };
 		F89782151F4EB76000D82ABF /* ActionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89782141F4EB76000D82ABF /* ActionLogger.swift */; };
 		F8BD52A31F4CADDC00B7E471 /* SimpleTextFieldReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BD52A21F4CADDC00B7E471 /* SimpleTextFieldReducer.swift */; };
 		F8BD52A51F4CADF800B7E471 /* SimpleTextFieldActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BD52A41F4CADF800B7E471 /* SimpleTextFieldActions.swift */; };
@@ -119,6 +120,7 @@
 		F89680C41F4CB50A002C2452 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		F89680C61F4CB689002C2452 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		F89680C81F4CB8C5002C2452 /* SimpleTextFieldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldState.swift; sourceTree = "<group>"; };
+		F89782121F4EB72000D82ABF /* StoreLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLogger.swift; sourceTree = "<group>"; };
 		F89782141F4EB76000D82ABF /* ActionLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionLogger.swift; sourceTree = "<group>"; };
 		F8BD52A21F4CADDC00B7E471 /* SimpleTextFieldReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldReducer.swift; sourceTree = "<group>"; };
 		F8BD52A41F4CADF800B7E471 /* SimpleTextFieldActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldActions.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				F89680C41F4CB50A002C2452 /* Reducer.swift */,
 				F8BD52A11F4CAD6900B7E471 /* SimpleTextField */,
 				F808237B1F4A250B00CCADC1 /* AppDelegate.swift */,
+				F89782121F4EB72000D82ABF /* StoreLogger.swift */,
 				F89782141F4EB76000D82ABF /* ActionLogger.swift */,
 				F808237F1F4A250B00CCADC1 /* Main.storyboard */,
 				F80823821F4A250C00CCADC1 /* Assets.xcassets */,
@@ -702,6 +705,7 @@
 				F89680C51F4CB50A002C2452 /* Reducer.swift in Sources */,
 				F89680C71F4CB689002C2452 /* AppState.swift in Sources */,
 				F808237E1F4A250B00CCADC1 /* SimpleTextFieldViewController.swift in Sources */,
+				F89782131F4EB72000D82ABF /* StoreLogger.swift in Sources */,
 				F8BD52A51F4CADF800B7E471 /* SimpleTextFieldActions.swift in Sources */,
 				F808237C1F4A250B00CCADC1 /* AppDelegate.swift in Sources */,
 				F8BD52A31F4CADDC00B7E471 /* SimpleTextFieldReducer.swift in Sources */,

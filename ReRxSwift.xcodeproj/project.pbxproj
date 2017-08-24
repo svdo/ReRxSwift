@@ -32,6 +32,7 @@
 		F839573B1F4EC74B00D33189 /* SteppingUpReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F839573A1F4EC74B00D33189 /* SteppingUpReducer.swift */; };
 		F839573D1F4EC7DF00D33189 /* SteppingUpActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F839573C1F4EC7DF00D33189 /* SteppingUpActions.swift */; };
 		F839573F1F4ECAEF00D33189 /* SteppingUpReducerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F839573E1F4ECAEF00D33189 /* SteppingUpReducerSpec.swift */; };
+		F83957411F4ED10E00D33189 /* SteppingUpViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83957401F4ED10E00D33189 /* SteppingUpViewControllerSpec.swift */; };
 		F88D86C01F4CC9A6006F6038 /* SimpleTextFieldReducerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D86BF1F4CC9A6006F6038 /* SimpleTextFieldReducerSpec.swift */; };
 		F88D86C21F4CCDD4006F6038 /* SimpleTextFieldViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D86C11F4CCDD4006F6038 /* SimpleTextFieldViewControllerSpec.swift */; };
 		F89680C31F4CB4FF002C2452 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89680C21F4CB4FF002C2452 /* Store.swift */; };
@@ -122,6 +123,7 @@
 		F839573A1F4EC74B00D33189 /* SteppingUpReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppingUpReducer.swift; sourceTree = "<group>"; };
 		F839573C1F4EC7DF00D33189 /* SteppingUpActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppingUpActions.swift; sourceTree = "<group>"; };
 		F839573E1F4ECAEF00D33189 /* SteppingUpReducerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppingUpReducerSpec.swift; sourceTree = "<group>"; };
+		F83957401F4ED10E00D33189 /* SteppingUpViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppingUpViewControllerSpec.swift; sourceTree = "<group>"; };
 		F88D86B41F4CC934006F6038 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F88D86B81F4CC934006F6038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F88D86BF1F4CC9A6006F6038 /* SimpleTextFieldReducerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldReducerSpec.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				F839573E1F4ECAEF00D33189 /* SteppingUpReducerSpec.swift */,
+				F83957401F4ED10E00D33189 /* SteppingUpViewControllerSpec.swift */,
 			);
 			path = SteppingUp;
 			sourceTree = "<group>";
@@ -757,6 +760,7 @@
 			files = (
 				F88D86C01F4CC9A6006F6038 /* SimpleTextFieldReducerSpec.swift in Sources */,
 				F88D86C21F4CCDD4006F6038 /* SimpleTextFieldViewControllerSpec.swift in Sources */,
+				F83957411F4ED10E00D33189 /* SteppingUpViewControllerSpec.swift in Sources */,
 				F839573F1F4ECAEF00D33189 /* SteppingUpReducerSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

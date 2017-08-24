@@ -183,7 +183,7 @@
         <!--Stepping it up-->
         <scene sceneID="Geb-cP-kSL">
             <objects>
-                <viewController id="53U-k3-cUf" customClass="SteppingUpViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SteppingUp" useStoryboardIdentifierAsRestorationIdentifier="YES" id="53U-k3-cUf" customClass="SteppingUpViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gf3-rd-T0G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

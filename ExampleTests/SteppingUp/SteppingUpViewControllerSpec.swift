@@ -63,12 +63,19 @@ class SteppingUpViewControllerSpec: QuickSpec {
         }
 
         describe("map state to props") {
-            it("value prop") {
+            it("maps value prop") {
                 let state = AppState(
                     simpleTextField: initialSimpleTextFieldState,
-                    steppingUp: SteppingUpState(value: 0.3, stepSize: 0.11))
+                    steppingUp: SteppingUpState(value: 0.3, stepSize: 0))
                 steppingUpViewController.connection.newState(state: state)
                 expect(steppingUpViewController.props.value) ≈ 0.3
+            }
+
+            it("maps stepSize prop") {
+                let state = AppState(
+                    simpleTextField: initialSimpleTextFieldState,
+                    steppingUp: SteppingUpState(value: 0, stepSize: 0.11))
+                steppingUpViewController.connection.newState(state: state)
                 expect(steppingUpViewController.props.stepSize) ≈ 0.11
             }
         }

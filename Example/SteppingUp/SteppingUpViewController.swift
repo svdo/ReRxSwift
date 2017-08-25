@@ -22,6 +22,20 @@ class SteppingUpViewController: UIViewController {
         connection.bind(\Props.value, to: textField.rx.text, mapping: { String($0) })
         connection.bind(\Props.value, to: progressView.rx.progress)
         connection.bind(\Props.value, to: stepper.rx.value, mapping: { Double($0) })
+        connection.bind(\Props.stepSize, to: segmentedControl.rx.selectedSegmentIndex, mapping: { self.segmentIndex(for: $0) })
+    }
+
+    func segmentIndex(for stepSize: Float) -> Int {
+        for index in 0 ..< segmentedControl.numberOfSegments {
+            guard let title = segmentedControl.titleForSegment(at: index),
+                  let segment = Float(title) else {
+                continue
+            }
+            if stepSize == segment {
+                return index
+            }
+        }
+        return -1
     }
 
     override func viewWillAppear(_ animated: Bool) {

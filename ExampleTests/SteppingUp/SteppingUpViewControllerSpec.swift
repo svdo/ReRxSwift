@@ -139,6 +139,24 @@ class SteppingUpViewControllerSpec: QuickSpec {
                 expect(value) ≈ 0.9
             }
         }
+
+        describe("segmented control") {
+            it("uses the props step size for the selected segment") {
+                func selectedTitle() -> String? {
+                    let index = steppingUpViewController.segmentedControl.selectedSegmentIndex
+                    let title = (index >= 0)
+                        ? steppingUpViewController.segmentedControl.titleForSegment(at: index)
+                        : nil
+                    return title
+                }
+                steppingUpViewController.props = props(stepSize: 0.22)
+                expect(selectedTitle()).to(beNil())
+                steppingUpViewController.props = props(stepSize: 0.01)
+                expect(selectedTitle()) == "0.01"
+                steppingUpViewController.props = props(stepSize: 0.1)
+                expect(selectedTitle()) == "0.1"
+            }
+        }
     }
 }
 

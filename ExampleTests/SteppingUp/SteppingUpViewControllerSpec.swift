@@ -66,9 +66,10 @@ class SteppingUpViewControllerSpec: QuickSpec {
             it("value prop") {
                 let state = AppState(
                     simpleTextField: initialSimpleTextFieldState,
-                    steppingUp: SteppingUpState(value: 0.3, stepSize: 0.1))
+                    steppingUp: SteppingUpState(value: 0.3, stepSize: 0.11))
                 steppingUpViewController.connection.newState(state: state)
                 expect(steppingUpViewController.props.value) ≈ 0.3
+                expect(steppingUpViewController.props.stepSize) ≈ 0.11
             }
         }
 
@@ -83,13 +84,13 @@ class SteppingUpViewControllerSpec: QuickSpec {
 
         describe("slider") {
             it("uses the props value as slider value") {
-                steppingUpViewController.props = SteppingUpViewController.Props(value: 0.4)
+                steppingUpViewController.props = props(value: 0.4)
                 expect(steppingUpViewController.slider.value) ≈ 0.4
             }
 
             it("changes the value of the state when the slider changes") {
                 var value: Float?
-                steppingUpViewController.actions = SteppingUpViewController.Actions(
+                steppingUpViewController.actions = actions(
                     setValue: { newValue in value = newValue }
                 )
                 steppingUpViewController.slider.value = 0.7
@@ -100,13 +101,13 @@ class SteppingUpViewControllerSpec: QuickSpec {
 
         describe("text field") {
             it("uses the props value as text") {
-                steppingUpViewController.props = SteppingUpViewController.Props(value: 0.4)
+                steppingUpViewController.props = props(value: 0.4)
                 expect(steppingUpViewController.textField.text) == "0.4"
             }
 
             it("calls the right action when editing ends") {
                 var value: Float?
-                steppingUpViewController.actions = SteppingUpViewController.Actions(
+                steppingUpViewController.actions = actions(
                     setValue: { newValue in value = newValue }
                 )
                 steppingUpViewController.textField.text = "0.6"
@@ -117,20 +118,20 @@ class SteppingUpViewControllerSpec: QuickSpec {
 
         describe("progress view") {
             it("uses the props value as progress") {
-                steppingUpViewController.props = SteppingUpViewController.Props(value: 0.4)
+                steppingUpViewController.props = props(value: 0.4)
                 expect(steppingUpViewController.progressView.progress) ≈ 0.4
             }
         }
 
         describe("stepper") {
             it("uses the props value as value") {
-                steppingUpViewController.props = SteppingUpViewController.Props(value: 0.4)
+                steppingUpViewController.props = props(value: 0.4)
                 expect(steppingUpViewController.stepper.value) ≈ 0.4
             }
 
             it("calls the right action when value changes") {
                 var value: Float?
-                steppingUpViewController.actions = SteppingUpViewController.Actions(
+                steppingUpViewController.actions = actions(
                     setValue: { newValue in value = newValue }
                 )
                 steppingUpViewController.stepper.value = 0.9
@@ -139,4 +140,14 @@ class SteppingUpViewControllerSpec: QuickSpec {
             }
         }
     }
+}
+
+func props(value: Float = 0.0, stepSize: Float = 0.0) -> SteppingUpViewController.Props {
+    return SteppingUpViewController.Props(value: value, stepSize: stepSize)
+}
+
+func actions(setValue: @escaping (Float)->()) -> SteppingUpViewController.Actions {
+    return SteppingUpViewController.Actions(
+        setValue: setValue
+    )
 }

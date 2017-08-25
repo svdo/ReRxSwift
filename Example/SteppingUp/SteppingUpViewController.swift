@@ -53,6 +53,7 @@ class SteppingUpViewController: UIViewController {
 extension SteppingUpViewController: Connectable {
     struct Props {
         let value: Float
+        let stepSize: Float
     }
     struct Actions {
         let setValue: (Float) -> ()
@@ -60,7 +61,8 @@ extension SteppingUpViewController: Connectable {
 }
 
 private let mapStateToProps = { (appState: AppState) in
-    return SteppingUpViewController.Props(value: appState.steppingUp.value)
+    return SteppingUpViewController.Props(value: appState.steppingUp.value,
+                                          stepSize: appState.steppingUp.stepSize)
 }
 
 private let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in

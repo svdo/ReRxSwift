@@ -62,6 +62,15 @@ class SteppingUpViewController: UIViewController {
     @IBAction func stepperChanged() {
         actions.setValue(Float(stepper.value))
     }
+
+    @IBAction func selectedSegmentChanged() {
+        guard segmentedControl.selectedSegmentIndex >= 0,
+              let title = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex),
+              let newStepSize = Float(title) else {
+            return
+        }
+        actions.setStepSize(newStepSize)
+    }
 }
 
 extension SteppingUpViewController: Connectable {

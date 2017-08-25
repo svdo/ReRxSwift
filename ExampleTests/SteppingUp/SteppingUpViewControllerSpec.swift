@@ -170,6 +170,22 @@ class SteppingUpViewControllerSpec: QuickSpec {
                 steppingUpViewController.props = props(stepSize: 0.1)
                 expect(selectedTitle()) == "0.1"
             }
+
+            it("calls the right action when selected segment changes") {
+                var stepSize: Float?
+                steppingUpViewController.actions = actions(
+                    setStepSize: { newStepSize in stepSize = newStepSize }
+                )
+                steppingUpViewController.segmentedControl.selectedSegmentIndex = 0
+                steppingUpViewController.selectedSegmentChanged()
+                expect(stepSize) ≈ 0.01
+                steppingUpViewController.segmentedControl.selectedSegmentIndex = 1
+                steppingUpViewController.selectedSegmentChanged()
+                expect(stepSize) ≈ 0.1
+                steppingUpViewController.segmentedControl.selectedSegmentIndex = -1
+                steppingUpViewController.selectedSegmentChanged()
+                expect(stepSize) ≈ 0.1
+            }
         }
     }
 }

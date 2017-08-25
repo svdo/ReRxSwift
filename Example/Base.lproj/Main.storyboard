@@ -200,6 +200,9 @@
                                     <segment title="0.01"/>
                                     <segment title="0.1"/>
                                 </segments>
+                                <connections>
+                                    <action selector="selectedSegmentChanged" destination="53U-k3-cUf" eventType="valueChanged" id="7d7-CV-U6l"/>
+                                </connections>
                             </segmentedControl>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3ec-0O-7Sv">
                                 <rect key="frame" x="16" y="333" width="343" height="2"/>

@@ -81,7 +81,7 @@ class SteppingUpViewControllerSpec: QuickSpec {
         }
 
         describe("map dispatch to actions") {
-            it("setValue action") {
+            it("maps setValue action") {
                 var dispatchedAction: Action? = nil
                 testStore.dispatchFunction = { action in dispatchedAction = action }
                 steppingUpViewController.actions.setValue(0.42)

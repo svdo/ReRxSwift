@@ -71,6 +71,7 @@ extension SteppingUpViewController: Connectable {
     }
     struct Actions {
         let setValue: (Float) -> ()
+        let setStepSize: (Float) -> ()
     }
 }
 
@@ -81,6 +82,9 @@ private let mapStateToProps = { (appState: AppState) in
 
 private let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in
     return SteppingUpViewController.Actions(
-        setValue: { newValue in dispatch(SteppingUpSetValue(newValue: newValue)) }
+        setValue: { newValue in dispatch(SteppingUpSetValue(newValue: newValue)) },
+        setStepSize: { newStepSize in
+            dispatch(SteppingUpSetStepSize(newStepSize: newStepSize))
+        }
     )
 }

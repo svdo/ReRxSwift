@@ -87,6 +87,13 @@ class SteppingUpViewControllerSpec: QuickSpec {
                 steppingUpViewController.actions.setValue(0.42)
                 expect((dispatchedAction as? SteppingUpSetValue)?.newValue) ≈ 0.42
             }
+
+            it("maps setStepSize action") {
+                var dispatchedAction: Action? = nil
+                testStore.dispatchFunction = { action in dispatchedAction = action }
+                steppingUpViewController.actions.setStepSize(0.24)
+                expect((dispatchedAction as? SteppingUpSetStepSize)?.newStepSize) ≈ 0.24
+            }
         }
 
         describe("slider") {
@@ -171,8 +178,11 @@ func props(value: Float = 0.0, stepSize: Float = 0.0) -> SteppingUpViewControlle
     return SteppingUpViewController.Props(value: value, stepSize: stepSize)
 }
 
-func actions(setValue: @escaping (Float)->()) -> SteppingUpViewController.Actions {
+func actions(setValue: @escaping (Float)->() = { _ in },
+             setStepSize: @escaping (Float)->() = { _ in }
+    ) -> SteppingUpViewController.Actions {
     return SteppingUpViewController.Actions(
-        setValue: setValue
+        setValue: setValue,
+        setStepSize: setStepSize
     )
 }

@@ -15,6 +15,24 @@ The folder `Examples` contains the following examples:
 - **SimpleTextField**: Most basic use case of ReRxSwift, containing a text field that has its value bound, and an action.
 - **SteppingUp**: Use case with multiple bound values and actions, also showing how to transform values when binding them.
 
+## TODO
+
+### Create pull request for `UIStepper+rx`:
+
+```swift
+
+/// Reactive wrapper for `stepValue` property.
+public var stepValue: ControlProperty<Double> {
+    return UIControl.rx.value(
+        self.base,
+        getter: { stepper in
+            stepper.stepValue
+        }, setter: { stepper, stepValue in
+            stepper.stepValue = stepValue
+        }
+    )
+}
+```
 
 [1]: https://github.com/ReactiveX/RxSwift
 [2]: https://github.com/ReSwift/ReSwift

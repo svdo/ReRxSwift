@@ -115,7 +115,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
             .distinctUntilChanged { $0[keyPath: keyPath].elementsEqual($1[keyPath: keyPath]) }
             .map { $0[keyPath: keyPath] }
             .bind(to: binder)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }
 

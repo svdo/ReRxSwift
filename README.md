@@ -106,7 +106,8 @@ controller `MyViewController`, you use the following steps.
    }
    ```
 
-5. Bind the text field's text:
+5. Bind the text field's text, using a Swift 4 key path to refer to the
+   `text` property of `Props`:
 
    ```swift
    override func viewDidLoad() {

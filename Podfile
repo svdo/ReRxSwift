@@ -5,7 +5,7 @@ abstract_target 'ReRx' do
 
   pod 'ReSwift', :git => 'https://github.com/ReSwift/ReSwift', :branch => 'mjarvis/swift-4'
   pod 'RxSwift', :git => 'https://github.com/ReactiveX/RxSwift', :branch => 'swift4.0'
-  pod 'RxCocoa', :git => 'https://github.com/ReactiveX/RxSwift', :branch => 'swift4.0'
+  pod 'RxCocoa', :git => 'https://github.com/svdo/RxSwift', :branch => 'swift4.0'
 
   target 'ReRxSwift'
 

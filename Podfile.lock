@@ -2,18 +2,18 @@ PODS:
   - Nimble (7.0.1)
   - Quick (1.1.0)
   - ReSwift (4.0.0)
-  - RxCocoa (4.0.0-alpha.0):
-    - RxSwift (~> 4.0.0-alpha.0)
+  - RxCocoa (4.0.0-alpha.1):
+    - RxSwift (~> 4.0.0-alpha.1)
   - RxDataSources (2.0.0-alpha.0):
     - RxCocoa (~> 4.0.0-alpha.0)
     - RxSwift (~> 4.0.0-alpha.0)
-  - RxSwift (4.0.0-alpha.0)
+  - RxSwift (4.0.0-alpha.1)
 
 DEPENDENCIES:
   - Nimble (~> 7.0)
   - Quick (~> 1.1)
   - ReSwift (from `https://github.com/ReSwift/ReSwift`, branch `mjarvis/swift-4`)
-  - RxCocoa (from `https://github.com/ReactiveX/RxSwift`, branch `swift4.0`)
+  - RxCocoa (from `https://github.com/svdo/RxSwift`, branch `swift4.0`)
   - RxDataSources (from `https://github.com/svdo/RxDataSources`, branch `swift4.0`)
   - RxSwift (from `https://github.com/ReactiveX/RxSwift`, branch `swift4.0`)
 
@@ -23,7 +23,7 @@ EXTERNAL SOURCES:
     :git: https://github.com/ReSwift/ReSwift
   RxCocoa:
     :branch: swift4.0
-    :git: https://github.com/ReactiveX/RxSwift
+    :git: https://github.com/svdo/RxSwift
   RxDataSources:
     :branch: swift4.0
     :git: https://github.com/svdo/RxDataSources
@@ -36,23 +36,23 @@ CHECKOUT OPTIONS:
     :commit: ec60407df5c84b589665f984dcaaefca295afbd6
     :git: https://github.com/ReSwift/ReSwift
   RxCocoa:
-    :commit: 99a753396a66a0bb8aeb97e29aedfb344356b5b3
-    :git: https://github.com/ReactiveX/RxSwift
+    :commit: 0e1ac049c131de9862e58747950ee483a456f39d
+    :git: https://github.com/svdo/RxSwift
   RxDataSources:
     :commit: e8030a3b1f6ce0a0c5c966121b25e61778575665
     :git: https://github.com/svdo/RxDataSources
   RxSwift:
-    :commit: 99a753396a66a0bb8aeb97e29aedfb344356b5b3
+    :commit: 16083c30ebb8705124921b6974cc1481f3476184
     :git: https://github.com/ReactiveX/RxSwift
 
 SPEC CHECKSUMS:
   Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   ReSwift: 85cb57267026cf4df4f6b05306bfce8ef74842c0
-  RxCocoa: d57cc4a5b88c5179b3ca7fe30d0ab0d928e886ff
+  RxCocoa: 2eb5f5d79668c61de6c32b636c2a1101a0ba3ca9
   RxDataSources: 3cf110f8e681b360dfab76cd933ed9aba1b1176f
-  RxSwift: 6946957e4e99243ea7c9bba38afa06b1363b0048
+  RxSwift: d313a43a0109708ada75e1ce99bf7c36d4180ad8
 
-PODFILE CHECKSUM: 6186996651b7acc7598f8a71f958ad1b044df9e9
+PODFILE CHECKSUM: b387eb08bf09e9ef1096684767319f6ad21502a3
 
 COCOAPODS: 1.3.1

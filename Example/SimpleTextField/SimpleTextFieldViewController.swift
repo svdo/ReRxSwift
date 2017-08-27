@@ -23,6 +23,7 @@ class SimpleTextFieldViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         connection.bind(\Props.text, to: textField.rx.text)
     }
     

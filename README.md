@@ -155,7 +155,92 @@ by opening [issues on GitHub][8].
 
 ## API
 
-*todo*
+### Connectable
+
+This is the protocol that your view controller has to conform to. It requires
+you to add a `connection` property. It provides the `props` and `actions` that
+you can use in your view controller. Normally, you declare the `connection` as
+follows:
+
+```swift
+class MyViewController: Connectable {
+    let connection = Connection(
+        store: store,
+        mapStateToProps: mapStateToProps,
+        mapDispatchToActions: mapDispatchToActions
+    )
+}
+```
+
+Refer to the `Connection` constructor documentation for more information.
+
+#### props
+This contains the `Props` object that you create using `mapStateToProps`. In
+other words: it contains all data that your view controller uses, automatically
+extracted from your application state. When using the `bind` methods in
+`Connection`, you probably don't need to use this `props` property directly.
+
+#### actions
+This contains the `Actions` object that you create using `mapDispatchToActions`.
+In other words: it specifies which ReSwift action has to be dispatched when
+calling the callbacks defined by your `actions`.
+
+### Connection
+The `Connection` takes care of the mapping from you application state to your
+view controller `props`, and of dispatching the mapped action when calling
+functions in your view controller `actions`.
+
+#### Constructor
+To create your `Connection` instance, you need to construct it with three
+parameters:
+
+- **store**: Your application's ReSwift store.
+- **mapStateToProps**: A function that takes values from your application's
+  state and puts them in the view controller's `props` object. This decouples
+  your application state from the view controller data.
+- **mapDispatchToActions**: A function that specifies which actions your view
+  controller can call, and for each of those which ReSwift action needs to be
+  dispatched.
+
+#### connect
+Calling this method causes the connection to subscribe to the ReSwift store and
+receive application state updates. Call this from your view controller's
+`viewWillAppear` or `viewDidAppear` method.
+
+#### disconnect
+Calling this method causes the connection to unsubscribe from the ReSwift store.
+Call this from your view controller's `viewWillDisappear` or `viewDidDisappear`.
+
+#### bind
+This function binds an entry in your view controller's `props` to a
+RxSwift-enabled user interface element, so that every time your `props` change,
+the user interface element is updated accordingly, automatically.
+
+The function `bind` takes the following parameters:
+- **keyPath**: The (Swift 4) key path that points to the element in your `props`
+  that you want to bind to the user interface element.
+- **to**: The RxSwift reactive property wrapper, e.g. `textField.rx.text` or
+  `progressView.rx.progress`.
+- **mapping**: _Most of the `bind` variants_ (but not all of them) allow you to
+  provide a mapping function. This mapping function is applied to the `props`
+  element at the specified `keyPath`. You can use this for example for type
+  conversions: your `props` contains a value as a `Float`, but the UI element
+  requires it to be a `String`. Specifying the mapping `{ String($0) }` will
+  take care of that. [`SteppingUpViewController.swift`][12] contains an example
+  of a mapping function that maps a `Float` value to the selected index of
+  a segmented control.
+
+Just for your understanding: there are several variants of the `bind` function.
+They are all variants of this simplified code:
+
+```swift
+self.props
+    .asObservable()
+    .distinctUntilChanged { $0[keyPath: keyPath] == $1[keyPath: keyPath] }
+    .map { $0[keyPath: keyPath] }
+    .bind(to: observer)
+    .disposed(by: disposeBag)
+```
 
 ## Example App
 The folder `Examples` contains the following examples:
@@ -163,6 +248,26 @@ The folder `Examples` contains the following examples:
 - **SimpleTextField**: Most basic use case of ReRxSwift, containing a text field that has its value bound, and an action.
 - **SteppingUp**: Use case with multiple bound values and actions, also showing how to transform values when binding them.
 
+
+## FAQ
+
+### My `props` are not updated when the application state changes?
+This happens when you forget to call `connection.connect()` in you view
+controller's `viewWillAppear` or `viewDidAppear` method. While you're at it,
+you may want to verify that you also call `connection.disconnect()` in
+`viewWillDisappear` or `viewDidDisappear`.
+
+### I get compiler errors when calling `connection.bind()`?
+When calling `bind`, you pass a key path to an element in your `props` object.
+Because of the way ReRxSwift makes sure to only trigger when this element
+actually changed, it compares its value with the previous one. This means
+that the elements in your `props` object need to be `Equatable`. Simple types
+of course are already `Equatable`, but especially when binding table view
+items or collection view items, you need to make sure that the types are
+`Equatable`.
+
+### I double-checked everything and I still get errors!
+Please open a [new issue][8] on GitHub, as you may have run into a bug.
 
 ## Open Issue: Make ReRx-enabled view controllers strictly pure
 
@@ -185,3 +290,4 @@ you to join the discussion there!
 [9]: https://github.com/svdo/ReRxSwift/issues/1
 [10]: https://github.com/svdo/ReRxSwift/blob/master/Example/SimpleTextField/SimpleTextFieldViewController.swift
 [11]: https://github.com/svdo/ReRxSwift/blob/master/ExampleTests/SimpleTextField/SimpleTextFieldViewControllerSpec.swift
+[12]: https://github.com/svdo/ReRxSwift/blob/master/Example/SteppingUp/SteppingUpViewController.swift

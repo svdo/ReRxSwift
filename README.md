@@ -39,7 +39,95 @@ of directly dispatching ReSwift actions). This has some nice advantages:
   layer in such a way that it is very simple to replace the dummies
   with real state and actions.
 
-### Note: Swift 4
+## Usage
+
+This section assumes that there is a global variable `store` that contains
+your app's store, and that it's type is `Store<AppState>`. You have a view
+controller that manages a text field; the text field displays a value from
+your state, and on `editingDidEnd` you trigger an action to store the text
+field's content back into your state. To use ReRxSwift for your view
+controller `MyViewController`, you use the following steps.
+
+1. Create an extension to your view controller to make it `Connectable`,
+   defining the `Props` and `Actions` that your view controller needs:
+
+   ```swift
+   extension MyViewController: Connectable {
+       struct Props {
+           let text: String
+       }
+       struct Actions {
+           let updatedText: (String) -> Void
+       }
+   }
+   ```
+
+2. Define how your state is mapped to the above `Props` type:
+
+   ```swift
+   private let mapStateToProps = { (appState: AppState) in
+       return MyViewController.Props(
+           text: appState.content
+       )
+   }
+   ```
+
+3. Define the actions that are dispatched:
+
+   ```swift
+   private let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in
+       return MyViewController.Actions(
+           updatedText: { newText in dispatch(SetContent(newContent: newText)) }
+       )
+   }
+   ```
+
+4. Define the connection and hook it up:
+
+   ```swift
+   class MyViewController: UIViewController {
+       @IBOutlet weak var textField: UITextField!
+
+       let connection = Connection(
+           store: store,
+           mapStateToProps: mapStateToProps,
+           mapDispatchToActions: mapDispatchToActions
+       )
+
+       override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+           connection.connect()
+       }
+
+       override func viewDidDisappear(_ animated: Bool) {
+           super.viewDidDisappear(animated)
+           connection.disconnect()
+       }
+   }
+   ```
+
+5. Bind the text field's text:
+
+   ```swift
+   override func viewDidLoad() {
+       super.viewDidLoad()
+       connection.bind(\Props.text, to: textField.rx.text)
+   }
+   ```
+
+6. Call the action:
+
+   ```swift
+   @IBAction func editingChanged(_ sender: UITextField) {
+       actions.updatedText(sender.text ?? "")
+   }
+   ```
+
+This is pretty much the [`SimpleTextFieldViewController`][10] inside the sample
+app. That view controller comes with complete unit tests:
+[`SimpleTextFieldViewControllerSpec`][11].
+
+## Note: Swift 4
 
 This project depends on Swift 4, because it uses [key paths][7] in its
 API. I am currently using Xcode 9.0 beta 6 and the Swift compiler that
@@ -50,7 +138,7 @@ As soon as Xcode 9 and Swift 4 are released, and RxSwift and ReSwift
 have migrated to Swift 4, I will formally release this framework through
 CocoaPods et al.
 
-### Status: Feedback Requested
+## Status: Feedback Requested
 
 This project is fully functional and usable. I recommend using it for
 any project that already use ReSwift and RxSwift - and for projects that
@@ -68,7 +156,7 @@ by opening [issues on GitHub][8].
 
 *todo*
 
-## Examples
+## Example App
 The folder `Examples` contains the following examples:
 
 - **SimpleTextField**: Most basic use case of ReRxSwift, containing a text field that has its value bound, and an action.
@@ -94,3 +182,5 @@ you to join the discussion there!
 [7]: https://github.com/apple/swift-evolution/blob/master/proposals/0161-key-paths.md
 [8]: https://github.com/svdo/ReRxSwift/issues
 [9]: https://github.com/svdo/ReRxSwift/issues/1
+[10]: https://github.com/svdo/ReRxSwift/blob/master/Example/SimpleTextField/SimpleTextFieldViewController.swift
+[11]: https://github.com/svdo/ReRxSwift/blob/master/ExampleTests/SimpleTextField/SimpleTextFieldViewControllerSpec.swift

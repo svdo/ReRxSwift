@@ -190,7 +190,7 @@ The `Connection` takes care of the mapping from you application state to your
 view controller `props`, and of dispatching the mapped action when calling
 functions in your view controller `actions`.
 
-#### Constructor
+#### Constructor(store, mapStateToProps, mapDispatchToActions)
 To create your `Connection` instance, you need to construct it with three
 parameters:
 
@@ -202,16 +202,16 @@ parameters:
   controller can call, and for each of those which ReSwift action needs to be
   dispatched.
 
-#### connect
+#### connect()
 Calling this method causes the connection to subscribe to the ReSwift store and
 receive application state updates. Call this from your view controller's
 `viewWillAppear` or `viewDidAppear` method.
 
-#### disconnect
+#### disconnect()
 Calling this method causes the connection to unsubscribe from the ReSwift store.
 Call this from your view controller's `viewWillDisappear` or `viewDidDisappear`.
 
-#### bind
+#### bind(keyPath, to, mapping)
 This function binds an entry in your view controller's `props` to a
 RxSwift-enabled user interface element, so that every time your `props` change,
 the user interface element is updated accordingly, automatically.

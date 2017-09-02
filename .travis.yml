@@ -3,5 +3,13 @@ os: osx
 osx_image: xcode9
 before_install:
   - gem install xcpretty
-script: 
+  - gem install jazzy
+script:
   - xcodebuild -workspace ReRxSwift.xcworkspace -scheme AllTests test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.0'|xcpretty
+  - jazzy
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token:
+  on:
+    branch: master

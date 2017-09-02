@@ -244,7 +244,7 @@ self.props
 ```
 
 ## Example App
-The folder `Examples` contains the following examples:
+The folder [`Example`][13] contains the following examples:
 
 - **SimpleTextField**: Most basic use case of ReRxSwift, containing a text field that has its value bound, and an action.
 - **SteppingUp**: Use case with multiple bound values and actions, also showing how to transform values when binding them.
@@ -292,3 +292,4 @@ you to join the discussion there!
 [10]: https://github.com/svdo/ReRxSwift/blob/master/Example/SimpleTextField/SimpleTextFieldViewController.swift
 [11]: https://github.com/svdo/ReRxSwift/blob/master/ExampleTests/SimpleTextField/SimpleTextFieldViewControllerSpec.swift
 [12]: https://github.com/svdo/ReRxSwift/blob/master/Example/SteppingUp/SteppingUpViewController.swift
+[13]: https://github.com/svdo/ReRxSwift/tree/master/Example

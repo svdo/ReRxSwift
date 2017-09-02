@@ -12,7 +12,6 @@
 		A8B598A28751AE886D2093FB /* Pods_ReRxSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD45799ADB9F14746A4E44C7 /* Pods_ReRxSwiftTests.framework */; };
 		C64317B73756E1A61E626023 /* Pods_ReRx_ReRxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9308362230EECC21D5DCBC65 /* Pods_ReRx_ReRxSwift.framework */; };
 		F8081AB71F44940B00855A4F /* ReRxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8081AAD1F44940B00855A4F /* ReRxSwift.framework */; };
-		F8081ABC1F44940B00855A4F /* ReRxSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8081ABB1F44940B00855A4F /* ReRxSwiftTests.swift */; };
 		F8081ABE1F44940B00855A4F /* ReRxSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = F8081AB01F44940B00855A4F /* ReRxSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8081ACB1F44DBE400855A4F /* ConnectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8081ACA1F44DBE400855A4F /* ConnectionSpec.swift */; };
 		F8081ACD1F44DDEA00855A4F /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8081ACC1F44DDEA00855A4F /* Connection.swift */; };
@@ -101,7 +100,6 @@
 		F8081AB01F44940B00855A4F /* ReRxSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReRxSwift.h; sourceTree = "<group>"; };
 		F8081AB11F44940B00855A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8081AB61F44940B00855A4F /* ReRxSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReRxSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8081ABB1F44940B00855A4F /* ReRxSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReRxSwiftTests.swift; sourceTree = "<group>"; };
 		F8081ABD1F44940B00855A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8081ACA1F44DBE400855A4F /* ConnectionSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionSpec.swift; sourceTree = "<group>"; };
 		F8081ACC1F44DDEA00855A4F /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
@@ -243,7 +241,6 @@
 		F8081ABA1F44940B00855A4F /* ReRxSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				F8081ABB1F44940B00855A4F /* ReRxSwiftTests.swift */,
 				F8081ABD1F44940B00855A4F /* Info.plist */,
 				F8081ACA1F44DBE400855A4F /* ConnectionSpec.swift */,
 				F80823591F4A1CF500CCADC1 /* ConnectableSpec.swift */,
@@ -728,7 +725,6 @@
 				F8081ACB1F44DBE400855A4F /* ConnectionSpec.swift in Sources */,
 				F808235A1F4A1CF500CCADC1 /* ConnectableSpec.swift in Sources */,
 				F8081ACF1F44E31100855A4F /* FakeStore.swift in Sources */,
-				F8081ABC1F44940B00855A4F /* ReRxSwiftTests.swift in Sources */,
 				F80823561F4A1C3300CCADC1 /* TestActions.swift in Sources */,
 				F80823541F4A1C1900CCADC1 /* TestState.swift in Sources */,
 				F80823581F4A1C7D00CCADC1 /* TestSectionModel.swift in Sources */,

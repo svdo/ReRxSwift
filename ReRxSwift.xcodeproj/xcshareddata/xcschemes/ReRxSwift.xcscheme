@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0900"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -17,6 +16,20 @@
                BlueprintIdentifier = "F8081AAC1F44940B00855A4F"
                BuildableName = "ReRxSwift.framework"
                BlueprintName = "ReRxSwift"
+               ReferencedContainer = "container:ReRxSwift.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F8081AB51F44940B00855A4F"
+               BuildableName = "ReRxSwiftTests.xctest"
+               BlueprintName = "ReRxSwiftTests"
                ReferencedContainer = "container:ReRxSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

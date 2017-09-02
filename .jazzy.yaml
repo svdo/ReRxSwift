@@ -1,0 +1,6 @@
+author: Stefan van den Oord
+module: ReRxSwift
+module_version: 0.1.0
+#podspec: ReRxSwift.podspec
+github_url: https://github.com/svdo/ReRxSwift
+github_file_prefix: https://github.com/svdo/ReRxSwift/tree/master

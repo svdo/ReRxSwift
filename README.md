@@ -52,78 +52,78 @@ controller `MyViewController`, you use the following steps.
 1. Create an extension to your view controller to make it `Connectable`,
    defining the `Props` and `Actions` that your view controller needs:
 
-   ```swift
-   extension MyViewController: Connectable {
-       struct Props {
-           let text: String
-       }
-       struct Actions {
-           let updatedText: (String) -> Void
-       }
-   }
-   ```
+    ```swift
+    extension MyViewController: Connectable {
+        struct Props {
+            let text: String
+        }
+        struct Actions {
+            let updatedText: (String) -> Void
+        }
+    }
+    ```
 
 2. Define how your state is mapped to the above `Props` type:
 
-   ```swift
-   private let mapStateToProps = { (appState: AppState) in
-       return MyViewController.Props(
-           text: appState.content
-       )
-   }
-   ```
+    ```swift
+    private let mapStateToProps = { (appState: AppState) in
+        return MyViewController.Props(
+            text: appState.content
+        )
+    }
+    ```
 
 3. Define the actions that are dispatched:
 
-   ```swift
-   private let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in
-       return MyViewController.Actions(
-           updatedText: { newText in dispatch(SetContent(newContent: newText)) }
-       )
-   }
-   ```
+    ```swift
+    private let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in
+        return MyViewController.Actions(
+            updatedText: { newText in dispatch(SetContent(newContent: newText)) }
+        )
+    }
+    ```
 
 4. Define the connection and hook it up:
 
-   ```swift
-   class MyViewController: UIViewController {
-       @IBOutlet weak var textField: UITextField!
-
-       let connection = Connection(
-           store: store,
-           mapStateToProps: mapStateToProps,
-           mapDispatchToActions: mapDispatchToActions
-       )
-
-       override func viewWillAppear(_ animated: Bool) {
-           super.viewWillAppear(animated)
-           connection.connect()
-       }
-
-       override func viewDidDisappear(_ animated: Bool) {
-           super.viewDidDisappear(animated)
-           connection.disconnect()
-       }
-   }
-   ```
+    ```swift
+    class MyViewController: UIViewController {
+        @IBOutlet weak var textField: UITextField!
+    
+        let connection = Connection(
+            store: store,
+            mapStateToProps: mapStateToProps,
+            mapDispatchToActions: mapDispatchToActions
+        )
+    
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            connection.connect()
+        }
+    
+        override func viewDidDisappear(_ animated: Bool) {
+            super.viewDidDisappear(animated)
+            connection.disconnect()
+        }
+    }
+    ```
 
 5. Bind the text field's text, using a Swift 4 key path to refer to the
    `text` property of `Props`:
 
-   ```swift
-   override func viewDidLoad() {
-       super.viewDidLoad()
-       connection.bind(\Props.text, to: textField.rx.text)
-   }
-   ```
+    ```swift
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        connection.bind(\Props.text, to: textField.rx.text)
+    }
+    ```
 
 6. Call the action:
 
-   ```swift
-   @IBAction func editingChanged(_ sender: UITextField) {
-       actions.updatedText(sender.text ?? "")
-   }
-   ```
+    ```swift
+    @IBAction func editingChanged(_ sender: UITextField) {
+        actions.updatedText(sender.text ?? "")
+    }
+    ```
 
 This is pretty much the [`SimpleTextFieldViewController`][10] inside the sample
 app. That view controller comes with complete unit tests:

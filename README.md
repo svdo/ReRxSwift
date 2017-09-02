@@ -1,6 +1,7 @@
 # ReRxSwift
 ![Swift Version 4](https://img.shields.io/badge/Swift-v4-yellow.svg)
 [![Build Status](https://travis-ci.org/svdo/ReRxSwift.svg?branch=master)](https://travis-ci.org/svdo/ReRxSwift)
+[![API Documentation](https://svdo.github.io/ReRxSwift/badge.svg)](https://svdo.github.io/ReRxSwift)
 
 *[RxSwift][1] bindings for [ReSwift][2]*
 
@@ -88,18 +89,18 @@ controller `MyViewController`, you use the following steps.
     ```swift
     class MyViewController: UIViewController {
         @IBOutlet weak var textField: UITextField!
-    
+
         let connection = Connection(
             store: store,
             mapStateToProps: mapStateToProps,
             mapDispatchToActions: mapDispatchToActions
         )
-    
+
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             connection.connect()
         }
-    
+
         override func viewDidDisappear(_ animated: Bool) {
             super.viewDidDisappear(animated)
             connection.disconnect()
@@ -155,6 +156,9 @@ by opening [issues on GitHub][8].
 
 
 ## API
+
+Below is a high-level description of the most important components of the API.
+There is also [full API documentation of ReRxSwift][14] available.
 
 ### Connectable
 
@@ -293,3 +297,4 @@ you to join the discussion there!
 [11]: https://github.com/svdo/ReRxSwift/blob/master/ExampleTests/SimpleTextField/SimpleTextFieldViewControllerSpec.swift
 [12]: https://github.com/svdo/ReRxSwift/blob/master/Example/SteppingUp/SteppingUpViewController.swift
 [13]: https://github.com/svdo/ReRxSwift/tree/master/Example
+[14]: https://svdo.github.io/ReRxSwift

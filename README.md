@@ -1,5 +1,6 @@
 # ReRxSwift
 ![Swift Version 4](https://img.shields.io/badge/Swift-v4-yellow.svg)
+[![Build Status](https://travis-ci.org/svdo/ReRxSwift.svg?branch=master)](https://travis-ci.org/svdo/ReRxSwift)
 
 *[RxSwift][1] bindings for [ReSwift][2]*
 

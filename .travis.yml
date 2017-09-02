@@ -2,6 +2,4 @@ language: swift
 os: osx
 osx_image: xcode9
 xcode_workspace: ReRxSwift.xcworkspace
-xcode_scheme:
-    - ReRxSwift
-    - Example
+xcode_scheme: AllTests

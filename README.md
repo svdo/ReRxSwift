@@ -271,6 +271,13 @@ of course are already `Equatable`, but especially when binding table view
 items or collection view items, you need to make sure that the types are
 `Equatable`.
 
+Another common source of errors is when the type of the element in your `props`
+does not exactly match the expected type by the user interface element. For
+example, you bind to a stepper's `stepValue`, which is a `Double`, but your
+`props` contains a `Float`. In these cases you can pass a mapping function as
+the third parameter to `bind(_:to:mapping:)` to cast the `props` element to
+the expected type. See [`SteppingUpViewController.swift`][12] for examples.
+
 ### I double-checked everything and I still get errors!
 Please open a [new issue][8] on GitHub, as you may have run into a bug.
 

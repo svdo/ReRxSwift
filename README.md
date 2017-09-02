@@ -216,6 +216,10 @@ receive application state updates. Call this from your view controller's
 Calling this method causes the connection to unsubscribe from the ReSwift store.
 Call this from your view controller's `viewWillDisappear` or `viewDidDisappear`.
 
+#### subscribe(keyPath, onNext)
+Subscribe to an entry in your view controller's `props`, meaning that the given
+`onNext` handler will be called whenever that entry changes.
+
 #### bind(keyPath, to, mapping)
 This function binds an entry in your view controller's `props` to a
 RxSwift-enabled user interface element, so that every time your `props` change,

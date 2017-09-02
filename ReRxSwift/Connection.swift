@@ -179,6 +179,35 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
         props.value = mapStateToProps(state)
     }
 
+    // MARK: - Helper functions
+
+    private func propsEntry<T>(at keyPath: KeyPath<Props, T>,
+                               isEqual: @escaping (T,T) -> Bool)
+        -> Observable<T> {
+        return self.props
+            .asObservable()
+            .distinctUntilChanged { isEqual($0[keyPath: keyPath], $1[keyPath: keyPath]) }
+            .map { $0[keyPath: keyPath] }
+    }
+
+    // MARK: - Subscribe
+
+    /// Subscribe to one of your `Connectable.props` entries, having a closure
+    /// called whenever it changes.
+    ///
+    /// - Parameters:
+    ///   - keyPath: Swift 4 `KeyPath` that points to the entry in your view
+    ///     controllers `Connectable.props` that you want to subscribe to.
+    ///   - onNext: The closure that is called whenever the entry at the given
+    ///     key path changes. The new value is passed into the closure as a parameter.
+    public func subscribe<T: Equatable>(_ keyPath: KeyPath<Props, T>,
+                                        onNext: @escaping (T)->())
+    {
+        self.propsEntry(at: keyPath) { $0 == $1}
+            .subscribe(onNext: onNext)
+            .disposed(by: disposeBag)
+    }
+
     // MARK: - Binding optional observers
 
     /// Bind a RxSwift observer to one of your `Connectable.props` entries.
@@ -224,10 +253,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
                                          mapping: ((T)->M)? = nil)
         where O: ObserverType, O.E == M?
     {
-        let distinctAtKeyPath = self.props
-            .asObservable()
-            .distinctUntilChanged { $0[keyPath: keyPath] == $1[keyPath: keyPath] }
-            .map { $0[keyPath: keyPath] }
+        let distinctAtKeyPath = self.propsEntry(at: keyPath) { $0 == $1}
 
         let afterMapping: Observable<M>
         if (T.self == M.self) {
@@ -286,10 +312,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
                                          mapping: ((T)->M)? = nil)
         where O: ObserverType, O.E == M
     {
-        let distinctAtKeyPath = self.props
-            .asObservable()
-            .distinctUntilChanged { $0[keyPath: keyPath] == $1[keyPath: keyPath] }
-            .map { $0[keyPath: keyPath] }
+        let distinctAtKeyPath = self.propsEntry(at: keyPath) { $0 == $1}
 
         let afterMapping: Observable<M>
         if (T.self == M.self) {
@@ -317,10 +340,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
                                   to binder: (Observable<S>) -> Disposable)
         where S.Element: Equatable
     {
-        self.props
-            .asObservable()
-            .distinctUntilChanged { $0[keyPath: keyPath].elementsEqual($1[keyPath: keyPath]) }
-            .map { $0[keyPath: keyPath] }
+        self.propsEntry(at: keyPath) { $0.elementsEqual($1) }
             .bind(to: binder)
             .disposed(by: disposeBag)
     }

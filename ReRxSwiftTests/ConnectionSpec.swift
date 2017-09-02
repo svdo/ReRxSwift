@@ -93,6 +93,16 @@ class ConnectionSpec: QuickSpec {
             expect(dispatchedAction as? TestAction) == TestAction(newString: "new string")
         }
 
+        it("can subscribe to a props entry") {
+            var next: String? = nil
+            connection.subscribe(\ViewControllerProps.str) { nextStr in
+                next = nextStr
+            }
+            let newState = TestState(someString: "new string", someFloat: 0, numbers: [])
+            connection.newState(state: newState)
+            expect(next) == "new string"
+        }
+
         describe("binding") {
             it("can bind an optional observer") {
                 let textField = UITextField()

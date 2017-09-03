@@ -190,25 +190,23 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
             .map { $0[keyPath: keyPath] }
     }
 
-    // MARK: - Subscribe
+    // MARK: - Optionals
 
     /// Subscribe to one of your `Connectable.props` entries, having a closure
-    /// called whenever it changes.
+    /// called whenever it changes. Variant for optional entries.
     ///
     /// - Parameters:
     ///   - keyPath: Swift 4 `KeyPath` that points to the entry in your view
     ///     controllers `Connectable.props` that you want to subscribe to.
     ///   - onNext: The closure that is called whenever the entry at the given
     ///     key path changes. The new value is passed into the closure as a parameter.
-    public func subscribe<T: Equatable>(_ keyPath: KeyPath<Props, T>,
-                                        onNext: @escaping (T)->())
+    public func subscribe<T: Equatable>(_ keyPath: KeyPath<Props, T?>,
+                                        onNext: @escaping (T?)->())
     {
         self.propsEntry(at: keyPath) { $0 == $1}
             .subscribe(onNext: onNext)
             .disposed(by: disposeBag)
     }
-
-    // MARK: - Binding optional observers
 
     /// Bind a RxSwift observer to one of your `Connectable.props` entries.
     /// Convenience method for `bind(keyPath, to: observer, mapping: nil)`.
@@ -267,7 +265,23 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
             .disposed(by: disposeBag)
     }
 
-    // MARK: - Binding non-optional observers
+    // MARK: - Non-optionals
+
+    /// Subscribe to one of your `Connectable.props` entries, having a closure
+    /// called whenever it changes. Variant for non-optional entries.
+    ///
+    /// - Parameters:
+    ///   - keyPath: Swift 4 `KeyPath` that points to the entry in your view
+    ///     controllers `Connectable.props` that you want to subscribe to.
+    ///   - onNext: The closure that is called whenever the entry at the given
+    ///     key path changes. The new value is passed into the closure as a parameter.
+    public func subscribe<T: Equatable>(_ keyPath: KeyPath<Props, T>,
+                                        onNext: @escaping (T)->())
+    {
+        self.propsEntry(at: keyPath) { $0 == $1}
+            .subscribe(onNext: onNext)
+            .disposed(by: disposeBag)
+    }
 
     /// Bind a RxSwift observer to one of your `Connectable.props` entries.
     /// Convenience method for `bind(keyPath, to: observer, mapping: nil)`.

@@ -14,6 +14,7 @@ struct ViewControllerProps {
     let str: String
     let flt: Float
     let sections: [TestSectionModel]
+    let optInt: Int?
 }
 struct ViewControllerActions {
     let setNewString: (String) -> Void
@@ -26,7 +27,8 @@ class ConnectionSpec: QuickSpec {
             return ViewControllerProps(
                 str: state.someString,
                 flt: state.someFloat,
-                sections: [TestSectionModel(header: "section", items: state.numbers)]
+                sections: [TestSectionModel(header: "section", items: state.numbers)],
+                optInt: state.maybeInt
             )
         }
         let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in
@@ -75,7 +77,7 @@ class ConnectionSpec: QuickSpec {
         }
         
         it("can set and get props") {
-            connection.props.value = ViewControllerProps(str: "some props", flt: 0, sections: [])
+            connection.props.value = ViewControllerProps(str: "some props", flt: 0, sections: [], optInt: nil)
             expect(connection.props.value.str) == "some props"
         }
 
@@ -101,6 +103,16 @@ class ConnectionSpec: QuickSpec {
             let newState = TestState(someString: "new string", someFloat: 0, numbers: [])
             connection.newState(state: newState)
             expect(next) == "new string"
+        }
+
+        it("can subscribe to an optional props entry") {
+            var next: Int? = nil
+            connection.subscribe(\ViewControllerProps.optInt) { nextInt in
+                next = nextInt
+            }
+            let newState = TestState(someString: "", someFloat: 0, numbers: [], maybeInt: 42)
+            connection.newState(state: newState)
+            expect(next) == 42
         }
 
         describe("binding") {

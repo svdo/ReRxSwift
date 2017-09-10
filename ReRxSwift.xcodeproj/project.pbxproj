@@ -46,6 +46,8 @@
 		F89782151F4EB76000D82ABF /* ActionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89782141F4EB76000D82ABF /* ActionLogger.swift */; };
 		F8BD52A31F4CADDC00B7E471 /* SimpleTextFieldReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BD52A21F4CADDC00B7E471 /* SimpleTextFieldReducer.swift */; };
 		F8BD52A51F4CADF800B7E471 /* SimpleTextFieldActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BD52A41F4CADF800B7E471 /* SimpleTextFieldActions.swift */; };
+		F8C746411F6579F800DE9A40 /* TableAndCollectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C746401F6579F800DE9A40 /* TableAndCollectionState.swift */; };
+		F8C746431F657CDF00DE9A40 /* TableAndCollectionReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C746421F657CDF00DE9A40 /* TableAndCollectionReducer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +141,8 @@
 		F89782161F4EB83300D82ABF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F8BD52A21F4CADDC00B7E471 /* SimpleTextFieldReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldReducer.swift; sourceTree = "<group>"; };
 		F8BD52A41F4CADF800B7E471 /* SimpleTextFieldActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldActions.swift; sourceTree = "<group>"; };
+		F8C746401F6579F800DE9A40 /* TableAndCollectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAndCollectionState.swift; sourceTree = "<group>"; };
+		F8C746421F657CDF00DE9A40 /* TableAndCollectionReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAndCollectionReducer.swift; sourceTree = "<group>"; };
 		FB5D77EFDA73A669303C7920 /* Pods_ReRx_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReRx_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -280,6 +284,8 @@
 			isa = PBXGroup;
 			children = (
 				F858661B1F655F9F00CEF54E /* TableViewController.swift */,
+				F8C746401F6579F800DE9A40 /* TableAndCollectionState.swift */,
+				F8C746421F657CDF00DE9A40 /* TableAndCollectionReducer.swift */,
 			);
 			path = TableAndCollection;
 			sourceTree = "<group>";
@@ -757,11 +763,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8C746411F6579F800DE9A40 /* TableAndCollectionState.swift in Sources */,
 				F89680C31F4CB4FF002C2452 /* Store.swift in Sources */,
 				F83957371F4EBE8E00D33189 /* SteppingUpViewController.swift in Sources */,
 				F89680C51F4CB50A002C2452 /* Reducer.swift in Sources */,
 				F89680C71F4CB689002C2452 /* AppState.swift in Sources */,
 				F808237E1F4A250B00CCADC1 /* SimpleTextFieldViewController.swift in Sources */,
+				F8C746431F657CDF00DE9A40 /* TableAndCollectionReducer.swift in Sources */,
 				F89782131F4EB72000D82ABF /* StoreLogger.swift in Sources */,
 				F8BD52A51F4CADF800B7E471 /* SimpleTextFieldActions.swift in Sources */,
 				F808237C1F4A250B00CCADC1 /* AppDelegate.swift in Sources */,

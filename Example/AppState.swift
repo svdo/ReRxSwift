@@ -5,9 +5,11 @@ import ReSwift
 struct AppState: StateType, Encodable {
     let simpleTextField: SimpleTextFieldState
     let steppingUp: SteppingUpState
+    let tableAndCollection: TableAndCollectionState
 }
 
 let initialAppState = AppState(
     simpleTextField: initialSimpleTextFieldState,
-    steppingUp: initialSteppingUpState
+    steppingUp: initialSteppingUpState,
+    tableAndCollection: initialTableAndCollectionState
 )

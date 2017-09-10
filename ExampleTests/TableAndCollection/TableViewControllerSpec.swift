@@ -23,5 +23,9 @@ class TableViewControllerSpec: QuickSpec {
 //            testStore = Store<AppState>(reducer: mainReducer, state: nil)
 //            tableViewController.connection.store = testStore
         }
+
+        it("has a connection") {
+            expect(tableViewController.connection).toNot(beNil())
+        }
     }
 }

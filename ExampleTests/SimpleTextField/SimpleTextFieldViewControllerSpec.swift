@@ -40,9 +40,7 @@ class SimpleTextFieldViewControllerSpec: QuickSpec {
             }
 
             it("is connected") {
-                let state = AppState(
-                    simpleTextField: SimpleTextFieldState(content: "test content"),
-                    steppingUp: initialSteppingUpState)
+                let state = appState(simpleTextField: SimpleTextFieldState(content: "test content"))
                 testStore.state = state
                 expect(simpleController.textField.text) == "test content"
             }
@@ -53,9 +51,7 @@ class SimpleTextFieldViewControllerSpec: QuickSpec {
                 }
 
                 it("is no longer connected") {
-                    let state = AppState(
-                        simpleTextField: SimpleTextFieldState(content: "test content"),
-                        steppingUp: initialSteppingUpState)
+                    let state = appState(simpleTextField: SimpleTextFieldState(content: "test content"))
                     testStore.state = state
                     expect(simpleController.textField.text) == initialSimpleTextFieldState.content
                 }
@@ -64,9 +60,7 @@ class SimpleTextFieldViewControllerSpec: QuickSpec {
 
         describe("map state to props") {
             it("maps value from state to props") {
-                let state = AppState(
-                    simpleTextField: SimpleTextFieldState(content: "some text"),
-                    steppingUp: initialSteppingUpState)
+                let state = appState(simpleTextField: SimpleTextFieldState(content: "some text"))
                 simpleController.connection.newState(state: state)
                 expect(simpleController.props.text) == "some text"
             }

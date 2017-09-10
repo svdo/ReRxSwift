@@ -48,6 +48,7 @@
 		F8BD52A51F4CADF800B7E471 /* SimpleTextFieldActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BD52A41F4CADF800B7E471 /* SimpleTextFieldActions.swift */; };
 		F8C746411F6579F800DE9A40 /* TableAndCollectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C746401F6579F800DE9A40 /* TableAndCollectionState.swift */; };
 		F8C746431F657CDF00DE9A40 /* TableAndCollectionReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C746421F657CDF00DE9A40 /* TableAndCollectionReducer.swift */; };
+		F8C746451F65801900DE9A40 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C746441F65801900DE9A40 /* TestUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +144,7 @@
 		F8BD52A41F4CADF800B7E471 /* SimpleTextFieldActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldActions.swift; sourceTree = "<group>"; };
 		F8C746401F6579F800DE9A40 /* TableAndCollectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAndCollectionState.swift; sourceTree = "<group>"; };
 		F8C746421F657CDF00DE9A40 /* TableAndCollectionReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAndCollectionReducer.swift; sourceTree = "<group>"; };
+		F8C746441F65801900DE9A40 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		FB5D77EFDA73A669303C7920 /* Pods_ReRx_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReRx_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -305,6 +307,7 @@
 				F89782181F4EB94200D82ABF /* SteppingUp */,
 				F858661A1F655F0600CEF54E /* TableAndCollection */,
 				F88D86B81F4CC934006F6038 /* Info.plist */,
+				F8C746441F65801900DE9A40 /* TestUtils.swift */,
 			);
 			path = ExampleTests;
 			sourceTree = "<group>";
@@ -788,6 +791,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F88D86C01F4CC9A6006F6038 /* SimpleTextFieldReducerSpec.swift in Sources */,
+				F8C746451F65801900DE9A40 /* TestUtils.swift in Sources */,
 				F88D86C21F4CCDD4006F6038 /* SimpleTextFieldViewControllerSpec.swift in Sources */,
 				F858661E1F655FDF00CEF54E /* TableViewControllerSpec.swift in Sources */,
 				F83957411F4ED10E00D33189 /* SteppingUpViewControllerSpec.swift in Sources */,

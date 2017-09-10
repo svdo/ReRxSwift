@@ -40,8 +40,7 @@ class SteppingUpViewControllerSpec: QuickSpec {
             }
 
             it("is connected") {
-                let state = AppState(
-                    simpleTextField: initialSimpleTextFieldState,
+                let state = appState(
                     steppingUp: SteppingUpState(value: 0.3, stepSize: 0.1))
                 testStore.state = state
                 expect(steppingUpViewController.slider.value) ≈ 0.3
@@ -53,8 +52,7 @@ class SteppingUpViewControllerSpec: QuickSpec {
                 }
 
                 it("is no longer connected") {
-                    let state = AppState(
-                        simpleTextField: initialSimpleTextFieldState,
+                    let state = appState(
                         steppingUp: SteppingUpState(value: 0.3, stepSize: 0.1))
                     testStore.state = state
                     expect(steppingUpViewController.slider.value) ≈ initialSteppingUpState.value
@@ -64,16 +62,14 @@ class SteppingUpViewControllerSpec: QuickSpec {
 
         describe("map state to props") {
             it("maps value prop") {
-                let state = AppState(
-                    simpleTextField: initialSimpleTextFieldState,
+                let state = appState(
                     steppingUp: SteppingUpState(value: 0.3, stepSize: 0.001))
                 steppingUpViewController.connection.newState(state: state)
                 expect(steppingUpViewController.props.value) ≈ 0.3
             }
 
             it("maps stepSize prop") {
-                let state = AppState(
-                    simpleTextField: initialSimpleTextFieldState,
+                let state = appState(
                     steppingUp: SteppingUpState(value: 0, stepSize: 0.11))
                 steppingUpViewController.connection.newState(state: state)
                 expect(steppingUpViewController.props.stepSize) ≈ 0.11

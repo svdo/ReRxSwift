@@ -4,9 +4,9 @@ PODS:
   - ReSwift (4.0.0)
   - RxCocoa (4.0.0-alpha.1):
     - RxSwift (~> 4.0.0-alpha.1)
-  - RxDataSources (2.0.0-alpha.0):
-    - RxCocoa (~> 4.0.0-alpha.0)
-    - RxSwift (~> 4.0.0-alpha.0)
+  - RxDataSources (2.0.0-alpha.1):
+    - RxCocoa (~> 4.0.0-alpha.1)
+    - RxSwift (~> 4.0.0-alpha.1)
   - RxSwift (4.0.0-alpha.1)
 
 DEPENDENCIES:
@@ -39,10 +39,10 @@ CHECKOUT OPTIONS:
     :commit: 0e1ac049c131de9862e58747950ee483a456f39d
     :git: https://github.com/svdo/RxSwift
   RxDataSources:
-    :commit: e8030a3b1f6ce0a0c5c966121b25e61778575665
+    :commit: 3b6621c74e5bf1c028460d4d8a7316e52f2c2ffd
     :git: https://github.com/svdo/RxDataSources
   RxSwift:
-    :commit: 16083c30ebb8705124921b6974cc1481f3476184
+    :commit: c79b00f66e6c976c52ddc6654e3f0a3b6fa3b260
     :git: https://github.com/ReactiveX/RxSwift
 
 SPEC CHECKSUMS:
@@ -50,9 +50,9 @@ SPEC CHECKSUMS:
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   ReSwift: 85cb57267026cf4df4f6b05306bfce8ef74842c0
   RxCocoa: 2eb5f5d79668c61de6c32b636c2a1101a0ba3ca9
-  RxDataSources: 3cf110f8e681b360dfab76cd933ed9aba1b1176f
+  RxDataSources: c0c77c16d59558b0f60e65da056096badbaf7306
   RxSwift: d313a43a0109708ada75e1ce99bf7c36d4180ad8
 
-PODFILE CHECKSUM: b387eb08bf09e9ef1096684767319f6ad21502a3
+PODFILE CHECKSUM: a849fdece6f0d24c18cb090969dd84e1d30950d8
 
 COCOAPODS: 1.3.1

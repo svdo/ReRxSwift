@@ -16,13 +16,13 @@ abstract_target 'ReRx' do
     pod 'RxDataSources', :git => 'https://github.com/svdo/RxDataSources', :branch => 'swift4.0'
   end
 
-  target 'Example'
+  target 'Example' do
+    pod 'RxDataSources', :git => 'https://github.com/svdo/RxDataSources', :branch => 'swift4.0'
 
-  target 'ExampleTests' do
-    inherit! :search_paths
-    pod 'Quick', '~> 1.1'
-    pod 'Nimble', '~> 7.0', :inhibit_warnings => true
-    pod 'ReSwift', :git => 'https://github.com/ReSwift/ReSwift', :branch => 'mjarvis/swift-4'
+    target 'ExampleTests' do
+      pod 'Quick', '~> 1.1'
+      pod 'Nimble', '~> 7.0', :inhibit_warnings => true
+    end
   end
 end
 

@@ -1,0 +1,6 @@
+framework module Pods_ReRx_Example_ExampleTests {
+  umbrella header "Pods-ReRx-Example-ExampleTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

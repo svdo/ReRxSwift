@@ -141,19 +141,6 @@ As soon as Xcode 9 and Swift 4 are released, and RxSwift and ReSwift
 have migrated to Swift 4, I will formally release this framework through
 CocoaPods et al.
 
-## Status: Feedback Requested
-
-This project is fully functional and usable. I recommend using it for
-any project that already use ReSwift and RxSwift - and for projects that
-don't, because I really believe you get better app architectures. I
-intend to add more examples and publish this (CocoaPods, Swift package
-manager, Carthage support).
-
-Having said that, I am curious to know what you think about this
-framework. Do you agree with the advantages? What do you think about
-the API? Do you see any improvement opportunities? Please let me know
-by opening [issues on GitHub][8].
-
 
 ## API
 
@@ -284,15 +271,6 @@ the expected type. See [`SteppingUpViewController.swift`][12] for examples.
 
 ### I double-checked everything and I still get errors!
 Please open a [new issue][8] on GitHub, as you may have run into a bug.
-
-## Open Issue: Make ReRx-enabled view controllers strictly pure
-
-When using `react` and `redux`, there is a module called `react-redux`
-that is the inspiration for ReRxSwift. Using that module allows you
-to cleanly separate _stateful_ and _pure_ components. I would like to
-create the same strict separation in ReRxSwift, but I don't know how
-to do that yet. I created an [issue on GitHub for this][9], I am inviting
-you to join the discussion there!
 
 
 [1]: https://github.com/ReactiveX/RxSwift

@@ -55,5 +55,17 @@ class TableViewControllerSpec: QuickSpec {
                 expect(actionTriggered).to(beTrue())
             }
         }
+
+        describe("map state to props") {
+            it("maps categories from state to props") {
+                let cats: [ShopCategory] = [
+                    ShopCategory(title: "cat1", description: "desc1", shops: [])
+                ]
+                let state = appState(tableAndCollection:
+                    TableAndCollectionState(categories: cats))
+                tableViewController.connection.newState(state: state)
+                expect(tableViewController.props.categories) == cats
+             }
+        }
     }
 }

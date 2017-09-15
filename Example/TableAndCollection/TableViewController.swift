@@ -8,7 +8,7 @@ import ReRxSwift
 
 private let mapStateToProps = { (appState: AppState) in
     return TableViewController.Props(
-        categories: []
+        categories: appState.tableAndCollection.categories
     )
 }
 

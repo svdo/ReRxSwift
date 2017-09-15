@@ -44,6 +44,8 @@
 		F89680CB1F4CBF45002C2452 /* ReRxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F8081AAD1F44940B00855A4F /* ReRxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F89782131F4EB72000D82ABF /* StoreLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89782121F4EB72000D82ABF /* StoreLogger.swift */; };
 		F89782151F4EB76000D82ABF /* ActionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89782141F4EB76000D82ABF /* ActionLogger.swift */; };
+		F8BD3C6A1F6B13FB00F79E0C /* TableAndCollectionReducerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BD3C691F6B13FB00F79E0C /* TableAndCollectionReducerSpec.swift */; };
+		F8BD3C6C1F6B150300F79E0C /* TableAndCollectionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BD3C6B1F6B150300F79E0C /* TableAndCollectionActions.swift */; };
 		F8BD52A31F4CADDC00B7E471 /* SimpleTextFieldReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BD52A21F4CADDC00B7E471 /* SimpleTextFieldReducer.swift */; };
 		F8BD52A51F4CADF800B7E471 /* SimpleTextFieldActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BD52A41F4CADF800B7E471 /* SimpleTextFieldActions.swift */; };
 		F8C746411F6579F800DE9A40 /* TableAndCollectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C746401F6579F800DE9A40 /* TableAndCollectionState.swift */; };
@@ -140,6 +142,8 @@
 		F89782121F4EB72000D82ABF /* StoreLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLogger.swift; sourceTree = "<group>"; };
 		F89782141F4EB76000D82ABF /* ActionLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionLogger.swift; sourceTree = "<group>"; };
 		F89782161F4EB83300D82ABF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F8BD3C691F6B13FB00F79E0C /* TableAndCollectionReducerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAndCollectionReducerSpec.swift; sourceTree = "<group>"; };
+		F8BD3C6B1F6B150300F79E0C /* TableAndCollectionActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAndCollectionActions.swift; sourceTree = "<group>"; };
 		F8BD52A21F4CADDC00B7E471 /* SimpleTextFieldReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldReducer.swift; sourceTree = "<group>"; };
 		F8BD52A41F4CADF800B7E471 /* SimpleTextFieldActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldActions.swift; sourceTree = "<group>"; };
 		F8C746401F6579F800DE9A40 /* TableAndCollectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAndCollectionState.swift; sourceTree = "<group>"; };
@@ -288,6 +292,7 @@
 				F858661B1F655F9F00CEF54E /* TableViewController.swift */,
 				F8C746401F6579F800DE9A40 /* TableAndCollectionState.swift */,
 				F8C746421F657CDF00DE9A40 /* TableAndCollectionReducer.swift */,
+				F8BD3C6B1F6B150300F79E0C /* TableAndCollectionActions.swift */,
 			);
 			path = TableAndCollection;
 			sourceTree = "<group>";
@@ -295,6 +300,7 @@
 		F858661A1F655F0600CEF54E /* TableAndCollection */ = {
 			isa = PBXGroup;
 			children = (
+				F8BD3C691F6B13FB00F79E0C /* TableAndCollectionReducerSpec.swift */,
 				F858661D1F655FDF00CEF54E /* TableViewControllerSpec.swift */,
 			);
 			path = TableAndCollection;
@@ -786,6 +792,7 @@
 				F808237C1F4A250B00CCADC1 /* AppDelegate.swift in Sources */,
 				F839573D1F4EC7DF00D33189 /* SteppingUpActions.swift in Sources */,
 				F839573B1F4EC74B00D33189 /* SteppingUpReducer.swift in Sources */,
+				F8BD3C6C1F6B150300F79E0C /* TableAndCollectionActions.swift in Sources */,
 				F83957391F4EC5D500D33189 /* SteppingUpState.swift in Sources */,
 				F8BD52A31F4CADDC00B7E471 /* SimpleTextFieldReducer.swift in Sources */,
 				F89680C91F4CB8C5002C2452 /* SimpleTextFieldState.swift in Sources */,
@@ -804,6 +811,7 @@
 				F858661E1F655FDF00CEF54E /* TableViewControllerSpec.swift in Sources */,
 				F83957411F4ED10E00D33189 /* SteppingUpViewControllerSpec.swift in Sources */,
 				F839573F1F4ECAEF00D33189 /* SteppingUpReducerSpec.swift in Sources */,
+				F8BD3C6A1F6B13FB00F79E0C /* TableAndCollectionReducerSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

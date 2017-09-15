@@ -13,7 +13,7 @@ private let mapStateToProps = { (appState: AppState) in
 }
 
 private let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in
-    return TableViewController.Actions(reverse: {})
+    return TableViewController.Actions(reverse: { dispatch(ReverseShops()) })
 }
 
 extension TableViewController: Connectable {

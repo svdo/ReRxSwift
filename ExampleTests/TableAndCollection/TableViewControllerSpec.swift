@@ -67,5 +67,14 @@ class TableViewControllerSpec: QuickSpec {
                 expect(tableViewController.props.categories) == cats
              }
         }
+
+        describe("map dispatch to actions") {
+            it("maps reverse action") {
+                var dispatchedAction: Action? = nil
+                testStore.dispatchFunction = { action in dispatchedAction = action }
+                tableViewController.actions.reverse()
+                expect(dispatchedAction as? ReverseShops).toNot(beNil())
+            }
+        }
     }
 }

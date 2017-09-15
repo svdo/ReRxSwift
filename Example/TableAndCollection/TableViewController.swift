@@ -45,6 +45,16 @@ class TableViewController: UITableViewController {
         self.connection.bind(\Props.categories, to: tableView.rx.items(dataSource: dataSource))
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        connection.connect()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        connection.disconnect()
+    }
+
     @IBAction func reverseTapped(_ sender: UIBarButtonItem) {
         actions.reverse()
     }

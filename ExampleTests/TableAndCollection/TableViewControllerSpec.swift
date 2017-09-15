@@ -76,5 +76,37 @@ class TableViewControllerSpec: QuickSpec {
                 expect(dispatchedAction as? ReverseShops).toNot(beNil())
             }
         }
+
+        context("when viewWillAppear has been called") {
+            let cats: [ShopCategory] = [
+                ShopCategory(title: "cat1", description: "desc1", shops: [])
+            ]
+
+            beforeEach {
+                tableViewController.viewWillAppear(false)
+            }
+
+            it("is connected") {
+                let state = appState(tableAndCollection:
+                    TableAndCollectionState(categories: cats))
+                testStore.state = state
+                expect(tableViewController.tableView.dataSource?.numberOfSections?(in: tableViewController.tableView)).toEventually(equal(1))
+            }
+
+            context("when viewDidDisappear has been called") {
+                beforeEach {
+                    tableViewController.viewDidDisappear(false)
+                }
+
+                it("is no longer connected") {
+                    let state = appState(tableAndCollection:
+                        TableAndCollectionState(categories: cats))
+                    testStore.state = state
+                    expect(tableViewController.tableView.dataSource?.numberOfSections?(in: tableViewController.tableView)).toEventually(equal(
+                        initialTableAndCollectionState.categories.count
+                    ))
+                }
+            }
+        }
     }
 }

@@ -46,6 +46,7 @@
 		F89782151F4EB76000D82ABF /* ActionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89782141F4EB76000D82ABF /* ActionLogger.swift */; };
 		F8BD3C6A1F6B13FB00F79E0C /* TableAndCollectionReducerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BD3C691F6B13FB00F79E0C /* TableAndCollectionReducerSpec.swift */; };
 		F8BD3C6C1F6B150300F79E0C /* TableAndCollectionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BD3C6B1F6B150300F79E0C /* TableAndCollectionActions.swift */; };
+		F8BD3C6F1F6C4A3500F79E0C /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BD3C6E1F6C4A3500F79E0C /* CollectionViewController.swift */; };
 		F8BD52A31F4CADDC00B7E471 /* SimpleTextFieldReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BD52A21F4CADDC00B7E471 /* SimpleTextFieldReducer.swift */; };
 		F8BD52A51F4CADF800B7E471 /* SimpleTextFieldActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BD52A41F4CADF800B7E471 /* SimpleTextFieldActions.swift */; };
 		F8C746411F6579F800DE9A40 /* TableAndCollectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C746401F6579F800DE9A40 /* TableAndCollectionState.swift */; };
@@ -144,6 +145,7 @@
 		F89782161F4EB83300D82ABF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F8BD3C691F6B13FB00F79E0C /* TableAndCollectionReducerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAndCollectionReducerSpec.swift; sourceTree = "<group>"; };
 		F8BD3C6B1F6B150300F79E0C /* TableAndCollectionActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAndCollectionActions.swift; sourceTree = "<group>"; };
+		F8BD3C6E1F6C4A3500F79E0C /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		F8BD52A21F4CADDC00B7E471 /* SimpleTextFieldReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldReducer.swift; sourceTree = "<group>"; };
 		F8BD52A41F4CADF800B7E471 /* SimpleTextFieldActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldActions.swift; sourceTree = "<group>"; };
 		F8C746401F6579F800DE9A40 /* TableAndCollectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAndCollectionState.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				F8C746401F6579F800DE9A40 /* TableAndCollectionState.swift */,
 				F8C746421F657CDF00DE9A40 /* TableAndCollectionReducer.swift */,
 				F8BD3C6B1F6B150300F79E0C /* TableAndCollectionActions.swift */,
+				F8BD3C6E1F6C4A3500F79E0C /* CollectionViewController.swift */,
 			);
 			path = TableAndCollection;
 			sourceTree = "<group>";
@@ -792,6 +795,7 @@
 				F808237C1F4A250B00CCADC1 /* AppDelegate.swift in Sources */,
 				F839573D1F4EC7DF00D33189 /* SteppingUpActions.swift in Sources */,
 				F839573B1F4EC74B00D33189 /* SteppingUpReducer.swift in Sources */,
+				F8BD3C6F1F6C4A3500F79E0C /* CollectionViewController.swift in Sources */,
 				F8BD3C6C1F6B150300F79E0C /* TableAndCollectionActions.swift in Sources */,
 				F83957391F4EC5D500D33189 /* SteppingUpState.swift in Sources */,
 				F8BD52A31F4CADDC00B7E471 /* SimpleTextFieldReducer.swift in Sources */,

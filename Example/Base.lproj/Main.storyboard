@@ -115,6 +115,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="8l8-M1-TME" kind="show" id="blY-l0-rvK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -335,6 +338,86 @@
                 </barButtonItem>
             </objects>
             <point key="canvasLocation" x="1574" y="819"/>
+        </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="zGY-sT-vik">
+            <objects>
+                <collectionViewController id="8l8-M1-TME" customClass="CollectionViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="146-t6-xyG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VM7-vp-EuX">
+                            <size key="itemSize" width="100" height="70"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NormalCell" id="ht3-5l-BgN">
+                                <rect key="frame" x="0.0" y="50" width="100" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="70"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLa-ne-kRU">
+                                            <rect key="frame" x="0.0" y="55.5" width="100" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJt-j0-skC">
+                                            <rect key="frame" x="0.0" y="10" width="100" height="45"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" red="0.82352941180000006" green="0.86274509799999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="iJt-j0-skC" secondAttribute="trailing" id="1ub-Rp-10q"/>
+                                    <constraint firstItem="iJt-j0-skC" firstAttribute="top" secondItem="ht3-5l-BgN" secondAttribute="top" constant="10" id="FGZ-jM-0MD"/>
+                                    <constraint firstAttribute="bottom" secondItem="DLa-ne-kRU" secondAttribute="bottom" id="cfY-C6-TqY"/>
+                                    <constraint firstItem="DLa-ne-kRU" firstAttribute="leading" secondItem="ht3-5l-BgN" secondAttribute="leading" id="eQT-jy-nFQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="DLa-ne-kRU" secondAttribute="trailing" id="g7Z-jF-GJB"/>
+                                    <constraint firstItem="iJt-j0-skC" firstAttribute="leading" secondItem="ht3-5l-BgN" secondAttribute="leading" id="o6D-xp-aPT"/>
+                                    <constraint firstItem="DLa-ne-kRU" firstAttribute="top" secondItem="iJt-j0-skC" secondAttribute="bottom" id="uyY-S8-B31"/>
+                                </constraints>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderView" id="3hy-xc-TYN">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcI-YN-KRw">
+                                    <rect key="frame" x="8" y="15" width="359" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="8l8-M1-TME" id="A9f-vb-h9V"/>
+                            <outlet property="delegate" destination="8l8-M1-TME" id="Ycw-8c-ha5"/>
+                        </connections>
+                    </collectionView>
+                    <connections>
+                        <outlet property="reverseButton" destination="4Xr-HQ-zlJ" id="t6t-Gy-e8E"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="096-LL-gZg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem title="Reverse" id="4Xr-HQ-zlJ">
+                    <connections>
+                        <action selector="reverseTapped:" destination="8l8-M1-TME" id="aJ6-WR-OYy"/>
+                    </connections>
+                </barButtonItem>
+            </objects>
+            <point key="canvasLocation" x="1573.5999999999999" y="1533.2833583208396"/>
         </scene>
     </scenes>
 </document>

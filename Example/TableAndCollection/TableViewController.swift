@@ -44,6 +44,9 @@ class TableViewController: UITableViewController {
             cell.detailTextLabel?.text = String(item.rating)
             return cell
         }
+        dataSource.titleForHeaderInSection = { (dataSource, section) in
+            return self.props.categories[section].title
+        }
         self.connection.bind(\Props.categories, to: tableView.rx.items(dataSource: dataSource))
     }
 

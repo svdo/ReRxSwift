@@ -11,8 +11,8 @@ abstract_target 'ReRx' do
 
   target 'ReRxSwiftTests' do
     inherit! :search_paths
-    pod 'Quick', '~> 1.1'
-    pod 'Nimble', '~> 7.0', :inhibit_warnings => true
+    pod 'Quick', :git => 'https://github.com/Quick/Quick'
+    pod 'Nimble', :git => 'https://github.com/Quick/Nimble'
     pod 'RxDataSources', :git => 'https://github.com/svdo/RxDataSources', :branch => 'swift4.0'
   end
 
@@ -20,8 +20,8 @@ abstract_target 'ReRx' do
     pod 'RxDataSources', :git => 'https://github.com/svdo/RxDataSources', :branch => 'swift4.0'
 
     target 'ExampleTests' do
-      pod 'Quick', '~> 1.1'
-      pod 'Nimble', '~> 7.0', :inhibit_warnings => true
+      pod 'Quick', :git => 'https://github.com/Quick/Quick'
+      pod 'Nimble', :git => 'https://github.com/Quick/Nimble'
     end
   end
 end

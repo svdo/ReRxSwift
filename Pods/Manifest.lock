@@ -10,14 +10,18 @@ PODS:
   - RxSwift (4.0.0-alpha.1)
 
 DEPENDENCIES:
-  - Nimble (~> 7.0)
-  - Quick (~> 1.1)
+  - Nimble (from `https://github.com/Quick/Nimble`)
+  - Quick (from `https://github.com/Quick/Quick`)
   - ReSwift (from `https://github.com/ReSwift/ReSwift`, branch `mjarvis/swift-4`)
   - RxCocoa (from `https://github.com/svdo/RxSwift`, branch `swift4.0`)
   - RxDataSources (from `https://github.com/svdo/RxDataSources`, branch `swift4.0`)
   - RxSwift (from `https://github.com/ReactiveX/RxSwift`, branch `swift4.0`)
 
 EXTERNAL SOURCES:
+  Nimble:
+    :git: https://github.com/Quick/Nimble
+  Quick:
+    :git: https://github.com/Quick/Quick
   ReSwift:
     :branch: mjarvis/swift-4
     :git: https://github.com/ReSwift/ReSwift
@@ -32,6 +36,12 @@ EXTERNAL SOURCES:
     :git: https://github.com/ReactiveX/RxSwift
 
 CHECKOUT OPTIONS:
+  Nimble:
+    :commit: a63252b16eba6cdebec4e4936388c90552165a68
+    :git: https://github.com/Quick/Nimble
+  Quick:
+    :commit: 3665ae9570b682a562df847cccbb46811864676a
+    :git: https://github.com/Quick/Quick
   ReSwift:
     :commit: ec60407df5c84b589665f984dcaaefca295afbd6
     :git: https://github.com/ReSwift/ReSwift
@@ -46,13 +56,13 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ReactiveX/RxSwift
 
 SPEC CHECKSUMS:
-  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
-  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
+  Nimble: 1b6670c36e5750169b9e4cc2e9cfa82a7603c69e
+  Quick: 4700beb8056662b579facd79eaca7f04fb3d48e6
   ReSwift: 85cb57267026cf4df4f6b05306bfce8ef74842c0
   RxCocoa: 2eb5f5d79668c61de6c32b636c2a1101a0ba3ca9
   RxDataSources: c0c77c16d59558b0f60e65da056096badbaf7306
   RxSwift: d313a43a0109708ada75e1ce99bf7c36d4180ad8
 
-PODFILE CHECKSUM: a849fdece6f0d24c18cb090969dd84e1d30950d8
+PODFILE CHECKSUM: 4c75c2768a0dc75de44adab9da5e60572dd3cc73
 
 COCOAPODS: 1.3.1

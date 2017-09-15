@@ -41,6 +41,7 @@ class TableViewController: UITableViewController {
         dataSource.configureCell = { (dataSource, tableView, indexPath, item) in
             let cell = tableView.dequeueReusableCell(withIdentifier: "NormalCell", for: indexPath)
             cell.textLabel?.text = item.name
+            cell.detailTextLabel?.text = String(item.rating)
             return cell
         }
         self.connection.bind(\Props.categories, to: tableView.rx.items(dataSource: dataSource))

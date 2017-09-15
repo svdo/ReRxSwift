@@ -323,8 +323,16 @@
                             <outlet property="delegate" destination="49w-wv-f8K" id="XDk-XL-sS2"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="reverseButton" destination="Bcf-TL-TTB" id="enH-h6-pFb"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="APf-3c-MXd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem title="Reverse" id="Bcf-TL-TTB">
+                    <connections>
+                        <action selector="reverseTapped:" destination="49w-wv-f8K" id="4Gx-ZB-LKM"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="1574" y="819"/>
         </scene>

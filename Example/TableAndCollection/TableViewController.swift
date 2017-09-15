@@ -13,17 +13,21 @@ private let mapStateToProps = { (appState: AppState) in
 }
 
 private let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in
-    return TableViewController.Actions()
+    return TableViewController.Actions(reverse: {})
 }
 
 extension TableViewController: Connectable {
     struct Props {
         let categories: [ShopCategory]
     }
-    struct Actions {}
+    struct Actions {
+        let reverse: () -> ()
+    }
 }
 
 class TableViewController: UITableViewController {
+    @IBOutlet var reverseButton: UIBarButtonItem!
+
     let connection = Connection(store: store,
                                 mapStateToProps: mapStateToProps,
                                 mapDispatchToActions: mapDispatchToActions)
@@ -39,6 +43,10 @@ class TableViewController: UITableViewController {
             return cell
         }
         self.connection.bind(\Props.categories, to: tableView.rx.items(dataSource: dataSource))
+    }
+
+    @IBAction func reverseTapped(_ sender: UIBarButtonItem) {
+        actions.reverse()
     }
 }
 

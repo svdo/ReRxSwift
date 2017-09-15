@@ -45,5 +45,15 @@ class TableViewControllerSpec: QuickSpec {
             }
         }
 
+        describe("reverse button") {
+            it("triggers action when tapping reverse button") {
+                var actionTriggered = false
+                tableViewController.actions = TableViewController.Actions(
+                    reverse: { actionTriggered = true }
+                )
+                tableViewController.reverseTapped(tableViewController.reverseButton)
+                expect(actionTriggered).to(beTrue())
+            }
+        }
     }
 }

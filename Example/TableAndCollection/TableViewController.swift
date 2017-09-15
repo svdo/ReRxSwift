@@ -35,6 +35,7 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = self.reverseButton
         self.tableView.dataSource = nil
         dataSource = RxTableViewSectionedAnimatedDataSource<ShopCategory>()
         dataSource.configureCell = { (dataSource, tableView, indexPath, item) in

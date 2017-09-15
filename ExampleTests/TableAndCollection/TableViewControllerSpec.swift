@@ -108,5 +108,9 @@ class TableViewControllerSpec: QuickSpec {
                 }
             }
         }
+
+        it("shows the reverse button") {
+            expect(tableViewController.navigationItem.rightBarButtonItem) == tableViewController.reverseButton
+        }
     }
 }

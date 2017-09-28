@@ -190,23 +190,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
             .map { $0[keyPath: keyPath] }
     }
 
-    // MARK: - Optionals
-
-    /// Subscribe to one of your `Connectable.props` entries, having a closure
-    /// called whenever it changes. Variant for optional entries.
-    ///
-    /// - Parameters:
-    ///   - keyPath: Swift 4 `KeyPath` that points to the entry in your view
-    ///     controllers `Connectable.props` that you want to subscribe to.
-    ///   - onNext: The closure that is called whenever the entry at the given
-    ///     key path changes. The new value is passed into the closure as a parameter.
-    public func subscribe<T: Equatable>(_ keyPath: KeyPath<Props, T?>,
-                                        onNext: @escaping (T?)->())
-    {
-        self.propsEntry(at: keyPath) { $0 == $1}
-            .subscribe(onNext: onNext)
-            .disposed(by: disposeBag)
-    }
+    // MARK: - Binding Observers of Optionals
 
     /// Bind a RxSwift observer to one of your `Connectable.props` entries.
     /// Convenience method for `bind(keyPath, to: observer, mapping: nil)`.
@@ -265,7 +249,82 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
             .disposed(by: disposeBag)
     }
 
-    // MARK: - Non-optionals
+    // MARK: - Subscribing and Binding to Optional Prop
+
+    /// Subscribe to one of your `Connectable.props` entries, having a closure
+    /// called whenever it changes. Variant for optional entries.
+    ///
+    /// - Parameters:
+    ///   - keyPath: Swift 4 `KeyPath` that points to the entry in your view
+    ///     controllers `Connectable.props` that you want to subscribe to.
+    ///   - onNext: The closure that is called whenever the entry at the given
+    ///     key path changes. The new value is passed into the closure as a parameter.
+    public func subscribe<T: Equatable>(_ keyPath: KeyPath<Props, T?>,
+                                        onNext: @escaping (T?)->())
+    {
+        self.propsEntry(at: keyPath) { $0 == $1}
+            .subscribe(onNext: onNext)
+            .disposed(by: disposeBag)
+    }
+
+    /// Bind a RxSwift observer to one of your `Connectable.props` entries.
+    /// Convenience method for `bind(keyPath, to: observer, mapping: nil)`.
+    ///
+    /// - Parameters:
+    ///   - keyPath: Swift 4 `KeyPath` that points to the entry in your view
+    ///     controllers `Connectable.props` that you want to bind.
+    ///   - observer: The RxSwift observer that you want to bind to.
+    public func bind<T: Equatable, O, M>(_ keyPath: KeyPath<Props, T?>,
+                                         to observer: O)
+        where O: ObserverType, O.E == M
+    {
+        self.bind(keyPath, to: observer, mapping: nil)
+    }
+
+    /// Bind a RxSwift observer to one of your `Connectable.props` entries.
+    ///
+    /// All `bind()` functions are variants of the following basic implementation:
+    ///
+    /// ```swift
+    ///     self.props
+    ///         .asObservable()
+    ///         .distinctUntilChanged { $0[keyPath: keyPath] == $1[keyPath: keyPath] }
+    ///         .map { $0[keyPath: keyPath] }
+    ///         .map(mapping)                                            // if not nil
+    ///         .bind(to: binder)
+    ///         .disposed(by: disposeBag)
+    /// ```
+    ///
+    /// - Parameters:
+    ///   - keyPath: Swift 4 `KeyPath` that points to the entry in your view
+    ///     controllers `Connectable.props` that you want to bind.
+    ///   - observer: The RxSwift observer that you want to bind to.
+    ///   - mapping: An optional function that takes the entry in your
+    ///     `Connectable.props` and converts it to the thing needed by the
+    ///     observable. This is useful if your `Connectable.props` entry is a different
+    ///     type that needs to be converted before it can be put into the observer, for
+    ///     example converting a `Float` into a `String` so that it can be put in a
+    ///     text field's `text`.
+    public func bind<T: Equatable, O, M>(_ keyPath: KeyPath<Props, T?>,
+                                         to observer: O,
+                                         mapping: ((T?)->M)? = nil)
+        where O: ObserverType, O.E == M
+    {
+        let distinctAtKeyPath = self.propsEntry(at: keyPath) { $0 == $1}
+
+        let afterMapping: Observable<M>
+        if (T?.self == M.self) {
+            afterMapping = distinctAtKeyPath as! Observable<M>
+        } else {
+            afterMapping = distinctAtKeyPath.map(mapping!)
+        }
+
+        afterMapping
+            .bind(to: observer)
+            .disposed(by: disposeBag)
+    }
+
+    // MARK: - Subscribing and Binding Observers of Non-Optionals to Non-Optional Prop
 
     /// Subscribe to one of your `Connectable.props` entries, having a closure
     /// called whenever it changes. Variant for non-optional entries.

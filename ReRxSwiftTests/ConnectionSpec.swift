@@ -130,6 +130,15 @@ class ConnectionSpec: QuickSpec {
                 expect(textField.text) == "42.42"
             }
 
+            it("it can bind to an optional prop") {
+                let textField = UITextField()
+                connection.bind(\ViewControllerProps.optInt, to: textField.rx.isHidden) { $0 == nil }
+                connection.newState(state: TestState(someString: "", someFloat: 0, numbers: [], maybeInt: nil))
+                expect(textField.isHidden).to(beTrue())
+                connection.newState(state: TestState(someString: "", someFloat: 0, numbers: [], maybeInt: 42))
+                expect(textField.isHidden).to(beFalse())
+            }
+
             it("can bind a non-optional observer") {
                 let progressView = UIProgressView()
                 connection.bind(\ViewControllerProps.flt, to: progressView.rx.progress)

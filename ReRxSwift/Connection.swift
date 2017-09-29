@@ -157,6 +157,10 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
         self.props = Variable(props)
         self.actions = mapDispatchToActions(store.dispatch)
     }
+    
+    deinit {
+        disconnect()
+    }
 
     /// "Activates" the connection in the sense that it subscribes to the store so that
     /// store updates are received and can be processed. Failing to call this method

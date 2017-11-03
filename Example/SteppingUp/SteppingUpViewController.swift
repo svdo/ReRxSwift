@@ -22,7 +22,12 @@ class SteppingUpViewController: UIViewController {
         connection.bind(\Props.value, to: textField.rx.text, mapping: { String($0) })
         connection.bind(\Props.value, to: progressView.rx.progress)
         connection.bind(\Props.value, to: stepper.rx.value, mapping: { Double($0) })
-        connection.bind(\Props.stepSize, to: stepper.rx.stepValue, mapping: { Double($0) })
+
+        // Binding the stepper requires https://github.com/ReactiveX/RxSwift/pull/1389 to be merged.
+        // Applying workaround: subscribe instead of bind.
+        // connection.bind(\Props.stepSize, to: stepper.rx.stepValue, mapping: { Double($0) })
+        connection.subscribe(\Props.stepSize) { self.stepper.stepValue = Double($0) }
+
         connection.bind(\Props.stepSize, to: segmentedControl.rx.selectedSegmentIndex, mapping: { self.segmentIndex(for: $0) })
     }
 

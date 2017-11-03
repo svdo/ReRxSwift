@@ -37,18 +37,18 @@ class CollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = self.reverseButton
         self.collectionView?.dataSource = nil
-        dataSource = RxCollectionViewSectionedAnimatedDataSource<ShopCategory>()
-        dataSource.configureCell = { (dataSource, collectionView, indexPath, item) in
+        dataSource = RxCollectionViewSectionedAnimatedDataSource<ShopCategory>(configureCell: {
+            (dataSource, collectionView, indexPath, item) in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NormalCell", for: indexPath)
             (cell.viewWithTag(1) as? UILabel)?.text = item.name
             (cell.viewWithTag(2) as? UILabel)?.text = String(item.rating)
             return cell
-        }
-        dataSource.supplementaryViewFactory = { (dataSource, collectionView, kind, indexPath) in
+        }, configureSupplementaryView: {
+            (dataSource, collectionView, kind, indexPath) in
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderView", for: indexPath)
             (view.viewWithTag(1) as? UILabel)?.text = self.props.categories[indexPath.section].title
             return view
-        }
+        })
         self.connection.bind(\Props.categories, to: collectionView!.rx.items(dataSource: dataSource))
     }
     

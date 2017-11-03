@@ -37,13 +37,13 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = self.reverseButton
         self.tableView.dataSource = nil
-        dataSource = RxTableViewSectionedAnimatedDataSource<ShopCategory>()
-        dataSource.configureCell = { (dataSource, tableView, indexPath, item) in
+        dataSource = RxTableViewSectionedAnimatedDataSource<ShopCategory>(configureCell: {
+            (dataSource, tableView, indexPath, item) in
             let cell = tableView.dequeueReusableCell(withIdentifier: "NormalCell", for: indexPath)
             cell.textLabel?.text = item.name
             cell.detailTextLabel?.text = String(item.rating)
             return cell
-        }
+        })
         dataSource.titleForHeaderInSection = { (dataSource, section) in
             return self.props.categories[section].title
         }

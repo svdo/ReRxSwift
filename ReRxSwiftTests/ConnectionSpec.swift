@@ -157,7 +157,9 @@ class ConnectionSpec: QuickSpec {
                 let collectionView = UICollectionView(
                     frame: CGRect(),
                     collectionViewLayout: UICollectionViewFlowLayout())
-                let dataSource = RxCollectionViewSectionedReloadDataSource<TestSectionModel>()
+                let dataSource = RxCollectionViewSectionedReloadDataSource<TestSectionModel>(
+                    configureCell: { _,_,_,_ in return UICollectionViewCell() },
+                    configureSupplementaryView: { _,_,_,_ in return UICollectionReusableView() })
                 connection.bind(\ViewControllerProps.sections, to: collectionView.rx.items(dataSource: dataSource))
                 expect(collectionView.dataSource).toNot(beNil())
                 connection.newState(state: TestState(someString: "", someFloat: 0,
@@ -168,7 +170,8 @@ class ConnectionSpec: QuickSpec {
 
             it("can bind table view items") {
                 let tableView = UITableView(frame: CGRect(), style: .plain)
-                let dataSource = RxTableViewSectionedReloadDataSource<TestSectionModel>()
+                let dataSource = RxTableViewSectionedReloadDataSource<TestSectionModel>(
+                    configureCell: { _,_,_,_ in return UITableViewCell() })
                 connection.bind(\ViewControllerProps.sections, to: tableView.rx.items(dataSource: dataSource))
                 expect(tableView.dataSource).toNot(beNil())
                 connection.newState(state: TestState(someString: "", someFloat: 0,

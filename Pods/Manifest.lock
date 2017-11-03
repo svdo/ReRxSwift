@@ -1,62 +1,33 @@
 PODS:
-  - Nimble (7.0.1)
-  - Quick (1.1.0)
+  - Differentiator (3.0.1)
+  - Nimble (7.0.2)
+  - Quick (1.2.0)
   - ReSwift (4.0.0)
-  - RxCocoa (4.0.0-alpha.1):
-    - RxSwift (~> 4.0.0-alpha.1)
-  - RxDataSources (2.0.0-alpha.1):
-    - RxCocoa (~> 4.0.0-alpha.1)
-    - RxSwift (~> 4.0.0-alpha.1)
-  - RxSwift (4.0.0-alpha.1)
+  - RxCocoa (4.0.0):
+    - RxSwift (~> 4.0)
+  - RxDataSources (3.0.1):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxSwift (4.0.0)
 
 DEPENDENCIES:
-  - Nimble (from `https://github.com/Quick/Nimble`)
-  - Quick (from `https://github.com/Quick/Quick`)
+  - Nimble (~> 7.0)
+  - Quick (~> 1.1)
   - ReSwift (~> 4.0)
-  - RxCocoa (from `https://github.com/svdo/RxSwift`, branch `swift4.0`)
-  - RxDataSources (from `https://github.com/svdo/RxDataSources`, branch `swift4.0`)
-  - RxSwift (from `https://github.com/ReactiveX/RxSwift`, branch `swift4.0`)
-
-EXTERNAL SOURCES:
-  Nimble:
-    :git: https://github.com/Quick/Nimble
-  Quick:
-    :git: https://github.com/Quick/Quick
-  RxCocoa:
-    :branch: swift4.0
-    :git: https://github.com/svdo/RxSwift
-  RxDataSources:
-    :branch: swift4.0
-    :git: https://github.com/svdo/RxDataSources
-  RxSwift:
-    :branch: swift4.0
-    :git: https://github.com/ReactiveX/RxSwift
-
-CHECKOUT OPTIONS:
-  Nimble:
-    :commit: a63252b16eba6cdebec4e4936388c90552165a68
-    :git: https://github.com/Quick/Nimble
-  Quick:
-    :commit: 3665ae9570b682a562df847cccbb46811864676a
-    :git: https://github.com/Quick/Quick
-  RxCocoa:
-    :commit: 0e1ac049c131de9862e58747950ee483a456f39d
-    :git: https://github.com/svdo/RxSwift
-  RxDataSources:
-    :commit: 3b6621c74e5bf1c028460d4d8a7316e52f2c2ffd
-    :git: https://github.com/svdo/RxDataSources
-  RxSwift:
-    :commit: c79b00f66e6c976c52ddc6654e3f0a3b6fa3b260
-    :git: https://github.com/ReactiveX/RxSwift
+  - RxCocoa (~> 4.0)
+  - RxDataSources (~> 3.0)
+  - RxSwift (~> 4.0)
 
 SPEC CHECKSUMS:
-  Nimble: 1b6670c36e5750169b9e4cc2e9cfa82a7603c69e
-  Quick: 4700beb8056662b579facd79eaca7f04fb3d48e6
+  Differentiator: ffe513ce1ea4e7198b89fac94d6e281c673055a9
+  Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
+  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   ReSwift: f058ef13b46ae5f463f10605ccbbb7fb04424d8d
-  RxCocoa: 2eb5f5d79668c61de6c32b636c2a1101a0ba3ca9
-  RxDataSources: c0c77c16d59558b0f60e65da056096badbaf7306
-  RxSwift: d313a43a0109708ada75e1ce99bf7c36d4180ad8
+  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
+  RxDataSources: 098b7e62b6316313b14d6bf594e3f4f4f62a238a
+  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
 
-PODFILE CHECKSUM: 9e56c9eaf8c49e3768c69d1e8bcfae90f0c742d8
+PODFILE CHECKSUM: 1c8c8e89ad7d0763a1f920aa9221dab3a33801d8
 
 COCOAPODS: 1.3.1

@@ -6,8 +6,10 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
 import Foundation
 import UIKit
+import Differentiator
 
 func indexSet(_ values: [Int]) -> IndexSet {
     let indexSet = NSMutableIndexSet()
@@ -145,3 +147,4 @@ func _performBatchUpdates<V: SectionedViewType, S>(_ view: V, changes: Changeset
         )
     }
 }
+#endif

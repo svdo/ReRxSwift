@@ -6,7 +6,7 @@ cache:
   - bundler
   - cocoapods
 script:
-  - xcodebuild -workspace ReRxSwift.xcworkspace -scheme AllTests test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.0'|xcpretty
+  - xcodebuild -workspace ReRxSwift.xcworkspace -scheme AllTests test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.0' | bundle exec xcpretty
   - bundle exec jazzy
 deploy:
   provider: pages

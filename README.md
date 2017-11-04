@@ -28,7 +28,8 @@ and they change data by invoking callbacks defined by `actions` (instead
 of directly dispatching ReSwift actions). This has some nice advantages:
 
 - Better separation of concerns. It is easier to understand what your
-  view controller does and what data it uses.
+  view controller does and what data it uses. In other words, it
+  facilitates local reasoning.
 - Unit-testing. Because of the separation of concerns, you can easily
   unit-test your view controllers, all the way up to the Interface
   Builder connections.
@@ -40,6 +41,7 @@ of directly dispatching ReSwift actions). This has some nice advantages:
   application's business logic, you can implement your presentation
   layer in such a way that it is very simple to replace the dummies
   with real state and actions.
+
 
 ## Usage
 
@@ -129,17 +131,6 @@ controller `MyViewController`, you use the following steps.
 This is pretty much the [`SimpleTextFieldViewController`][10] inside the sample
 app. That view controller comes with complete unit tests:
 [`SimpleTextFieldViewControllerSpec`][11].
-
-## Note: Swift 4
-
-This project depends on Swift 4, because it uses [key paths][7] in its
-API. I am currently using Xcode 9.0 beta 6 and the Swift compiler that
-comes with it. Some earlier Xcode 9.0 betas fail at compiling this
-project!
-
-As soon as Xcode 9 and Swift 4 are released, and RxSwift and ReSwift
-have migrated to Swift 4, I will formally release this framework through
-CocoaPods et al.
 
 
 ## API
@@ -243,6 +234,7 @@ The folder [`Example`][13] contains the following examples:
 
 - **SimpleTextField**: Most basic use case of ReRxSwift, containing a text field that has its value bound, and an action.
 - **SteppingUp**: Use case with multiple bound values and actions, also showing how to transform values when binding them.
+- **TableAndCollection**: Shows how to use ReRxSwift in combination with RxSwift, RxCocoa and RxDataSources to have very simple table/collection views that automatically animate their updates.
 
 
 ## FAQ
@@ -270,7 +262,7 @@ the third parameter to `bind(_:to:mapping:)` to cast the `props` element to
 the expected type. See [`SteppingUpViewController.swift`][12] for examples.
 
 ### I double-checked everything and I still get errors!
-Please open a [new issue][8] on GitHub, as you may have run into a bug.
+Please open a [new issue][8] on GitHub, as you may have run into a bug. (But please make sure everything inside your `Props` type is `Equatable`!)
 
 
 [1]: https://github.com/ReactiveX/RxSwift

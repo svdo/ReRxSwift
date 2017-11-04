@@ -3,6 +3,9 @@
 [![Build Status](https://travis-ci.org/svdo/ReRxSwift.svg?branch=master)](https://travis-ci.org/svdo/ReRxSwift)
 [![API Documentation](https://svdo.github.io/ReRxSwift/badge.svg)](https://svdo.github.io/ReRxSwift)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![CocoaPods Version Badge](https://img.shields.io/cocoapods/v/ReRxSwift.svg)](https://cocoapods.org/pods/ReRxSwift)
+![Supported Platforms Badge](https://img.shields.io/cocoapods/p/ReRxSwift.svg)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/svdo/ReRxSwift/blob/master/LICENSE)
 
 *[RxSwift][1] bindings for [ReSwift][2]*
 

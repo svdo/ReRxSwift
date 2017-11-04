@@ -9,6 +9,8 @@
 
 *[RxSwift][1] bindings for [ReSwift][2]*
 
+## Table of Contents
+
 * [Introduction](#introduction)
 * [Installation](#installation)
 * [Usage](#usage)
@@ -17,7 +19,7 @@
   - [Connection](#connection)
 - [Example App](#example-app)
 - [FAQ](#faq)
--
+
 
 ## Introduction
 

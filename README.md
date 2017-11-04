@@ -9,6 +9,16 @@
 
 *[RxSwift][1] bindings for [ReSwift][2]*
 
+* [Introduction](#introduction)
+* [Installation](#installation)
+* [Usage](#usage)
+* [API](#api)
+  - [Connectable](#connectable)
+  - [Connection](#connection)
+- [Example App](#example-app)
+- [FAQ](#faq)
+-
+
 ## Introduction
 
 In case you don't know them yet, these are two awesome frameworks:
@@ -46,6 +56,20 @@ of directly dispatching ReSwift actions). This has some nice advantages:
   layer in such a way that it is very simple to replace the dummies
   with real state and actions.
 
+
+## Installation
+
+The easiest way to use this library is through [Cocoapods][15] or [Carthage][16]. For CocoaPods, add this to your `Podfile`:
+
+```ruby
+pod 'ReRxSwift', '~> 1.0'
+```
+
+For Carthage, add this to your `Cartfile`:
+
+```
+github "svdo/ReRxSwift" ~> 1.0
+```
 
 ## Usage
 
@@ -283,3 +307,5 @@ Please open a [new issue][8] on GitHub, as you may have run into a bug. (But ple
 [12]: https://github.com/svdo/ReRxSwift/blob/master/Example/SteppingUp/SteppingUpViewController.swift
 [13]: https://github.com/svdo/ReRxSwift/tree/master/Example
 [14]: https://svdo.github.io/ReRxSwift
+[15]: http://cocoapods.org
+[16]: https://github.com/Carthage/Carthage

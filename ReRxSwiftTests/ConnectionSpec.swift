@@ -27,7 +27,7 @@ class ConnectionSpec: QuickSpec {
             return ViewControllerProps(
                 str: state.someString,
                 flt: state.someFloat,
-                sections: [TestSectionModel(header: "section", items: state.numbers)],
+                sections: state.sections,
                 optInt: state.maybeInt
             )
         }
@@ -115,6 +115,17 @@ class ConnectionSpec: QuickSpec {
             expect(next) == 42
         }
 
+        it("can subscribe to an array-typed props entry") {
+            var next: [TestSectionModel] = []
+            connection.subscribe(\ViewControllerProps.sections) { nextSections in
+                next = nextSections
+            }
+            let newSection = TestSectionModel(header: "", items: [])
+            let newState = TestState(someString: "", someFloat: 0, numbers: [], sections: [newSection])
+            connection.newState(state: newState)
+            expect(next) == [newSection]
+        }
+
         describe("binding") {
             it("can bind an optional observer") {
                 let textField = UITextField()
@@ -163,7 +174,8 @@ class ConnectionSpec: QuickSpec {
                 connection.bind(\ViewControllerProps.sections, to: collectionView.rx.items(dataSource: dataSource))
                 expect(collectionView.dataSource).toNot(beNil())
                 connection.newState(state: TestState(someString: "", someFloat: 0,
-                                                     numbers: [12, 34]))
+                                                     numbers: [12, 34],
+                                                     sections: [TestSectionModel(header: "section", items: [12,34])]))
                 expect(dataSource.numberOfSections(in: collectionView)) == 1
                 expect(dataSource.collectionView(collectionView, numberOfItemsInSection: 0)) == 2
             }
@@ -175,7 +187,8 @@ class ConnectionSpec: QuickSpec {
                 connection.bind(\ViewControllerProps.sections, to: tableView.rx.items(dataSource: dataSource))
                 expect(tableView.dataSource).toNot(beNil())
                 connection.newState(state: TestState(someString: "", someFloat: 0,
-                                                     numbers: [12, 34]))
+                                                     numbers: [12, 34],
+                                                     sections: [TestSectionModel(header: "section", items: [12, 34])]))
                 expect(dataSource.numberOfSections(in: tableView)) == 1
                 expect(dataSource.tableView(tableView, numberOfRowsInSection: 0)) == 2
             }

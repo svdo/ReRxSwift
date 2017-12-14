@@ -9,7 +9,7 @@ struct TestSectionModel {
 
 extension TestSectionModel: Equatable {
     static func ==(lhs: TestSectionModel, rhs: TestSectionModel) -> Bool {
-        return lhs.header == rhs.header && lhs.items == rhs.items
+        return lhs.header == rhs.header && lhs.items.elementsEqual(rhs.items)
     }
 }
 

@@ -430,10 +430,20 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
     ///   - binder: The RxSwift binder function such as used by `UICollectionView.rx.items`
     ///     and `UITableView.rx.items`.
     public func bind<S: Sequence>(_ keyPath: KeyPath<Props, S>,
-                                  to binder: (Observable<S>) -> Disposable)
+                                  to binder: (Observable<S>) -> Disposable,
+                                  mapping: ((S)->S)? = nil)
         where S.Element: Equatable
     {
-        self.propsEntry(at: keyPath) { $0.elementsEqual($1) }
+        let distinctAtKeyPath = self.propsEntry(at: keyPath) { $0.elementsEqual($1) }
+
+        let afterMapping: Observable<S>
+        if let mapping = mapping {
+            afterMapping = distinctAtKeyPath.map(mapping)
+        } else {
+            afterMapping = distinctAtKeyPath
+        }
+
+        afterMapping
             .bind(to: binder)
             .disposed(by: disposeBag)
     }

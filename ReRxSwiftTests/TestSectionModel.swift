@@ -13,6 +13,12 @@ extension TestSectionModel: Equatable {
     }
 }
 
+extension TestSectionModel {
+    func sorted() -> TestSectionModel {
+        return TestSectionModel(header: self.header, items: self.items.sorted())
+    }
+}
+
 extension TestSectionModel: AnimatableSectionModelType {
     var identity: String {
         return header

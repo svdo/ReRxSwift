@@ -183,7 +183,12 @@ class ConnectionSpec: QuickSpec {
             it("can bind table view items") {
                 let tableView = UITableView(frame: CGRect(), style: .plain)
                 let dataSource = RxTableViewSectionedReloadDataSource<TestSectionModel>(
-                    configureCell: { _,_,_,_ in return UITableViewCell() })
+                    configureCell: { _,_,_,item in
+                        let cell = UITableViewCell()
+                        cell.tag = item
+                        return cell
+                }
+                )
                 connection.bind(\ViewControllerProps.sections, to: tableView.rx.items(dataSource: dataSource))
                 expect(tableView.dataSource).toNot(beNil())
                 connection.newState(state: TestState(someString: "", someFloat: 0,
@@ -191,6 +196,30 @@ class ConnectionSpec: QuickSpec {
                                                      sections: [TestSectionModel(header: "section", items: [12, 34])]))
                 expect(dataSource.numberOfSections(in: tableView)) == 1
                 expect(dataSource.tableView(tableView, numberOfRowsInSection: 0)) == 2
+                expect(tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0)).tag) == 12
+                expect(tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)).tag) == 34
+            }
+
+            it("can bind table view items with a mapping function") {
+                let tableView = UITableView(frame: CGRect(), style: .plain)
+                let dataSource = RxTableViewSectionedReloadDataSource<TestSectionModel>(
+                    configureCell: { _,_,_,item in
+                        let cell = UITableViewCell()
+                        cell.tag = item
+                        return cell
+                    }
+                )
+                connection.bind(\ViewControllerProps.sections, to: tableView.rx.items(dataSource: dataSource)) { sections in
+                    return sections.map { $0.sorted() }
+                }
+                expect(tableView.dataSource).toNot(beNil())
+                connection.newState(state: TestState(someString: "", someFloat: 0,
+                                                     numbers: [12, 34],
+                                                     sections: [TestSectionModel(header: "section", items: [34, 12])]))
+                expect(dataSource.numberOfSections(in: tableView)) == 1
+                expect(dataSource.tableView(tableView, numberOfRowsInSection: 0)) == 2
+                expect(tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0)).tag) == 12
+                expect(tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)).tag) == 34
             }
         }
     }

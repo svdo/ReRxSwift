@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ReRxSwift"
-  s.version      = "1.1.0"
+  s.version      = "1.2.0"
   s.summary      = "RxSwift bindings for ReSwift"
   s.description  = <<-DESC
                    ReRxSwift: RxSwift bindings for ReSwift. Heavily inspired by

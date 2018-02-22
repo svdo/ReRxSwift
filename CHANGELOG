@@ -1,3 +1,9 @@
+1.2.0
+=====
+Added the ability to subscribe to an observable with a mapping function.
+For example, this can be used to bind your view model to UITableview.rx.items
+using a mapping function such as `sort`.
+
 1.1.0
 =====
 Added the ability to subscribe to an entry in Props that is an array.

@@ -1,3 +1,7 @@
+1.2.1
+=====
+Fixed issue that mapping function wasn't used if it didn't change the type.
+
 1.2.0
 =====
 Added the ability to subscribe to an observable with a mapping function.

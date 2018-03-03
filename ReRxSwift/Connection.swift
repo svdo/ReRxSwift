@@ -242,10 +242,10 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
         let distinctAtKeyPath = self.propsEntry(at: keyPath) { $0 == $1}
 
         let afterMapping: Observable<M>
-        if (T.self == M.self) {
-            afterMapping = distinctAtKeyPath as! Observable<M>
+        if let mapping = mapping {
+            afterMapping = distinctAtKeyPath.map(mapping)
         } else {
-            afterMapping = distinctAtKeyPath.map(mapping!)
+            afterMapping = distinctAtKeyPath as! Observable<M>
         }
 
         afterMapping
@@ -317,10 +317,10 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
         let distinctAtKeyPath = self.propsEntry(at: keyPath) { $0 == $1}
 
         let afterMapping: Observable<M>
-        if (T?.self == M.self) {
-            afterMapping = distinctAtKeyPath as! Observable<M>
+        if let mapping = mapping {
+            afterMapping = distinctAtKeyPath.map(mapping)
         } else {
-            afterMapping = distinctAtKeyPath.map(mapping!)
+            afterMapping = distinctAtKeyPath as! Observable<M>
         }
 
         afterMapping
@@ -392,10 +392,10 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
         let distinctAtKeyPath = self.propsEntry(at: keyPath) { $0 == $1}
 
         let afterMapping: Observable<M>
-        if (T.self == M.self) {
-            afterMapping = distinctAtKeyPath as! Observable<M>
+        if let mapping = mapping {
+            afterMapping = distinctAtKeyPath.map(mapping)
         } else {
-            afterMapping = distinctAtKeyPath.map(mapping!)
+            afterMapping = distinctAtKeyPath as! Observable<M>
         }
 
         afterMapping
@@ -429,18 +429,18 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
     ///     controllers `Connectable.props` that you want to bind.
     ///   - binder: The RxSwift binder function such as used by `UICollectionView.rx.items`
     ///     and `UITableView.rx.items`.
-    public func bind<S: Sequence>(_ keyPath: KeyPath<Props, S>,
-                                  to binder: (Observable<S>) -> Disposable,
-                                  mapping: ((S)->S)? = nil)
+    public func bind<S: Sequence,M>(_ keyPath: KeyPath<Props, S>,
+                                    to binder: (Observable<M>) -> Disposable,
+                                    mapping: ((S)->M)? = nil)
         where S.Element: Equatable
     {
         let distinctAtKeyPath = self.propsEntry(at: keyPath) { $0.elementsEqual($1) }
 
-        let afterMapping: Observable<S>
+        let afterMapping: Observable<M>
         if let mapping = mapping {
             afterMapping = distinctAtKeyPath.map(mapping)
         } else {
-            afterMapping = distinctAtKeyPath
+            afterMapping = distinctAtKeyPath as! Observable<M>
         }
 
         afterMapping

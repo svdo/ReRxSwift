@@ -65,7 +65,7 @@ class ConnectionSpec: QuickSpec {
         }
 
         context("given a connection") {
-            var testStore : FakeStore<TestState>! = nil
+            var testStore : Store<TestState>! = nil
             var connection: Connection<TestState, ViewControllerProps, ViewControllerActions>!
             let mapStateToProps = { (state: TestState) in
                 return ViewControllerProps(
@@ -82,7 +82,7 @@ class ConnectionSpec: QuickSpec {
             }
 
             beforeEach {
-                testStore = FakeStore<TestState>(
+                testStore = Store<TestState>(
                     reducer: {(_,state) in return state!},
                     state: initialState)
                 connection = Connection(

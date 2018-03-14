@@ -22,7 +22,7 @@ let mapDispatchToActions = { (dispatch: @escaping DispatchFunction) in
 
 class TestConnectable: Connectable {
     let connection = Connection(
-        store: FakeStore<TestState>(
+        store: Store<TestState>(
             reducer: {(_,state) in return state!},
             state: initialState),
         mapStateToProps: mapStateToProps,

@@ -97,7 +97,9 @@ class ConnectionSpec: QuickSpec {
             }
 
             it("can set and get props") {
-                connection.props.value = ViewControllerProps(str: "some props", flt: 0, sections: [], optInt: nil)
+                connection.props.accept(
+                    ViewControllerProps(str: "some props", flt: 0, sections: [], optInt: nil)
+                )
                 expect(connection.props.value.str) == "some props"
             }
 

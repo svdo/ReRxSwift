@@ -39,7 +39,7 @@ class ConnectableSpec: QuickSpec {
 
         it("gets its props from its connection") {
             let newProps = SimpleProps(str: "new")
-            connectable.connection.props.value = newProps
+            connectable.connection.props.accept(newProps)
             expect(connectable.props.str) == newProps.str
         }
 

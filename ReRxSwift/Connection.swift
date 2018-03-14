@@ -96,13 +96,13 @@ import RxCocoa
 ///     ```
 
 public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
-    /// The RxSwift `Variable` that holds your view controller props.
+    /// The RxSwift `BehaviorRelay` that holds your view controller props.
     /// Normally you don't use this this directly, you use it through `Connectable.props`
     /// instead. This variable is public so that you can use it for unit testing.
     /// In cases where you don't want to use the `bind(_:to:)` methods in this class and want
     /// to create your own RxSwift observing code, you do need to use this variable
     /// directly.
-    public let props: Variable<Props>
+    public let props: BehaviorRelay<Props>
 
     /// This holds you view controller's actions. Don't use this directly, use
     /// `Connectable.actions` instead. This variable is public so that you can use it
@@ -154,7 +154,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
         self.mapDispatchToActions = mapDispatchToActions
         let initialState = store.state!
         let props = mapStateToProps(initialState)
-        self.props = Variable(props)
+        self.props = BehaviorRelay(value: props)
         self.actions = mapDispatchToActions(store.dispatch)
     }
     
@@ -180,7 +180,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
 
     /// ReSwift's callback method. Don't call this yourself.
     public func newState(state: State) {
-        props.value = mapStateToProps(state)
+        props.accept(mapStateToProps(state))
     }
 
     // MARK: - Helper functions

@@ -43,7 +43,7 @@ public extension Connectable {
     /// available through this variable.
     public var props: PropsType {
         get { return connection.props.value }
-        set { connection.props.value = newValue }
+        set { connection.props.accept(newValue) }
     }
 
     /// This is what your view controller uses whenever it wants to trigger an action.

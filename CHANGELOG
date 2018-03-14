@@ -1,3 +1,7 @@
+1.2.2
+=====
+Replaced deprecated `Variable` with `BehaviorRelay`.
+
 1.2.1
 =====
 Fixed issue that mapping function wasn't used if it didn't change the type.

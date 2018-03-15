@@ -1,14 +1,14 @@
 sudo: false
 language: swift
 os: osx
-osx_image: xcode9
+osx_image: xcode9.2
 cache:
   - bundler
   - cocoapods
 before_script:
   - bundle exec pod repo update
 script:
-  - xcodebuild -workspace ReRxSwift.xcworkspace -scheme AllTests test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.0' | bundle exec xcpretty
+  - xcodebuild -workspace ReRxSwift.xcworkspace -scheme AllTests test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.2' | bundle exec xcpretty
   - bundle exec jazzy
 deploy:
   provider: pages

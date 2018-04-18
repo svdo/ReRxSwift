@@ -12,6 +12,7 @@ let initialState = TestState(someString: "initial string", someFloat: 0.42, numb
 
 struct ViewControllerProps {
     let str: String
+    let optStr: String?
     let flt: Float
     let sections: [TestSectionModel]
     let optInt: Int?
@@ -70,6 +71,7 @@ class ConnectionSpec: QuickSpec {
             let mapStateToProps = { (state: TestState) in
                 return ViewControllerProps(
                     str: state.someString,
+                    optStr: state.someString,
                     flt: state.someFloat,
                     sections: state.sections,
                     optInt: state.maybeInt
@@ -98,7 +100,8 @@ class ConnectionSpec: QuickSpec {
 
             it("can set and get props") {
                 connection.props.accept(
-                    ViewControllerProps(str: "some props", flt: 0, sections: [], optInt: nil)
+                    ViewControllerProps(str: "some props",
+                                        optStr: nil, flt: 0, sections: [], optInt: nil)
                 )
                 expect(connection.props.value.str) == "some props"
             }
@@ -242,6 +245,36 @@ class ConnectionSpec: QuickSpec {
                     expect(dataSource.tableView(tableView, numberOfRowsInSection: 0)) == 2
                     expect(tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0)).tag) == 12
                     expect(tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)).tag) == 34
+                }
+            }
+
+            describe("binding optional and non-optionals") {
+                it("binds non-optional to non-optional") {
+                    let barButtonItem = UIBarButtonItem()
+                    connection.bind(\ViewControllerProps.str, to: barButtonItem.rx.title)
+                    connection.newState(state: TestState(someString: "test string", someFloat: 0.0, numbers: []))
+                    expect(barButtonItem.title) == "test string"
+                }
+
+                it("binds non-optional to optional") {
+                    let label = UILabel()
+                    connection.bind(\ViewControllerProps.str, to: label.rx.text)
+                    connection.newState(state: TestState(someString: "test string", someFloat: 0.0, numbers: []))
+                    expect(label.text) == "test string"
+                }
+
+                it("binds optional to non-optional") {
+                    let barButtonItem = UIBarButtonItem()
+                    connection.bind(\ViewControllerProps.optStr, to: barButtonItem.rx.title) { $0! }
+                    connection.newState(state: TestState(someString: "test string", someFloat: 0.0, numbers: []))
+                    expect(barButtonItem.title) == "test string"
+                }
+
+                it("binds optional to optional") {
+                    let label = UILabel()
+                    connection.bind(\ViewControllerProps.optStr, to: label.rx.text)
+                    connection.newState(state: TestState(someString: "test string", someFloat: 0.0, numbers: []))
+                    expect(label.text) == "test string"
                 }
             }
         }

@@ -64,13 +64,13 @@ of directly dispatching ReSwift actions). This has some nice advantages:
 The easiest way to use this library is through [Cocoapods][15] or [Carthage][16]. For CocoaPods, add this to your `Podfile`:
 
 ```ruby
-pod 'ReRxSwift', '~> 1.0'
+pod 'ReRxSwift', '~> 2.0'
 ```
 
 For Carthage, add this to your `Cartfile`:
 
 ```
-github "svdo/ReRxSwift" ~> 1.0
+github "svdo/ReRxSwift" ~> 2.0
 ```
 
 ## Usage

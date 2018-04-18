@@ -1,3 +1,8 @@
+2.0.0
+=====
+Updated to Swift 4.1 / Xcode 9.3. This means some overloads of `Connection.bind`
+are removed, so this is not compatable with ReRxSwift 1.2.2.
+
 1.2.2
 =====
 Replaced deprecated `Variable` with `BehaviorRelay`.

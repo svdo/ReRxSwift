@@ -1,5 +1,5 @@
 # ReRxSwift
-![Swift Version 4](https://img.shields.io/badge/Swift-v4-yellow.svg)
+![Swift Version 4.1](https://img.shields.io/badge/Swift-v4.1-yellow.svg)
 [![Build Status](https://travis-ci.org/svdo/ReRxSwift.svg?branch=master)](https://travis-ci.org/svdo/ReRxSwift)
 [![API Documentation](https://svdo.github.io/ReRxSwift/badge.svg)](https://svdo.github.io/ReRxSwift)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)

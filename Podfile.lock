@@ -1,15 +1,15 @@
 PODS:
-  - Differentiator (3.0.2)
-  - Nimble (7.1.1)
-  - Quick (1.2.0)
+  - Differentiator (3.1.0)
+  - Nimble (7.3.1)
+  - Quick (1.3.2)
   - ReSwift (4.0.1)
-  - RxCocoa (4.1.2):
+  - RxCocoa (4.3.1):
     - RxSwift (~> 4.0)
-  - RxDataSources (3.0.2):
+  - RxDataSources (3.1.0):
     - Differentiator (~> 3.0)
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxSwift (4.1.2)
+  - RxSwift (4.3.1)
 
 DEPENDENCIES:
   - Nimble (~> 7.0)
@@ -19,15 +19,25 @@ DEPENDENCIES:
   - RxDataSources (~> 3.0)
   - RxSwift (~> 4.0)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Differentiator
+    - Nimble
+    - Quick
+    - ReSwift
+    - RxCocoa
+    - RxDataSources
+    - RxSwift
+
 SPEC CHECKSUMS:
-  Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
-  Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
-  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
+  Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
-  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
-  RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
-  RxSwift: e49536837d9901277638493ea537394d4b55f570
+  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
 
-PODFILE CHECKSUM: 1c8c8e89ad7d0763a1f920aa9221dab3a33801d8
+PODFILE CHECKSUM: 3a338539142d4c8456a52a0d0d9506a768a13851
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

@@ -11,7 +11,7 @@ abstract_target 'ReRx' do
 
   target 'ReRxSwiftTests' do
     inherit! :search_paths
-    pod 'Quick', '~> 1.1'
+    pod 'Quick', '~> 1.1', :inhibit_warnings => true
     pod 'Nimble', '~> 7.0'
     pod 'RxDataSources', '~> 3.0'
   end
@@ -20,7 +20,7 @@ abstract_target 'ReRx' do
     pod 'RxDataSources', '~> 3.0'
 
     target 'ExampleTests' do
-        pod 'Quick', '~> 1.1'
+        pod 'Quick', '~> 1.1', :inhibit_warnings => true
         pod 'Nimble', '~> 7.0'
     end
   end

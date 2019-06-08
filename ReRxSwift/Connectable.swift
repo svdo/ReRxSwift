@@ -41,7 +41,7 @@ public extension Connectable {
     /// whenever a new ReSwift state is received by your connection, it uses your
     /// `mapStateToProps` function to convert it your `Props` struct and makes it
     /// available through this variable.
-    public var props: PropsType {
+    var props: PropsType {
         get { return connection.props.value }
         set { connection.props.accept(newValue) }
     }
@@ -49,7 +49,7 @@ public extension Connectable {
     /// This is what your view controller uses whenever it wants to trigger an action.
     /// The `Connection` manages this variable: it uses `mapDispatchToActions` to
     /// call your store's dispatch function the right way.
-    public var actions: ActionsType {
+    var actions: ActionsType {
         get { return connection.actions }
         set { connection.actions = newValue }
     }

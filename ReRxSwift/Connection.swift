@@ -205,7 +205,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
     ///   - observer: The RxSwift observer that you want to bind to.
     public func bind<T: Equatable, O>(_ keyPath: KeyPath<Props, T>,
                                       to observer: O)
-        where O: ObserverType, O.E == T?
+        where O: ObserverType, O.Element == T?
     {
         self.bind(keyPath, to: observer, mapping: nil)
     }
@@ -237,7 +237,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
     public func bind<T: Equatable, O, M>(_ keyPath: KeyPath<Props, T>,
                                          to observer: O,
                                          mapping: ((T)->M)? = nil)
-        where O: ObserverType, O.E == M?
+        where O: ObserverType, O.Element == M?
     {
         let distinctAtKeyPath = self.propsEntry(at: keyPath) { $0 == $1}
 
@@ -280,7 +280,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
     ///   - observer: The RxSwift observer that you want to bind to.
     public func bind<T: Equatable, O>(_ keyPath: KeyPath<Props, T>,
                                       to observer: O)
-        where O: ObserverType, O.E == T
+        where O: ObserverType, O.Element == T
     {
         self.bind(keyPath, to: observer, mapping: nil)
     }
@@ -312,7 +312,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
     public func bind<T: Equatable, O, M>(_ keyPath: KeyPath<Props, T>,
                                          to observer: O,
                                          mapping: ((T)->M)? = nil)
-        where O: ObserverType, O.E == M
+        where O: ObserverType, O.Element == M
     {
         let distinctAtKeyPath = self.propsEntry(at: keyPath) { $0 == $1}
 

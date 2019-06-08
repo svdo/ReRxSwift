@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ReRxSwift"
-  s.version      = "2.0.0"
+  s.version      = "2.1.0"
   s.summary      = "RxSwift bindings for ReSwift"
   s.description  = <<-DESC
                    ReRxSwift: RxSwift bindings for ReSwift. Heavily inspired by
@@ -17,8 +17,8 @@ Pod::Spec.new do |s|
   s.source_files  = "ReRxSwift/*.swift"
   s.requires_arc = true
 
-  s.dependency     "ReSwift", "~> 4.0"
-  s.dependency     "RxSwift", "~> 4.0"
-  s.dependency     "RxCocoa", "~> 4.0"
+  s.dependency     "ReSwift", "~> 4"
+  s.dependency     "RxSwift", "~> 5"
+  s.dependency     "RxCocoa", "~> 5"
 
 end

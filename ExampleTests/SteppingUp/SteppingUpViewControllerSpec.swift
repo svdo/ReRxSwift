@@ -21,7 +21,7 @@ class SteppingUpViewControllerSpec: QuickSpec {
             steppingUpViewController = steppingUp
             expect(steppingUpViewController.view).toNot(beNil())
 
-            testStore = Store<AppState>(reducer: mainReducer, state: nil)
+            testStore = Store<AppState>(reducer: testReducer, state: nil)
             steppingUpViewController.connection.store = testStore
         }
 

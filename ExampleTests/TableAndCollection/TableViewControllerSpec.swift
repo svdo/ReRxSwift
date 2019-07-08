@@ -20,7 +20,7 @@ class TableViewControllerSpec: QuickSpec {
             tableViewController = table
             expect(tableViewController.view).toNot(beNil())
 
-            testStore = Store<AppState>(reducer: mainReducer, state: nil)
+            testStore = Store<AppState>(reducer: testReducer, state: nil)
             tableViewController.connection.store = testStore
         }
 

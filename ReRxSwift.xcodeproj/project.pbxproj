@@ -31,7 +31,8 @@
 		F839573D1F4EC7DF00D33189 /* SteppingUpActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F839573C1F4EC7DF00D33189 /* SteppingUpActions.swift */; };
 		F839573F1F4ECAEF00D33189 /* SteppingUpReducerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F839573E1F4ECAEF00D33189 /* SteppingUpReducerSpec.swift */; };
 		F83957411F4ED10E00D33189 /* SteppingUpViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83957401F4ED10E00D33189 /* SteppingUpViewControllerSpec.swift */; };
-		F83E18D022D2858300FCDA9D /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83E18CF22D2858300FCDA9D /* Actions.swift */; };
+		F83E18D222D30E1C00FCDA9D /* TestReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83E18D122D30E1C00FCDA9D /* TestReducer.swift */; };
+		F83E18D422D30E2800FCDA9D /* TestActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83E18D322D30E2800FCDA9D /* TestActions.swift */; };
 		F858661C1F655F9F00CEF54E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858661B1F655F9F00CEF54E /* TableViewController.swift */; };
 		F858661E1F655FDF00CEF54E /* TableViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858661D1F655FDF00CEF54E /* TableViewControllerSpec.swift */; };
 		F88D86C01F4CC9A6006F6038 /* SimpleTextFieldReducerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D86BF1F4CC9A6006F6038 /* SimpleTextFieldReducerSpec.swift */; };
@@ -129,7 +130,8 @@
 		F839573C1F4EC7DF00D33189 /* SteppingUpActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppingUpActions.swift; sourceTree = "<group>"; };
 		F839573E1F4ECAEF00D33189 /* SteppingUpReducerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppingUpReducerSpec.swift; sourceTree = "<group>"; };
 		F83957401F4ED10E00D33189 /* SteppingUpViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppingUpViewControllerSpec.swift; sourceTree = "<group>"; };
-		F83E18CF22D2858300FCDA9D /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		F83E18D122D30E1C00FCDA9D /* TestReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestReducer.swift; sourceTree = "<group>"; };
+		F83E18D322D30E2800FCDA9D /* TestActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestActions.swift; sourceTree = "<group>"; };
 		F858661B1F655F9F00CEF54E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		F858661D1F655FDF00CEF54E /* TableViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerSpec.swift; sourceTree = "<group>"; };
 		F88D86B41F4CC934006F6038 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,7 +285,6 @@
 				F80823821F4A250C00CCADC1 /* Assets.xcassets */,
 				F80823841F4A250C00CCADC1 /* LaunchScreen.storyboard */,
 				F80823871F4A250C00CCADC1 /* Info.plist */,
-				F83E18CF22D2858300FCDA9D /* Actions.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -317,6 +318,8 @@
 				F858661A1F655F0600CEF54E /* TableAndCollection */,
 				F88D86B81F4CC934006F6038 /* Info.plist */,
 				F8C746441F65801900DE9A40 /* TestUtils.swift */,
+				F83E18D122D30E1C00FCDA9D /* TestReducer.swift */,
+				F83E18D322D30E2800FCDA9D /* TestActions.swift */,
 			);
 			path = ExampleTests;
 			sourceTree = "<group>";
@@ -737,7 +740,6 @@
 				F83957371F4EBE8E00D33189 /* SteppingUpViewController.swift in Sources */,
 				F89680C51F4CB50A002C2452 /* Reducer.swift in Sources */,
 				F89680C71F4CB689002C2452 /* AppState.swift in Sources */,
-				F83E18D022D2858300FCDA9D /* Actions.swift in Sources */,
 				F808237E1F4A250B00CCADC1 /* SimpleTextFieldViewController.swift in Sources */,
 				F8C746431F657CDF00DE9A40 /* TableAndCollectionReducer.swift in Sources */,
 				F89782131F4EB72000D82ABF /* StoreLogger.swift in Sources */,
@@ -759,12 +761,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F83E18D422D30E2800FCDA9D /* TestActions.swift in Sources */,
 				F88D86C01F4CC9A6006F6038 /* SimpleTextFieldReducerSpec.swift in Sources */,
 				F8C746451F65801900DE9A40 /* TestUtils.swift in Sources */,
 				F88D86C21F4CCDD4006F6038 /* SimpleTextFieldViewControllerSpec.swift in Sources */,
 				F858661E1F655FDF00CEF54E /* TableViewControllerSpec.swift in Sources */,
 				F83957411F4ED10E00D33189 /* SteppingUpViewControllerSpec.swift in Sources */,
 				F839573F1F4ECAEF00D33189 /* SteppingUpReducerSpec.swift in Sources */,
+				F83E18D222D30E1C00FCDA9D /* TestReducer.swift in Sources */,
 				F8BD3C6A1F6B13FB00F79E0C /* TableAndCollectionReducerSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

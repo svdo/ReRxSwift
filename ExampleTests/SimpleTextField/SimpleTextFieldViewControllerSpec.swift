@@ -21,7 +21,7 @@ class SimpleTextFieldViewControllerSpec: QuickSpec {
             simpleController = simple
             expect(simpleController.view).toNot(beNil())
 
-            testStore = Store<AppState>(reducer: mainReducer, state: nil)
+            testStore = Store<AppState>(reducer: testReducer, state: nil)
             simpleController.connection.store = testStore
         }
 

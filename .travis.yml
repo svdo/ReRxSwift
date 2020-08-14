@@ -1,7 +1,7 @@
 sudo: false
 language: swift
 os: osx
-osx_image: xcode10.2
+osx_image: xcode11.6
 before_install:
   - gem update --system
   - gem install bundler
@@ -11,7 +11,7 @@ cache:
 before_script:
   - bundle exec pod repo update
 script:
-  - set -o pipefail && xcodebuild -workspace ReRxSwift.xcworkspace -scheme AllTests test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.2' | bundle exec xcpretty
+  - set -o pipefail && xcodebuild -workspace ReRxSwift.xcworkspace -scheme AllTests test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=13.6' | bundle exec xcpretty
   - bundle exec jazzy
 deploy:
   provider: pages

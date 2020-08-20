@@ -11,6 +11,7 @@ cache:
 before_script:
   - bundle exec pod repo update
 script:
+  - swift build
   - set -o pipefail && xcodebuild -workspace ReRxSwift.xcworkspace -scheme AllTests test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=13.6' | bundle exec xcpretty
   - bundle exec jazzy
 deploy:

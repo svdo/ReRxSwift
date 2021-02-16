@@ -128,7 +128,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
     let mapDispatchToActions: (@escaping DispatchFunction) -> (Actions)
 
     /// RxSwift memory management.
-    let disposeBag = DisposeBag()
+    public let disposeBag = DisposeBag()
 
     /// Constructs a new `Connection` object. For examples see the class documentation
     /// above, or the code examples in
@@ -185,7 +185,7 @@ public class Connection<State: StateType, Props, Actions>: StoreSubscriber {
 
     // MARK: - Helper functions
 
-    private func propsEntry<T>(at keyPath: KeyPath<Props, T>,
+    public func propsEntry<T>(at keyPath: KeyPath<Props, T>,
                                isEqual: @escaping (T,T) -> Bool)
         -> Observable<T> {
         return self.props

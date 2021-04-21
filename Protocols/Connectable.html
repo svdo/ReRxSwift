@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Connectable Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/Connectable" class="dashAnchor"></a>
+    <a title="Connectable Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ReRxSwift 2.2.2 Docs</a> (96% documented)</p>
+        <p class="header-right"><a href="https://github.com/svdo/ReRxSwift"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ReRxSwift Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Connectable Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Connection.html">Connection</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Connectable.html">Connectable</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Connectable</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Connectable</span></code></pre>
+
+                </div>
+              </div>
+            <p>Declare your view controller to be suitable for ReRxSwift. This requires your
+view controller to add a <code><a href="../Classes/Connection.html">Connection</a></code> property. Please note that you do not need
+to explicitly specify what the <code>associatedtype</code>s are in your case, the compiler
+will derive this from the parameters to the
+<code>Connection(store:mapStateToProps:mapDispatchToProps)</code> constructor.</p>
+
+<p>Example:</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">connection</span> <span class="o">=</span> <span class="kt">Connection</span><span class="p">(</span>
+        <span class="nv">store</span><span class="p">:</span> <span class="n">store</span><span class="p">,</span>
+        <span class="nv">mapStateToProps</span><span class="p">:</span> <span class="n">mapStateToProps</span><span class="p">,</span>
+        <span class="nv">mapDispatchToActions</span><span class="p">:</span> <span class="n">mapDispatchToActions</span>
+    <span class="p">)</span>
+
+    <span class="o">...</span>
+</code></pre>
+
+              <div class="slightly-smaller">
+                <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connectable.swift#L24-L36">Show on GitHub</a>
+              </div>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift11ConnectableP12AppStateTypeQa"></a>
+                    <a name="//apple_ref/swift/Alias/AppStateType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift11ConnectableP12AppStateTypeQa">AppStateType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The type of your global ReSwift application state.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">AppStateType</span> <span class="p">:</span> <span class="kt">StateType</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connectable.swift#L26">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift11ConnectableP9PropsTypeQa"></a>
+                    <a name="//apple_ref/swift/Alias/PropsType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift11ConnectableP9PropsTypeQa">PropsType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The type of your view controller&rsquo;s <code>Props</code> struct.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">PropsType</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connectable.swift#L29">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift11ConnectableP11ActionsTypeQa"></a>
+                    <a name="//apple_ref/swift/Alias/ActionsType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift11ConnectableP11ActionsTypeQa">ActionsType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The type of your view controller&rsquo;s <code>Actions</code> struct.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">ActionsType</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connectable.swift#L32">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift11ConnectableP10connectionAA10ConnectionCy12AppStateTypeQz05PropsI0Qz07ActionsI0QzGvp"></a>
+                    <a name="//apple_ref/swift/Property/connection" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift11ConnectableP10connectionAA10ConnectionCy12AppStateTypeQz05PropsI0Qz07ActionsI0QzGvp">connection</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Being <code>Connectable</code> means that you must have a <code>connection</code> instance.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">connection</span><span class="p">:</span> <span class="kt"><a href="../Classes/Connection.html">Connection</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectableP12AppStateTypeQa">AppStateType</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectableP9PropsTypeQa">PropsType</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectableP11ActionsTypeQa">ActionsType</a></span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connectable.swift#L35">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp"></a>
+                    <a name="//apple_ref/swift/Property/props" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">props</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is what your view controller uses to access the state that it wants to
+use. The contents of this variable is managed by the <code><a href="../Classes/Connection.html">Connection</a></code> object:
+whenever a new ReSwift state is received by your connection, it uses your
+<code>mapStateToProps</code> function to convert it your <code>Props</code> struct and makes it
+available through this variable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">props</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectableP9PropsTypeQa">PropsType</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connectable.swift#L44-L47">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift11ConnectablePAAE7actions11ActionsTypeQzvp"></a>
+                    <a name="//apple_ref/swift/Property/actions" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift11ConnectablePAAE7actions11ActionsTypeQzvp">actions</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is what your view controller uses whenever it wants to trigger an action.
+The <code><a href="../Classes/Connection.html">Connection</a></code> manages this variable: it uses <code>mapDispatchToActions</code> to
+call your store&rsquo;s dispatch function the right way.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">actions</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectableP11ActionsTypeQa">ActionsType</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connectable.swift#L52-L55">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://github.com/svdo/ReRxSwift" target="_blank" rel="external">Stefan van den Oord</a>. All rights reserved. (Last updated: 2021-04-21)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

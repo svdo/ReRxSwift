@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Connection Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/Connection" class="dashAnchor"></a>
+    <a title="Connection Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ReRxSwift 2.2.2 Docs</a> (96% documented)</p>
+        <p class="header-right"><a href="https://github.com/svdo/ReRxSwift"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ReRxSwift Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Connection Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Connection.html">Connection</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Connectable.html">Connectable</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Connection</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Connection</span><span class="o">&lt;</span><span class="kt">State</span><span class="p">,</span> <span class="kt">Props</span><span class="p">,</span> <span class="kt">Actions</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">StoreSubscriber</span> <span class="k">where</span> <span class="kt">State</span> <span class="p">:</span> <span class="kt">StateType</span></code></pre>
+
+                </div>
+              </div>
+            <p>A ReRxSwift Connection that manages the mapping between ReSwift application state
+and ReSwift actions on the one hand, and view controller props and actions on the
+other hand.</p>
+
+<p>In order to use this, you have to make your view controller conform to
+<code><a href="../Protocols/Connectable.html">Connectable</a></code> and add a <code>Connection</code> instance. In your view controller
+you need to call <code>connect()</code> and <code>disconnect()</code> at the right time.</p>
+<h1 id='examples' class='heading'>Examples</h1>
+
+<p>The folder <a href="https://github.com/svdo/ReRxSwift/tree/master/Example"><code>Example</code></a>
+contains example of how to use this.</p>
+<h1 id='usage' class='heading'>Usage</h1>
+
+<ol>
+<li><p>Create an extension to your view controller to make it <code><a href="../Protocols/Connectable.html">Connectable</a></code>,
+defining the <code>Props</code> and <code>Actions</code> that your view controller needs:</p>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">Connectable</span> <span class="p">{</span>
+    <span class="kd">struct</span> <span class="kt">Props</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="p">}</span>
+    <span class="kd">struct</span> <span class="kt">Actions</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">updatedText</span><span class="p">:</span> <span class="p">(</span><span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></li>
+<li><p>Define how your state is mapped to the above <code>Props</code> type:</p>
+<pre class="highlight swift"><code><span class="kd">private</span> <span class="k">let</span> <span class="nv">mapStateToProps</span> <span class="o">=</span> <span class="p">{</span> <span class="p">(</span><span class="nv">appState</span><span class="p">:</span> <span class="kt">AppState</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="kt">MyViewController</span><span class="o">.</span><span class="kt">Props</span><span class="p">(</span>
+        <span class="nv">text</span><span class="p">:</span> <span class="n">appState</span><span class="o">.</span><span class="n">content</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></li>
+<li><p>Define the actions that are dispatched:</p>
+<pre class="highlight swift"><code><span class="kd">private</span> <span class="k">let</span> <span class="nv">mapDispatchToActions</span> <span class="o">=</span> <span class="p">{</span> <span class="p">(</span><span class="nv">dispatch</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">DispatchFunction</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="kt">MyViewController</span><span class="o">.</span><span class="kt">Actions</span><span class="p">(</span>
+        <span class="nv">updatedText</span><span class="p">:</span> <span class="p">{</span> <span class="n">newText</span> <span class="k">in</span> <span class="nf">dispatch</span><span class="p">(</span><span class="kt">SetContent</span><span class="p">(</span><span class="nv">newContent</span><span class="p">:</span> <span class="n">newText</span><span class="p">))</span> <span class="p">}</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></li>
+<li><p>Define the connection and hook it up:</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+    <span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">textField</span><span class="p">:</span> <span class="kt">UITextField</span><span class="o">!</span>
+
+    <span class="k">let</span> <span class="nv">connection</span> <span class="o">=</span> <span class="kt">Connection</span><span class="p">(</span>
+        <span class="nv">store</span><span class="p">:</span> <span class="n">store</span><span class="p">,</span>
+        <span class="nv">mapStateToProps</span><span class="p">:</span> <span class="n">mapStateToProps</span><span class="p">,</span>
+        <span class="nv">mapDispatchToActions</span><span class="p">:</span> <span class="n">mapDispatchToActions</span>
+    <span class="p">)</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewWillAppear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewWillAppear</span><span class="p">(</span><span class="n">animated</span><span class="p">)</span>
+        <span class="n">connection</span><span class="o">.</span><span class="nf">connect</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidDisappear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidDisappear</span><span class="p">(</span><span class="n">animated</span><span class="p">)</span>
+        <span class="n">connection</span><span class="o">.</span><span class="nf">disconnect</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></li>
+<li><p>Bind the text field&rsquo;s text, using a Swift 4 key path to refer to the
+<code>text</code> property of <code>Props</code>:</p>
+<pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+    <span class="n">connection</span><span class="o">.</span><span class="nf">bind</span><span class="p">(</span><span class="err">\</span><span class="kt">Props</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="n">textField</span><span class="o">.</span><span class="n">rx</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></li>
+<li><p>Call the action:</p>
+<pre class="highlight swift"><code><span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">editingChanged</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UITextField</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">actions</span><span class="o">.</span><span class="nf">updatedText</span><span class="p">(</span><span class="n">sender</span><span class="o">.</span><span class="n">text</span> <span class="p">??</span> <span class="s">""</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></li>
+</ol>
+
+              <div class="slightly-smaller">
+                <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L98-L375">Show on GitHub</a>
+              </div>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC5props0B5Relay08BehaviorF0Cyq_Gvp"></a>
+                    <a name="//apple_ref/swift/Property/props" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC5props0B5Relay08BehaviorF0Cyq_Gvp">props</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The RxSwift <code>BehaviorRelay</code> that holds your view controller props.
+Normally you don&rsquo;t use this this directly, you use it through <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code>
+instead. This variable is public so that you can use it for unit testing.
+In cases where you don&rsquo;t want to use the <code><a href="../Classes/Connection.html#/s:9ReRxSwift10ConnectionC4bind_2toys7KeyPathCyq_qd__G_qd_0_tSQRd__0bC012ObserverTypeRd_0_qd__Sg7ElementRtd_0_r0_lF">bind(_:to:)</a></code> methods in this class and want
+to create your own RxSwift observing code, you do need to use this variable
+directly.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">props</span><span class="p">:</span> <span class="kt">BehaviorRelay</span><span class="o">&lt;</span><span class="kt">Props</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L105">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC7actionsq0_Sgvp"></a>
+                    <a name="//apple_ref/swift/Property/actions" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC7actionsq0_Sgvp">actions</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This holds you view controller&rsquo;s actions. Don&rsquo;t use this directly, use
+<code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE7actions11ActionsTypeQzvp">Connectable.actions</a></code> instead. This variable is public so that you can use it
+for unit testing.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">actions</span><span class="p">:</span> <span class="kt">Actions</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L110">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC5store0aC05StoreCyxGvp"></a>
+                    <a name="//apple_ref/swift/Property/store" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC5store0aC05StoreCyxGvp">store</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The ReSwift store used by this connection object. Normally you pass
+your global app store as a parameter to the constructor. This variable
+is public so that you can inject a different store during unit testing.
+It is not intended to be used directly from production code.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">store</span><span class="p">:</span> <span class="kt">Store</span><span class="o">&lt;</span><span class="kt">State</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L116-L120">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC10disposeBag0bC007DisposeF0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/disposeBag" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC10disposeBag0bC007DisposeF0Cvp">disposeBag</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RxSwift memory management.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">disposeBag</span><span class="p">:</span> <span class="kt">DisposeBag</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L131">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC5store15mapStateToProps0f8DispatchH7ActionsACyxq_q0_G0aC05StoreCyxG_q_xcq0_yAH6Action_pcctcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(store:mapStateToProps:mapDispatchToActions:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC5store15mapStateToProps0f8DispatchH7ActionsACyxq_q0_G0aC05StoreCyxG_q_xcq0_yAH6Action_pcctcfc">init(store:<wbr>mapStateToProps:<wbr>mapDispatchToActions:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Constructs a new <code>Connection</code> object. For examples see the class documentation
+above, or the code examples in
+<a href="https://github.com/svdo/ReRxSwift/blob/master/Example/SimpleTextField/SimpleTextFieldViewController.swift"><code>SimpleTextFieldViewController</code></a> and
+<a href="https://github.com/svdo/ReRxSwift/blob/master/Example/SteppingUp/SteppingUpViewController.swift"><code>SteppingUpViewController</code></a>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">store</span><span class="p">:</span> <span class="kt">Store</span><span class="o">&lt;</span><span class="kt">State</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="nv">mapStateToProps</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt">Props</span><span class="p">),</span>
+            <span class="nv">mapDispatchToActions</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kd">@escaping</span> <span class="kt">DispatchFunction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt">Actions</span><span class="p">)</span>
+    <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>store</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Your application&rsquo;s global store.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mapStateToProps</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A mapping function that takes the global application state,
+and maps it into a view controller specific structure <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code>.
+Whenever a new state comes in from your ReSwift store, the connection calls
+this function to map it to the <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> needed by your view
+controller.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mapDispatchToActions</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A mapping function that specifies which ReSwift action
+needs to be dispatched when your view controller calls its
+<code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE7actions11ActionsTypeQzvp">Connectable.actions</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L148-L159">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC7connectyyF"></a>
+                    <a name="//apple_ref/swift/Method/connect()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC7connectyyF">connect()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>&ldquo;Activates&rdquo; the connection in the sense that it subscribes to the store so that
+store updates are received and can be processed. Failing to call this method
+will mean that your view controller does not get new <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> when
+the global state changes. Call this method from your view controller&rsquo;s
+<code>viewWillAppear()</code> or <code>viewDidAppear()</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">connect</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L170-L172">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC10disconnectyyF"></a>
+                    <a name="//apple_ref/swift/Method/disconnect()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC10disconnectyyF">disconnect()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>&ldquo;Deactivates&rdquo; the connection: unsubscribes from the store so that state updates
+are no longer processed for your view controller. Call this method from your view
+controller&rsquo;s <code>viewWillDisappear()</code> or <code>viewDidDisappear()</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">disconnect</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L177-L179">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC8newState5stateyx_tF"></a>
+                    <a name="//apple_ref/swift/Method/newState(state:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC8newState5stateyx_tF">newState(state:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ReSwift&rsquo;s callback method. Don&rsquo;t call this yourself.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">newState</span><span class="p">(</span><span class="nv">state</span><span class="p">:</span> <span class="kt">State</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L182-L184">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Helper%20functions"></a>
+                <a name="//apple_ref/swift/Section/Helper functions" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Helper%20functions"></a>
+                  <h3 class="section-name"><p>Helper functions</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC10propsEntry2at7isEqual0bC010ObservableCyqd__Gs7KeyPathCyq_qd__G_Sbqd___qd__tctlF"></a>
+                    <a name="//apple_ref/swift/Method/propsEntry(at:isEqual:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC10propsEntry2at7isEqual0bC010ObservableCyqd__Gs7KeyPathCyq_qd__G_Sbqd___qd__tctlF">propsEntry(at:<wbr>isEqual:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">propsEntry</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">at</span> <span class="nv">keyPath</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt">Props</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span>
+                           <span class="nv">isEqual</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">T</span><span class="p">,</span><span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span>
+    <span class="o">-&gt;</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L188-L195">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Binding%20Observers%20of%20Optionals"></a>
+                <a name="//apple_ref/swift/Section/Binding Observers of Optionals" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Binding%20Observers%20of%20Optionals"></a>
+                  <h3 class="section-name"><p>Binding Observers of Optionals</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC4bind_2toys7KeyPathCyq_qd__G_qd_0_tSQRd__0bC012ObserverTypeRd_0_qd__Sg7ElementRtd_0_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/bind(_:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC4bind_2toys7KeyPathCyq_qd__G_qd_0_tSQRd__0bC012ObserverTypeRd_0_qd__Sg7ElementRtd_0_r0_lF">bind(_:<wbr>to:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Bind a RxSwift observer to one of your <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> entries.
+Convenience method for <code>bind(keyPath, to: observer, mapping: nil)</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">bind</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">O</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">keyPath</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt">Props</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span>
+                                  <span class="n">to</span> <span class="nv">observer</span><span class="p">:</span> <span class="kt">O</span><span class="p">)</span>
+    <span class="k">where</span> <span class="kt">O</span><span class="p">:</span> <span class="kt">ObserverType</span><span class="p">,</span> <span class="kt">O</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Swift 4 <code>KeyPath</code> that points to the entry in your view
+controllers <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> that you want to bind.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>observer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The RxSwift observer that you want to bind to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L206-L211">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC4bind_2to7mappingys7KeyPathCyq_qd__G_qd_0_qd_1_qd__cSgtSQRd__0bC012ObserverTypeRd_0_qd_1_Sg7ElementRtd_0_r1_lF"></a>
+                    <a name="//apple_ref/swift/Method/bind(_:to:mapping:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC4bind_2to7mappingys7KeyPathCyq_qd__G_qd_0_qd_1_qd__cSgtSQRd__0bC012ObserverTypeRd_0_qd_1_Sg7ElementRtd_0_r1_lF">bind(_:<wbr>to:<wbr>mapping:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Bind a RxSwift observer to one of your <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> entries.</p>
+
+<p>All <code>bind()</code> functions are variants of the following basic implementation:</p>
+<pre class="highlight swift"><code>    <span class="k">self</span><span class="o">.</span><span class="n">props</span>
+        <span class="o">.</span><span class="nf">asObservable</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">distinctUntilChanged</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">[</span><span class="nv">keyPath</span><span class="p">:</span> <span class="n">keyPath</span><span class="p">]</span> <span class="o">==</span> <span class="nv">$1</span><span class="p">[</span><span class="nv">keyPath</span><span class="p">:</span> <span class="n">keyPath</span><span class="p">]</span> <span class="p">}</span>
+        <span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">[</span><span class="nv">keyPath</span><span class="p">:</span> <span class="n">keyPath</span><span class="p">]</span> <span class="p">}</span>
+        <span class="o">.</span><span class="nf">map</span><span class="p">(</span><span class="n">mapping</span><span class="p">)</span>                                            <span class="c1">// if not nil</span>
+        <span class="o">.</span><span class="nf">bind</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="n">binder</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">disposed</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="n">disposeBag</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">bind</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">O</span><span class="p">,</span> <span class="kt">M</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">keyPath</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt">Props</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span>
+                                     <span class="n">to</span> <span class="nv">observer</span><span class="p">:</span> <span class="kt">O</span><span class="p">,</span>
+                                     <span class="nv">mapping</span><span class="p">:</span> <span class="p">((</span><span class="kt">T</span><span class="p">)</span><span class="o">-&gt;</span><span class="kt">M</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="k">where</span> <span class="kt">O</span><span class="p">:</span> <span class="kt">ObserverType</span><span class="p">,</span> <span class="kt">O</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">M</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Swift 4 <code>KeyPath</code> that points to the entry in your view
+controllers <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> that you want to bind.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>observer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The RxSwift observer that you want to bind to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mapping</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An optional function that takes the entry in your
+<code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> and converts it to the thing needed by the
+observable. This is useful if your <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> entry is a different
+type that needs to be converted before it can be put into the observer, for
+example converting a <code>Float</code> into a <code>String</code> so that it can be put in a
+text field&rsquo;s <code>text</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L237-L254">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Subscribing%20and%20Binding%20Observers%20of%20Non-Optionals%20to%20Non-Optional%20Prop"></a>
+                <a name="//apple_ref/swift/Section/Subscribing and Binding Observers of Non-Optionals to Non-Optional Prop" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Subscribing%20and%20Binding%20Observers%20of%20Non-Optionals%20to%20Non-Optional%20Prop"></a>
+                  <h3 class="section-name"><p>Subscribing and Binding Observers of Non-Optionals to Non-Optional Prop</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC9subscribe_6onNextys7KeyPathCyq_qd__G_yqd__ctSQRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/subscribe(_:onNext:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC9subscribe_6onNextys7KeyPathCyq_qd__G_yqd__ctSQRd__lF">subscribe(_:<wbr>onNext:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Subscribe to one of your <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> entries, having a closure
+called whenever it changes. Variant for non-optional entries.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">subscribe</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Equatable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">keyPath</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt">Props</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span>
+                                    <span class="nv">onNext</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">-&gt;</span><span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Swift 4 <code>KeyPath</code> that points to the entry in your view
+controllers <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> that you want to subscribe to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>onNext</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The closure that is called whenever the entry at the given
+key path changes. The new value is passed into the closure as a parameter.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L266-L272">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC4bind_2toys7KeyPathCyq_qd__G_qd_0_tSQRd__7ElementQyd_0_Rsd__0bC012ObserverTypeRd_0_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/bind(_:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC4bind_2toys7KeyPathCyq_qd__G_qd_0_tSQRd__7ElementQyd_0_Rsd__0bC012ObserverTypeRd_0_r0_lF">bind(_:<wbr>to:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Bind a RxSwift observer to one of your <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> entries.
+Convenience method for <code>bind(keyPath, to: observer, mapping: nil)</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">bind</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">O</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">keyPath</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt">Props</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span>
+                                  <span class="n">to</span> <span class="nv">observer</span><span class="p">:</span> <span class="kt">O</span><span class="p">)</span>
+    <span class="k">where</span> <span class="kt">O</span><span class="p">:</span> <span class="kt">ObserverType</span><span class="p">,</span> <span class="kt">O</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">T</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Swift 4 <code>KeyPath</code> that points to the entry in your view
+controllers <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> that you want to bind.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>observer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The RxSwift observer that you want to bind to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L281-L286">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC4bind_2to7mappingys7KeyPathCyq_qd__G_qd_0_qd_1_qd__cSgtSQRd__0bC012ObserverTypeRd_0_7ElementQyd_0_Rsd_1_r1_lF"></a>
+                    <a name="//apple_ref/swift/Method/bind(_:to:mapping:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC4bind_2to7mappingys7KeyPathCyq_qd__G_qd_0_qd_1_qd__cSgtSQRd__0bC012ObserverTypeRd_0_7ElementQyd_0_Rsd_1_r1_lF">bind(_:<wbr>to:<wbr>mapping:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Bind a RxSwift observer to one of your <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> entries.</p>
+
+<p>All <code>bind()</code> functions are variants of the following basic implementation:</p>
+<pre class="highlight swift"><code>    <span class="k">self</span><span class="o">.</span><span class="n">props</span>
+        <span class="o">.</span><span class="nf">asObservable</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">distinctUntilChanged</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">[</span><span class="nv">keyPath</span><span class="p">:</span> <span class="n">keyPath</span><span class="p">]</span> <span class="o">==</span> <span class="nv">$1</span><span class="p">[</span><span class="nv">keyPath</span><span class="p">:</span> <span class="n">keyPath</span><span class="p">]</span> <span class="p">}</span>
+        <span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">[</span><span class="nv">keyPath</span><span class="p">:</span> <span class="n">keyPath</span><span class="p">]</span> <span class="p">}</span>
+        <span class="o">.</span><span class="nf">map</span><span class="p">(</span><span class="n">mapping</span><span class="p">)</span>                                            <span class="c1">// if not nil</span>
+        <span class="o">.</span><span class="nf">bind</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="n">binder</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">disposed</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="n">disposeBag</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">bind</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">O</span><span class="p">,</span> <span class="kt">M</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">keyPath</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt">Props</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span>
+                                     <span class="n">to</span> <span class="nv">observer</span><span class="p">:</span> <span class="kt">O</span><span class="p">,</span>
+                                     <span class="nv">mapping</span><span class="p">:</span> <span class="p">((</span><span class="kt">T</span><span class="p">)</span><span class="o">-&gt;</span><span class="kt">M</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="k">where</span> <span class="kt">O</span><span class="p">:</span> <span class="kt">ObserverType</span><span class="p">,</span> <span class="kt">O</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">M</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Swift 4 <code>KeyPath</code> that points to the entry in your view
+controllers <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> that you want to bind.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>observer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The RxSwift observer that you want to bind to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mapping</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An optional function that takes the entry in your
+<code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> and converts it to the thing needed by the
+observable. This is useful if your <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> entry is a different
+type that needs to be converted before it can be put into the observer, for
+example converting a <code>Float</code> into a <code>String</code> so that it can be put in a
+text field&rsquo;s <code>text</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L312-L329">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Subscribing%20and%20binding%20sequences%20using%20binder%20function"></a>
+                <a name="//apple_ref/swift/Section/Subscribing and binding sequences using binder function" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Subscribing%20and%20binding%20sequences%20using%20binder%20function"></a>
+                  <h3 class="section-name"><p>Subscribing and binding sequences using binder function</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC9subscribe_6onNextys7KeyPathCyq_Sayqd__GG_yAHctSQRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/subscribe(_:onNext:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC9subscribe_6onNextys7KeyPathCyq_Sayqd__GG_yAHctSQRd__lF">subscribe(_:<wbr>onNext:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Subscribe to one of your <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> entries, having a closure
+called whenever it changes. Variant for non-optional entries.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">subscribe</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Equatable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">keyPath</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt">Props</span><span class="p">,</span> <span class="p">[</span><span class="kt">T</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
+                                    <span class="nv">onNext</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">T</span><span class="p">])</span><span class="o">-&gt;</span><span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Swift 4 <code>KeyPath</code> that points to the entry in your view
+controllers <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> that you want to subscribe to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>onNext</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The closure that is called whenever the entry at the given
+key path changes. The new value is passed into the closure as a parameter.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L342-L348">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReRxSwift10ConnectionC4bind_2to7mappingys7KeyPathCyq_qd__G_0bC010Disposable_pAJ10ObservableCyqd_0_GXEqd_0_qd__cSgtSTRd__SQ7ElementRpd__r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/bind(_:to:mapping:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReRxSwift10ConnectionC4bind_2to7mappingys7KeyPathCyq_qd__G_0bC010Disposable_pAJ10ObservableCyqd_0_GXEqd_0_qd__cSgtSTRd__SQ7ElementRpd__r0_lF">bind(_:<wbr>to:<wbr>mapping:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Bind a RxSwift observer to one of your <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> entries.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">bind</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">:</span> <span class="kt">Sequence</span><span class="p">,</span><span class="kt">M</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">keyPath</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt">Props</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span><span class="p">,</span>
+                                <span class="n">to</span> <span class="nv">binder</span><span class="p">:</span> <span class="p">(</span><span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">M</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Disposable</span><span class="p">,</span>
+                                <span class="nv">mapping</span><span class="p">:</span> <span class="p">((</span><span class="kt">S</span><span class="p">)</span><span class="o">-&gt;</span><span class="kt">M</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="k">where</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Element</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Swift 4 <code>KeyPath</code> that points to the entry in your view
+controllers <code><a href="../Protocols/Connectable.html#/s:9ReRxSwift11ConnectablePAAE5props9PropsTypeQzvp">Connectable.props</a></code> that you want to bind.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>binder</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The RxSwift binder function such as used by <code>UICollectionView.rx.items</code>
+and <code>UITableView.rx.items</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/svdo/ReRxSwift/tree/master/ReRxSwift/Connection.swift#L357-L374">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://github.com/svdo/ReRxSwift" target="_blank" rel="external">Stefan van den Oord</a>. All rights reserved. (Last updated: 2021-04-21)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

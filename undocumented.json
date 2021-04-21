@@ -1,0 +1,12 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/travis/build/svdo/ReRxSwift/ReRxSwift/Connection.swift",
+      "line": 188,
+      "symbol": "Connection.propsEntry(at:isEqual:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/travis/build/svdo/ReRxSwift"
+}

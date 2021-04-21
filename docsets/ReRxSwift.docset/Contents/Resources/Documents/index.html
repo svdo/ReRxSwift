@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ReRxSwift  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a title="ReRxSwift  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">ReRxSwift 2.2.2 Docs</a> (96% documented)</p>
+        <p class="header-right"><a href="https://github.com/svdo/ReRxSwift"><img src="img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">ReRxSwift Reference</a>
+        <img id="carat" src="img/carat.png" />
+        ReRxSwift  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/Connection.html">Connection</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/Connectable.html">Connectable</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='rerxswift' class='heading'>ReRxSwift</h1>
+
+<p><img src="https://img.shields.io/badge/Swift-v4.1-yellow.svg" alt="Swift Version 4.1">
+<a href="https://travis-ci.org/svdo/ReRxSwift"><img src="https://travis-ci.org/svdo/ReRxSwift.svg?branch=master" alt="Build Status"></a>
+<a href="https://svdo.github.io/ReRxSwift"><img src="https://svdo.github.io/ReRxSwift/badge.svg" alt="API Documentation"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a>
+<a href="https://cocoapods.org/pods/ReRxSwift"><img src="https://img.shields.io/cocoapods/v/ReRxSwift.svg" alt="CocoaPods Version Badge"></a>
+<img src="https://img.shields.io/cocoapods/p/ReRxSwift.svg" alt="Supported Platforms Badge">
+<a href="https://github.com/svdo/ReRxSwift/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license"></a></p>
+
+<p><em><a href="https://github.com/ReactiveX/RxSwift">RxSwift</a> bindings for <a href="https://github.com/ReSwift/ReSwift">ReSwift</a></em></p>
+<h2 id='table-of-contents' class='heading'>Table of Contents</h2>
+
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#api">API</a>
+
+<ul>
+<li><a href="#connectable">Connectable</a></li>
+<li><a href="#connection">Connection</a></li>
+</ul></li>
+<li><a href="#example-app">Example App</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ul>
+<h2 id='introduction' class='heading'>Introduction</h2>
+
+<p>In case you don&rsquo;t know them yet, these are two awesome frameworks:</p>
+
+<ul>
+<li><a href="https://github.com/ReSwift/ReSwift">ReSwift</a> is a small framework that implement the
+<a href="http://redux.js.org/docs/basics/DataFlow.html">unidirectional data flow architecture</a> in Swift. It is inspired
+by the JavaScript implementation of that architecture: <a href="https://github.com/reactjs/redux">Redux</a>.</li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift</a> is a Swift implementation of <a href="http://reactivex.io">ReactiveX</a>. Amongst
+other things, it allows you to easily bind properties to user interface
+elements.</li>
+</ul>
+
+<p>Using those two frameworks you can make very nice app architectures.
+RxSwift allows you to bind application state to your UI, and ReSwift
+emits state updates in response to actions. We take it one step further
+though.</p>
+
+<p>Similar to <a href="http://redux.js.org/docs/basics/UsageWithReact.html">react-redux</a>, ReRxSwift allows you to create view
+controllers that have <code>props</code> and <code>actions</code>. View controllers read all
+data they need from their <code>props</code> (instead of directly from the state),
+and they change data by invoking callbacks defined by <code>actions</code> (instead
+of directly dispatching ReSwift actions). This has some nice advantages:</p>
+
+<ul>
+<li>Better separation of concerns. It is easier to understand what your
+view controller does and what data it uses. In other words, it
+facilitates local reasoning.</li>
+<li>Unit-testing. Because of the separation of concerns, you can easily
+unit-test your view controllers, all the way up to the Interface
+Builder connections.</li>
+<li>Better reusability. Reusing your view controllers is as simple as
+specifying different mappings from state to <code>props</code> and from ReSwift
+actions to <code>actions</code>. (See also section &lsquo;Open Issues&rsquo; below.)</li>
+<li>Rapid prototyping. You can easily use dummy <code>props</code> and <code>actions</code> so
+that you get a working UI layer prototype. Without writing any of your
+application&rsquo;s business logic, you can implement your presentation
+layer in such a way that it is very simple to replace the dummies
+with real state and actions.</li>
+</ul>
+<h2 id='installation' class='heading'>Installation</h2>
+
+<p>The easiest way to use this library is through <a href="http://cocoapods.org">Cocoapods</a> or <a href="https://github.com/Carthage/Carthage">Carthage</a>. For CocoaPods, add this to your <code>Podfile</code>:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'ReRxSwift'</span><span class="p">,</span> <span class="s1">'~&gt; 2.0'</span>
+</code></pre>
+
+<p>For Carthage, add this to your <code>Cartfile</code>:</p>
+<pre class="highlight plaintext"><code>github "svdo/ReRxSwift" ~&gt; 2.0
+</code></pre>
+<h2 id='usage' class='heading'>Usage</h2>
+
+<p>This section assumes that there is a global variable <code>store</code> that contains
+your app&rsquo;s store, and that it&rsquo;s type is <code>Store&lt;AppState&gt;</code>. You have a view
+controller that manages a text field; the text field displays a value from
+your state, and on <code>editingDidEnd</code> you trigger an action to store the text
+field&rsquo;s content back into your state. To use ReRxSwift for your view
+controller <code>MyViewController</code>, you use the following steps.</p>
+
+<ol>
+<li><p>Create an extension to your view controller to make it <code><a href="Protocols/Connectable.html">Connectable</a></code>,
+defining the <code>Props</code> and <code>Actions</code> that your view controller needs:</p>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">Connectable</span> <span class="p">{</span>
+    <span class="kd">struct</span> <span class="kt">Props</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="p">}</span>
+    <span class="kd">struct</span> <span class="kt">Actions</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">updatedText</span><span class="p">:</span> <span class="p">(</span><span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></li>
+<li><p>Define how your state is mapped to the above <code>Props</code> type:</p>
+<pre class="highlight swift"><code><span class="kd">private</span> <span class="k">let</span> <span class="nv">mapStateToProps</span> <span class="o">=</span> <span class="p">{</span> <span class="p">(</span><span class="nv">appState</span><span class="p">:</span> <span class="kt">AppState</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="kt">MyViewController</span><span class="o">.</span><span class="kt">Props</span><span class="p">(</span>
+        <span class="nv">text</span><span class="p">:</span> <span class="n">appState</span><span class="o">.</span><span class="n">content</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></li>
+<li><p>Define the actions that are dispatched:</p>
+<pre class="highlight swift"><code><span class="kd">private</span> <span class="k">let</span> <span class="nv">mapDispatchToActions</span> <span class="o">=</span> <span class="p">{</span> <span class="p">(</span><span class="nv">dispatch</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">DispatchFunction</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="kt">MyViewController</span><span class="o">.</span><span class="kt">Actions</span><span class="p">(</span>
+        <span class="nv">updatedText</span><span class="p">:</span> <span class="p">{</span> <span class="n">newText</span> <span class="k">in</span> <span class="nf">dispatch</span><span class="p">(</span><span class="kt">SetContent</span><span class="p">(</span><span class="nv">newContent</span><span class="p">:</span> <span class="n">newText</span><span class="p">))</span> <span class="p">}</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></li>
+<li><p>Define the connection and hook it up:</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+    <span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">textField</span><span class="p">:</span> <span class="kt">UITextField</span><span class="o">!</span>
+
+    <span class="k">let</span> <span class="nv">connection</span> <span class="o">=</span> <span class="kt">Connection</span><span class="p">(</span>
+        <span class="nv">store</span><span class="p">:</span> <span class="n">store</span><span class="p">,</span>
+        <span class="nv">mapStateToProps</span><span class="p">:</span> <span class="n">mapStateToProps</span><span class="p">,</span>
+        <span class="nv">mapDispatchToActions</span><span class="p">:</span> <span class="n">mapDispatchToActions</span>
+    <span class="p">)</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewWillAppear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewWillAppear</span><span class="p">(</span><span class="n">animated</span><span class="p">)</span>
+        <span class="n">connection</span><span class="o">.</span><span class="nf">connect</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidDisappear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidDisappear</span><span class="p">(</span><span class="n">animated</span><span class="p">)</span>
+        <span class="n">connection</span><span class="o">.</span><span class="nf">disconnect</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></li>
+<li><p>Bind the text field&rsquo;s text, using a Swift 4 key path to refer to the
+<code>text</code> property of <code>Props</code>:</p>
+<pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+    <span class="n">connection</span><span class="o">.</span><span class="nf">bind</span><span class="p">(</span><span class="err">\</span><span class="kt">Props</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="n">textField</span><span class="o">.</span><span class="n">rx</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></li>
+<li><p>Call the action:</p>
+<pre class="highlight swift"><code><span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">editingChanged</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UITextField</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">actions</span><span class="o">.</span><span class="nf">updatedText</span><span class="p">(</span><span class="n">sender</span><span class="o">.</span><span class="n">text</span> <span class="p">??</span> <span class="s">""</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></li>
+</ol>
+
+<p>This is pretty much the <a href="https://github.com/svdo/ReRxSwift/blob/master/Example/SimpleTextField/SimpleTextFieldViewController.swift"><code>SimpleTextFieldViewController</code></a> inside the sample
+app. That view controller comes with complete unit tests:
+<a href="https://github.com/svdo/ReRxSwift/blob/master/ExampleTests/SimpleTextField/SimpleTextFieldViewControllerSpec.swift"><code>SimpleTextFieldViewControllerSpec</code></a>.</p>
+<h2 id='api' class='heading'>API</h2>
+
+<p>Below is a high-level description of the most important components of the API.
+There is also <a href="https://svdo.github.io/ReRxSwift">full API documentation of ReRxSwift</a> available.</p>
+<h3 id='connectable' class='heading'>Connectable</h3>
+
+<p>This is the protocol that your view controller has to conform to. It requires
+you to add a <code>connection</code> property. It provides the <code>props</code> and <code>actions</code> that
+you can use in your view controller. Normally, you declare the <code>connection</code> as
+follows:</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">Connectable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">connection</span> <span class="o">=</span> <span class="kt">Connection</span><span class="p">(</span>
+        <span class="nv">store</span><span class="p">:</span> <span class="n">store</span><span class="p">,</span>
+        <span class="nv">mapStateToProps</span><span class="p">:</span> <span class="n">mapStateToProps</span><span class="p">,</span>
+        <span class="nv">mapDispatchToActions</span><span class="p">:</span> <span class="n">mapDispatchToActions</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Refer to the <code><a href="Classes/Connection.html">Connection</a></code> constructor documentation for more information.</p>
+<h4 id='props' class='heading'>props</h4>
+
+<p>This contains the <code>Props</code> object that you create using <code>mapStateToProps</code>. In
+other words: it contains all data that your view controller uses, automatically
+extracted from your application state. When using the <code>bind</code> methods in
+<code><a href="Classes/Connection.html">Connection</a></code>, you probably don&rsquo;t need to use this <code>props</code> property directly.</p>
+<h4 id='actions' class='heading'>actions</h4>
+
+<p>This contains the <code>Actions</code> object that you create using <code>mapDispatchToActions</code>.
+In other words: it specifies which ReSwift action has to be dispatched when
+calling the callbacks defined by your <code>actions</code>.</p>
+<h3 id='connection' class='heading'>Connection</h3>
+
+<p>The <code><a href="Classes/Connection.html">Connection</a></code> takes care of the mapping from you application state to your
+view controller <code>props</code>, and of dispatching the mapped action when calling
+functions in your view controller <code>actions</code>.</p>
+<h4 id='constructor-store-mapstatetoprops-mapdispatchtoactions' class='heading'>Constructor(store, mapStateToProps, mapDispatchToActions)</h4>
+
+<p>To create your <code><a href="Classes/Connection.html">Connection</a></code> instance, you need to construct it with three
+parameters:</p>
+
+<ul>
+<li><strong>store</strong>: Your application&rsquo;s ReSwift store.</li>
+<li><strong>mapStateToProps</strong>: A function that takes values from your application&rsquo;s
+state and puts them in the view controller&rsquo;s <code>props</code> object. This decouples
+your application state from the view controller data.</li>
+<li><strong>mapDispatchToActions</strong>: A function that specifies which actions your view
+controller can call, and for each of those which ReSwift action needs to be
+dispatched.</li>
+</ul>
+<h4 id='connect' class='heading'>connect()</h4>
+
+<p>Calling this method causes the connection to subscribe to the ReSwift store and
+receive application state updates. Call this from your view controller&rsquo;s
+<code>viewWillAppear</code> or <code>viewDidAppear</code> method.</p>
+<h4 id='disconnect' class='heading'>disconnect()</h4>
+
+<p>Calling this method causes the connection to unsubscribe from the ReSwift store.
+Call this from your view controller&rsquo;s <code>viewWillDisappear</code> or <code>viewDidDisappear</code>.</p>
+<h4 id='subscribe-keypath-onnext' class='heading'>subscribe(keyPath, onNext)</h4>
+
+<p>Subscribe to an entry in your view controller&rsquo;s <code>props</code>, meaning that the given
+<code>onNext</code> handler will be called whenever that entry changes.</p>
+<h4 id='bind-keypath-to-mapping' class='heading'>bind(keyPath, to, mapping)</h4>
+
+<p>This function binds an entry in your view controller&rsquo;s <code>props</code> to a
+RxSwift-enabled user interface element, so that every time your <code>props</code> change,
+the user interface element is updated accordingly, automatically.</p>
+
+<p>The function <code>bind</code> takes the following parameters:</p>
+
+<ul>
+<li><strong>keyPath</strong>: The (Swift 4) key path that points to the element in your <code>props</code>
+that you want to bind to the user interface element.</li>
+<li><strong>to</strong>: The RxSwift reactive property wrapper, e.g. <code>textField.rx.text</code> or
+<code>progressView.rx.progress</code>.</li>
+<li><strong>mapping</strong>: <em>Most of the <code>bind</code> variants</em> (but not all of them) allow you to
+provide a mapping function. This mapping function is applied to the <code>props</code>
+element at the specified <code>keyPath</code>. You can use this for example for type
+conversions: your <code>props</code> contains a value as a <code>Float</code>, but the UI element
+requires it to be a <code>String</code>. Specifying the mapping <code>{ String($0) }</code> will
+take care of that. <a href="https://github.com/svdo/ReRxSwift/blob/master/Example/SteppingUp/SteppingUpViewController.swift"><code>SteppingUpViewController.swift</code></a> contains an example
+of a mapping function that maps a <code>Float</code> value to the selected index of
+a segmented control.</li>
+</ul>
+
+<p>Just for your understanding: there are several variants of the <code>bind</code> function.
+They are all variants of this simplified code:</p>
+<pre class="highlight swift"><code><span class="k">self</span><span class="o">.</span><span class="n">props</span>
+    <span class="o">.</span><span class="nf">asObservable</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">distinctUntilChanged</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">[</span><span class="nv">keyPath</span><span class="p">:</span> <span class="n">keyPath</span><span class="p">]</span> <span class="o">==</span> <span class="nv">$1</span><span class="p">[</span><span class="nv">keyPath</span><span class="p">:</span> <span class="n">keyPath</span><span class="p">]</span> <span class="p">}</span>
+    <span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">[</span><span class="nv">keyPath</span><span class="p">:</span> <span class="n">keyPath</span><span class="p">]</span> <span class="p">}</span>
+    <span class="o">.</span><span class="nf">bind</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="n">observer</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">disposed</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="n">disposeBag</span><span class="p">)</span>
+</code></pre>
+<h2 id='example-app' class='heading'>Example App</h2>
+
+<p>The folder <a href="https://github.com/svdo/ReRxSwift/tree/master/Example"><code>Example</code></a> contains the following examples:</p>
+
+<ul>
+<li><strong>SimpleTextField</strong>: Most basic use case of ReRxSwift, containing a text field that has its value bound, and an action.</li>
+<li><strong>SteppingUp</strong>: Use case with multiple bound values and actions, also showing how to transform values when binding them.</li>
+<li><strong>TableAndCollection</strong>: Shows how to use ReRxSwift in combination with RxSwift, RxCocoa and RxDataSources to have very simple table/collection views that automatically animate their updates.</li>
+</ul>
+<h2 id='faq' class='heading'>FAQ</h2>
+<h3 id='my-code-props-code-are-not-updated-when-the-application-state-changes' class='heading'>My <code>props</code> are not updated when the application state changes?</h3>
+
+<p>This happens when you forget to call <code>connection.connect()</code> in you view
+controller&rsquo;s <code>viewWillAppear</code> or <code>viewDidAppear</code> method. While you&rsquo;re at it,
+you may want to verify that you also call <code>connection.disconnect()</code> in
+<code>viewWillDisappear</code> or <code>viewDidDisappear</code>.</p>
+<h3 id='i-get-compiler-errors-when-calling-code-connection-bind-code' class='heading'>I get compiler errors when calling <code>connection.bind()</code>?</h3>
+
+<p>When calling <code>bind</code>, you pass a key path to an element in your <code>props</code> object.
+Because of the way ReRxSwift makes sure to only trigger when this element
+actually changed, it compares its value with the previous one. This means
+that the elements in your <code>props</code> object need to be <code>Equatable</code>. Simple types
+of course are already <code>Equatable</code>, but especially when binding table view
+items or collection view items, you need to make sure that the types are
+<code>Equatable</code>.</p>
+
+<p>Another common source of errors is when the type of the element in your <code>props</code>
+does not exactly match the expected type by the user interface element. For
+example, you bind to a stepper&rsquo;s <code>stepValue</code>, which is a <code>Double</code>, but your
+<code>props</code> contains a <code>Float</code>. In these cases you can pass a mapping function as
+the third parameter to <code>bind(_:to:mapping:)</code> to cast the <code>props</code> element to
+the expected type. See <a href="https://github.com/svdo/ReRxSwift/blob/master/Example/SteppingUp/SteppingUpViewController.swift"><code>SteppingUpViewController.swift</code></a> for examples.</p>
+<h3 id='i-double-checked-everything-and-i-still-get-errors' class='heading'>I double-checked everything and I still get errors!</h3>
+
+<p>Please open a <a href="https://github.com/svdo/ReRxSwift/issues">new issue</a> on GitHub, as you may have run into a bug. (But please make sure everything inside your <code>Props</code> type is <code>Equatable</code>!)</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://github.com/svdo/ReRxSwift" target="_blank" rel="external">Stefan van den Oord</a>. All rights reserved. (Last updated: 2021-04-21)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

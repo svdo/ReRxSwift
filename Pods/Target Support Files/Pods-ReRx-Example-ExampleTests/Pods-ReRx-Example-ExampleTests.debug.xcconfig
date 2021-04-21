@@ -4,6 +4,7 @@ FRAMEWORK_SEARCH_PATHS = $(inherited) "$(PLATFORM_DIR)/Developer/Library/Framewo
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Differentiator/Differentiator.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Nimble/Nimble.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Quick/Quick.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/ReSwift/ReSwift.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa/RxCocoa.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/RxDataSources/RxDataSources.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/RxRelay/RxRelay.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/RxSwift/RxSwift.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_CONFIGURATION_BUILD_DIR}/Quick/Quick.framework/Headers" -iframework "$(PLATFORM_DIR)/Developer/Library/Frameworks" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/Quick"
 OTHER_LDFLAGS = $(inherited) -framework "Differentiator" -framework "Nimble" -framework "Quick" -framework "ReSwift" -framework "RxCocoa" -framework "RxDataSources" -framework "RxRelay" -framework "RxSwift" -framework "XCTest" -weak_framework "XCTest"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}

@@ -113,6 +113,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F88D86B31F4CC934006F6038"
+            BuildableName = "ExampleTests.xctest"
+            BlueprintName = "ExampleTests"
+            ReferencedContainer = "container:ReRxSwift.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -3,11 +3,11 @@
 //  ReSwift
 //
 //  Created by Benjamin Encz on 11/11/15.
-//  Copyright © 2015 DigiTales. All rights reserved.
+//  Copyright © 2015 ReSwift Community. All rights reserved.
 //
 
 /**
- This class is the default implementation of the `Store` protocol. You will use this store in most
+ This class is the default implementation of the `StoreType` protocol. You will use this store in most
  of your applications. You shouldn't need to implement your own store.
  You initialize the store with a reducer and an initial application state. If your app has multiple
  reducers you can combine them by initializng a `MainReducer` with all of your reducers as an
@@ -29,17 +29,23 @@ open class Store<State: StateType>: StoreType {
         }
     }
 
-    public var dispatchFunction: DispatchFunction!
+    public lazy var dispatchFunction: DispatchFunction! = createDispatchFunction()
 
     private var reducer: Reducer<State>
 
     var subscriptions: Set<SubscriptionType> = []
 
-    private var isDispatching = false
+    private var isDispatching = Synchronized<Bool>(false)
 
     /// Indicates if new subscriptions attempt to apply `skipRepeats` 
     /// by default.
     fileprivate let subscriptionsAutomaticallySkipRepeats: Bool
+
+    public var middleware: [Middleware<State>] {
+        didSet {
+            dispatchFunction = createDispatchFunction()
+        }
+    }
 
     /// Initializes the store with a reducer, an initial state and a list of middleware.
     ///
@@ -61,9 +67,18 @@ open class Store<State: StateType>: StoreType {
     ) {
         self.subscriptionsAutomaticallySkipRepeats = automaticallySkipsRepeats
         self.reducer = reducer
+        self.middleware = middleware
 
+        if let state = state {
+            self.state = state
+        } else {
+            dispatch(ReSwiftInit())
+        }
+    }
+
+    private func createDispatchFunction() -> DispatchFunction! {
         // Wrap the dispatch function with all middlewares
-        self.dispatchFunction = middleware
+        return middleware
             .reversed()
             .reduce(
                 { [unowned self] action in
@@ -75,12 +90,6 @@ open class Store<State: StateType>: StoreType {
                     let getState = { [weak self] in self?.state }
                     return middleware(dispatch, getState)(dispatchFunction)
             })
-
-        if let state = state {
-            self.state = state
-        } else {
-            dispatch(ReSwiftInit())
-        }
     }
 
     fileprivate func _subscribe<SelectedState, S: StoreSubscriber>(
@@ -103,7 +112,7 @@ open class Store<State: StateType>: StoreType {
 
     open func subscribe<S: StoreSubscriber>(_ subscriber: S)
         where S.StoreSubscriberStateType == State {
-            _ = subscribe(subscriber, transform: nil)
+            subscribe(subscriber, transform: nil)
     }
 
     open func subscribe<SelectedState, S: StoreSubscriber>(
@@ -147,7 +156,7 @@ open class Store<State: StateType>: StoreType {
 
     // swiftlint:disable:next identifier_name
     open func _defaultDispatch(action: Action) {
-        guard !isDispatching else {
+        guard !isDispatching.value else {
             raiseFatalError(
                 "ReSwift:ConcurrentMutationError- Action has been dispatched while" +
                 " a previous action is action is being processed. A reducer" +
@@ -156,9 +165,9 @@ open class Store<State: StateType>: StoreType {
             )
         }
 
-        isDispatching = true
+        isDispatching.value { $0 = true }
         let newState = reducer(action, state)
-        isDispatching = false
+        isDispatching.value { $0 = false }
 
         state = newState
     }
@@ -227,9 +236,9 @@ extension Store where State: Equatable {
     open func subscribe<S: StoreSubscriber>(_ subscriber: S)
         where S.StoreSubscriberStateType == State {
             guard subscriptionsAutomaticallySkipRepeats else {
-                _ = subscribe(subscriber, transform: nil)
+                subscribe(subscriber, transform: nil)
                 return
             }
-            _ = subscribe(subscriber, transform: { $0.skipRepeats() })
+            subscribe(subscriber, transform: { $0.skipRepeats() })
     }
 }

@@ -3,7 +3,7 @@
 //  ReSwift
 //
 //  Created by Virgilio Favero Neto on 4/02/2016.
-//  Copyright © 2016 Benjamin Encz. All rights reserved.
+//  Copyright © 2016 ReSwift Community. All rights reserved.
 //
 
 /// A box around subscriptions and subscribers.
@@ -112,6 +112,15 @@ public class Subscription<State> {
         ) -> Subscription<Substate>
     {
         return self._select(selector)
+    }
+
+    /// Provides a subscription that selects a substate of the state of the original subscription.
+    /// - parameter keyPath: A key path from a state to a substate
+    public func select<Substate>(
+        _ keyPath: KeyPath<State, Substate>
+        ) -> Subscription<Substate>
+    {
+        return self._select { $0[keyPath: keyPath] }
     }
 
     /// Provides a subscription that skips certain state updates of the original subscription.

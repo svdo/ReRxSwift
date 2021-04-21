@@ -16,23 +16,23 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/ReactiveX/RxSwift.git",
-            .upToNextMajor(from: "5.0.0")
+            .upToNextMajor(from: "6.0.0")
         ),
         .package(
             url: "https://github.com/ReSwift/ReSwift.git",
-            .upToNextMajor(from: "5.0.0")
+            .upToNextMajor(from: "6.0.0")
         ),
         .package(
             url: "https://github.com/Quick/Quick.git",
-            .upToNextMajor(from: "1.1.0")
+            .upToNextMajor(from: "3.0.0")
         ),
         .package(
             url: "https://github.com/Quick/Nimble.git",
-            .upToNextMajor(from: "7.0.0")
+            .upToNextMajor(from: "9.0.0")
         ),
         .package(
             url: "https://github.com/RxSwiftCommunity/RxDataSources",
-            .upToNextMajor(from: "4.0.0")
+            .upToNextMajor(from: "5.0.0")
         )
     ],
     targets: [

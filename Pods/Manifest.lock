@@ -1,26 +1,26 @@
 PODS:
-  - Differentiator (4.0.1)
-  - Nimble (7.3.4)
-  - Quick (1.3.4)
-  - ReSwift (5.0.0)
-  - RxCocoa (5.1.1):
-    - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxDataSources (4.0.1):
-    - Differentiator (~> 4.0)
-    - RxCocoa (~> 5.0)
-    - RxSwift (~> 5.0)
-  - RxRelay (5.1.1):
-    - RxSwift (~> 5)
-  - RxSwift (5.1.1)
+  - Differentiator (5.0.0)
+  - Nimble (9.0.0)
+  - Quick (3.1.2)
+  - ReSwift (6.0.0)
+  - RxCocoa (6.1.0):
+    - RxRelay (= 6.1.0)
+    - RxSwift (= 6.1.0)
+  - RxDataSources (5.0.0):
+    - Differentiator (~> 5.0)
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - RxRelay (6.1.0):
+    - RxSwift (= 6.1.0)
+  - RxSwift (6.1.0)
 
 DEPENDENCIES:
-  - Nimble (~> 7.0)
-  - Quick (~> 1.1)
-  - ReSwift
-  - RxCocoa (~> 5)
-  - RxDataSources (~> 4.0)
-  - RxSwift (~> 5)
+  - Nimble (~> 9.0)
+  - Quick (~> 3.0)
+  - ReSwift (~> 6)
+  - RxCocoa (~> 6)
+  - RxDataSources (~> 5.0)
+  - RxSwift (~> 6)
 
 SPEC REPOS:
   trunk:
@@ -34,15 +34,15 @@ SPEC REPOS:
     - RxSwift
 
 SPEC CHECKSUMS:
-  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
-  Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
-  Quick: f4f7f063c524394c73ed93ac70983c609805d481
-  ReSwift: 628f1a9b3ee52e3b3ca2a644435472fd77afafe1
-  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
-  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
-  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
-  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
+  Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
+  Quick: 60f0ea3b8e0cfc0df3259a5c06a238ad8b3c46e0
+  ReSwift: 14e6f9409fe6bdc635e588208296a01f43b959c9
+  RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
+  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
+  RxRelay: 483e1a19fad961b41f0b0c0bee506f46c1ae14fe
+  RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
 
-PODFILE CHECKSUM: 6623ad6c182931cc042c824b611f9e2bc32289bc
+PODFILE CHECKSUM: ba6507088b8e277c888684b4910d63890a7947cf
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1

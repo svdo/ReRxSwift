@@ -1,46 +1,8 @@
-import Foundation
-
 /// A Nimble matcher that succeeds when the actual value is equal to the expected value.
 /// Values can support equal by supporting the Equatable protocol.
 ///
 /// @see beCloseTo if you want to match imprecise types (eg - floats, doubles).
 public func equal<T: Equatable>(_ expectedValue: T?) -> Predicate<T> {
-    return Predicate.define("equal <\(stringify(expectedValue))>") { actualExpression, msg in
-        let actualValue = try actualExpression.evaluate()
-        switch (expectedValue, actualValue) {
-        case (nil, _?):
-            return PredicateResult(status: .fail, message: msg.appendedBeNilHint())
-        case (nil, nil), (_, nil):
-            return PredicateResult(status: .fail, message: msg)
-        case (let expected?, let actual?):
-            let matches = expected == actual
-            return PredicateResult(bool: matches, message: msg)
-        }
-    }
-}
-
-/// A Nimble matcher that succeeds when the actual value is equal to the expected value.
-/// Values can support equal by supporting the Equatable protocol.
-///
-/// @see beCloseTo if you want to match imprecise types (eg - floats, doubles).
-public func equal<T, C: Equatable>(_ expectedValue: [T: C]?) -> Predicate<[T: C]> {
-    return Predicate.define("equal <\(stringify(expectedValue))>") { actualExpression, msg in
-        let actualValue = try actualExpression.evaluate()
-        switch (expectedValue, actualValue) {
-        case (nil, _?):
-            return PredicateResult(status: .fail, message: msg.appendedBeNilHint())
-        case (nil, nil), (_, nil):
-            return PredicateResult(status: .fail, message: msg)
-        case (let expected?, let actual?):
-            let matches = expected == actual
-            return PredicateResult(bool: matches, message: msg)
-        }
-    }
-}
-
-/// A Nimble matcher that succeeds when the actual collection is equal to the expected collection.
-/// Items must implement the Equatable protocol.
-public func equal<T: Equatable>(_ expectedValue: [T]?) -> Predicate<[T]> {
     return Predicate.define("equal <\(stringify(expectedValue))>") { actualExpression, msg in
         let actualValue = try actualExpression.evaluate()
         switch (expectedValue, actualValue) {
@@ -65,32 +27,8 @@ public func equal<T: Equatable>(_ expectedValue: [T?]) -> Predicate<[T?]> {
             )
         }
 
-        let doesNotMatch = PredicateResult(
-            status: .doesNotMatch,
-            message: msg
-        )
-
-        if expectedValue.count != actualValue.count {
-            return doesNotMatch
-        }
-
-        for (index, item) in actualValue.enumerated() {
-            let otherItem = expectedValue[index]
-            if item == nil && otherItem == nil {
-                continue
-            } else if item == nil && otherItem != nil {
-                return doesNotMatch
-            } else if item != nil && otherItem == nil {
-                return doesNotMatch
-            } else if item! != otherItem! {
-                return doesNotMatch
-            }
-        }
-
-        return PredicateResult(
-            status: .matches,
-            message: msg
-        )
+        let matches = expectedValue == actualValue
+        return PredicateResult(bool: matches, message: msg)
     }
 }
 
@@ -131,7 +69,7 @@ private func equal<T>(_ expectedValue: Set<T>?, stringify: @escaping (Set<T>?) -
 
         errorMessage = .expectedCustomValueTo(
             "equal <\(stringify(expectedValue))>",
-            "<\(stringify(actualValue))>"
+            actual: "<\(stringify(actualValue))>"
         )
 
         if expectedValue == actualValue {
@@ -197,9 +135,11 @@ public func !=<T, C: Equatable>(lhs: Expectation<[T: C]>, rhs: [T: C]?) {
     lhs.toNot(equal(rhs))
 }
 
-#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-extension NMBObjCMatcher {
-    @objc public class func equalMatcher(_ expected: NSObject) -> NMBMatcher {
+#if canImport(Darwin)
+import class Foundation.NSObject
+
+extension NMBPredicate {
+    @objc public class func equalMatcher(_ expected: NSObject) -> NMBPredicate {
         return NMBPredicate { actualExpression in
             return try equal(expected).satisfies(actualExpression).toObjectiveC()
         }

@@ -1,6 +1,7 @@
 2.3.0
 =====
-Updates dependencies: RxSwift 6, ReSwift 6.
+- Updates dependencies: RxSwift 6, ReSwift 6.
+- Made some APIs public (#16).
 
 2.2.2
 =====

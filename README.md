@@ -1,3 +1,5 @@
+*This repo has been archived, because it is not maintained. If you still find this useful, please let me know.*
+
 # ReRxSwift
 ![Swift Version 4.1](https://img.shields.io/badge/Swift-v4.1-yellow.svg)
 [![Build Status](https://travis-ci.org/svdo/ReRxSwift.svg?branch=master)](https://travis-ci.org/svdo/ReRxSwift)
